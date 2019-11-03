@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="HOME"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/nav_mycafe"
+        android:title="MYCAFE"
+        android:icon="@drawable/ic_person"/>
+
+    <item
+        android:id="@+id/nav_favorite"
+        android:title="FAVORITE"
+        android:icon="@drawable/ic_favorite" />
+
+    <item
+        android:id="@+id/nav_notification"
+        android:title="NOTIFICATION"
+        android:icon="@drawable/ic_notifications" />
+
+    <item
+        android:id="@+id/nav_setting"
+        android:title="SETTINGS"
+        android:icon="@drawable/ic_setting" />
+
+
+</menu>

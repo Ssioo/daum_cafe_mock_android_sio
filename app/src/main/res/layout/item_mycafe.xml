@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/iv_star_item_mycafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/ic_star_full" />
+
+    <ImageView
+        android:id="@+id/iv_thumbnail_item_mycafe"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_cafe_empty" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/iv_thumbnail_item_mycafe"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name_item_mycafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="소프트스퀘어드"
+            android:textColor="@android:color/black" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_date_item_mycafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="2019.11.02"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="false"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="4dp"
+                android:layout_toEndOf="@+id/tv_date_item_mycafe"
+                app:srcCompat="@drawable/ic_new" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
