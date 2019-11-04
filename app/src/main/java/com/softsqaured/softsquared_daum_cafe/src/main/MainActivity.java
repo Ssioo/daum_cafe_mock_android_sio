@@ -13,6 +13,7 @@ import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.favorite.FavoriteFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.home.HomeFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.notification.NotificationFragment;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.interfaces.MainActivityView;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafeFragment;
 
@@ -66,7 +67,7 @@ public class MainActivity extends BaseActivity implements MainActivityView, Bott
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, NotificationFragment.newInstance(), "NOTIFICATION").commit();
                 return true;
             case R.id.nav_setting:
-                // fragmentManager.beginTransaction().replace(R.id.frame_main, notificationFragment).commitAllowingStateLoss();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, SettingFragment.newInstance(), "SETTING").commit();
                 return true;
         }
         return false;

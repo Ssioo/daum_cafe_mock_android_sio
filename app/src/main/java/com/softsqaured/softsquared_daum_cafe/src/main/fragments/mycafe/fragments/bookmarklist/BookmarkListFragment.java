@@ -26,7 +26,7 @@ public class BookmarkListFragment extends BaseFragment implements BookmarkListFr
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bookmark_mycafe, container, false);
+        View view = inflater.inflate(R.layout.fragment_mycafe_bookmark, container, false);
         return view;
     }
 }

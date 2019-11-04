@@ -25,7 +25,7 @@ public class PostMailNotificationFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_postmail_notification, container, false);
+        View view = inflater.inflate(R.layout.fragment_notification_postmail, container, false);
         return view;
     }
 }

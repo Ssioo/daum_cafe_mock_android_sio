@@ -25,7 +25,7 @@ public class CafeActNotificationFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cafeact_notification , container, false);
+        View view = inflater.inflate(R.layout.fragment_notification_cafeact, container, false);
         return view;
     }
 }

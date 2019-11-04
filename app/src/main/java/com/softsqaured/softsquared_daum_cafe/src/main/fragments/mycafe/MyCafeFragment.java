@@ -1,5 +1,6 @@
 package com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -14,10 +16,11 @@ import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeActivityView;
 
-public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, TabLayout.OnTabSelectedListener{
+public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, TabLayout.OnTabSelectedListener {
 
     private TabLayout tlMyCafe;
     private ViewPager vpMyCafe;
+
 
     private MyCafePagerAdapter mcpAdapter;
 
@@ -39,6 +42,8 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
         tlMyCafe = view.findViewById(R.id.tab_mycafe);
         vpMyCafe = view.findViewById(R.id.vp_mycafe);
 
+
+
         mcpAdapter = new MyCafePagerAdapter(getChildFragmentManager(), 4);
         vpMyCafe.setAdapter(mcpAdapter);
 
@@ -48,13 +53,9 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
         /* TabLayout Add on Tab Selected Listener */
         tlMyCafe.addOnTabSelectedListener(this);
 
+
+
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -81,6 +82,4 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
-
-
 }

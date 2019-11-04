@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:background="?attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/iv_star_item_mycafe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/ic_star_full" />
 
     <ImageView
@@ -52,7 +53,7 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/ic_newarticle_item_mycafe"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_alignParentBottom="false"

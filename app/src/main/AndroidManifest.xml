@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.softsqaured.softsquared_daum_cafe">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".src.ApplicationClass"
         android:allowBackup="false"
@@ -14,7 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.main.MainActivity">
+        <activity android:name=".src.signin.SignInActivity"></activity>
+        <activity android:name=".src.signup.SignUpActivity" />
+        <activity android:name=".src.signselect.SignSelectActivity" />
+        <activity android:name=".src.cafe.CafeActivity" />
+        <activity android:name=".src.main.MainActivity"></activity>
+        <activity android:name=".src.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

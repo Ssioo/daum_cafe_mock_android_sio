@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".src.signselect.SignSelectActivity">
+
+    <TextView
+        android:id="@+id/tv_signup_signselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/signup"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin_signselect" />
+
+    <Button
+        android:id="@+id/btn_signin_signselect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daum 아이디로 로그인"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_kakao_signin_signselect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오계정으로 로그인"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:background="#FAFA33"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signin_signselect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_kakao_direct_signin_signselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카카오계정 직접 입력"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_kakao_signin_signselect"
+        app:layout_constraintEnd_toEndOf="@+id/btn_kakao_signin_signselect" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ public class NewArticleNotificationFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_newarticle_notification , container, false);
+        View view = inflater.inflate(R.layout.fragment_notification_newarticle, container, false);
         return view;
     }
 }

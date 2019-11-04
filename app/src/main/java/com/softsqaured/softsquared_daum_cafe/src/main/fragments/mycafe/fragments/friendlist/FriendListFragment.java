@@ -25,7 +25,7 @@ public class FriendListFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_friend_mycafe, container, false);
+        View view = inflater.inflate(R.layout.fragment_mycafe_friend, container, false);
         return view;
     }
 }
