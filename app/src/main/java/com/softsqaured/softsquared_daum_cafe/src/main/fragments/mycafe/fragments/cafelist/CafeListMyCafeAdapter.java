@@ -59,7 +59,7 @@ public class CafeListMyCafeAdapter extends RecyclerView.Adapter<CafeListMyCafeAd
         return cafeListItems.size();
     }
 
-    public class MyCafeViewHolder extends RecyclerView.ViewHolder {
+    public class MyCafeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private ImageView ivCafeThumbnail;
         private TextView tvCafeTitle;
@@ -78,14 +78,13 @@ public class CafeListMyCafeAdapter extends RecyclerView.Adapter<CafeListMyCafeAd
             ivNewIcon = itemView.findViewById(R.id.ic_newarticle_item_mycafe);
 
             /* Set on Click Listener */
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), CafeActivity.class);
-                    (v.getContext()).startActivity(intent);
-                }
-            });
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), CafeActivity.class);
+            (v.getContext()).startActivity(intent);
+        }
     }
 }

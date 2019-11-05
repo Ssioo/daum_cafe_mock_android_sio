@@ -46,47 +46,45 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_cafe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="@android:color/white"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:layout_collapseMode="pin"
-                    app:tabGravity="center"
-                    app:tabIndicatorColor="@android:color/holo_red_light"
-                    app:tabSelectedTextColor="@android:color/holo_red_light"
-                    app:tabTextColor="@android:color/black">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="전체글" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="인기글" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="갤러리" />
-                </com.google.android.material.tabs.TabLayout>
-
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_cafe"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:background="@android:color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_collapseMode="pin"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@android:color/holo_red_light"
+            app:tabSelectedTextColor="@android:color/holo_red_light"
+            app:tabTextColor="@android:color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체글" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인기글" />
+
+        </com.google.android.material.tabs.TabLayout>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_cafe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="48sp"
+            android:layout_marginBottom="?attr/actionBarSize"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
     <include layout="@layout/activity_cafe_drawer" />
 
