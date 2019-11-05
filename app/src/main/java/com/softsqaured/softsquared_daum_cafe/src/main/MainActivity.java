@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.favorite.FavoriteFragment;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.PopularFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.home.HomeFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.notification.NotificationFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
@@ -61,7 +59,7 @@ public class MainActivity extends BaseActivity implements MainActivityView, Bott
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, MyCafeFragment.newInstance(), "MYCAFE").commit();
                 return true;
             case R.id.nav_favorite:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, FavoriteFragment.newInstance(), "FAVORITE").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, PopularFragment.newInstance(), "FAVORITE").commit();
                 return true;
             case R.id.nav_notification:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, NotificationFragment.newInstance(), "NOTIFICATION").commit();
