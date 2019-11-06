@@ -1,6 +1,7 @@
 package com.softsqaured.softsquared_daum_cafe.src;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,11 @@ public class BaseFragment extends Fragment {
 
     public void showToast(String toast) {
         Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
+    }
+
+    public void startNextActivity(Class<?> activity) {
+        Intent intent = new Intent(getActivity(), activity);
+        getActivity().startActivity(intent);
     }
 
     @Override
