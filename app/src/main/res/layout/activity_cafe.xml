@@ -61,7 +61,8 @@
             app:tabGravity="center"
             app:tabIndicatorColor="@android:color/holo_red_light"
             app:tabSelectedTextColor="@android:color/holo_red_light"
-            app:tabTextColor="@android:color/black">
+            app:tabTextColor="@android:color/black"
+            android:elevation="2dp">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

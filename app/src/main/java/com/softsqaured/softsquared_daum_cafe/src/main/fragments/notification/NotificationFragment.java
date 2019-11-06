@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,8 +14,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafePagerAdapter;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.notification.interfaces.NotificationFragmentView;
 
-public class NotificationFragment extends BaseFragment implements TabLayout.OnTabSelectedListener{
+public class NotificationFragment extends BaseFragment implements NotificationFragmentView, TabLayout.OnTabSelectedListener{
 
     private TabLayout tlNotification;
     private ViewPager vpNotification;
@@ -48,6 +50,9 @@ public class NotificationFragment extends BaseFragment implements TabLayout.OnTa
 
         /* TabLayout Add on Tab Selected Listener */
         tlNotification.addOnTabSelectedListener(this);
+        tlNotification.getTabAt(0).setCustomView(createTabView(inflater, "0", "카페활동알림"));
+        tlNotification.getTabAt(1).setCustomView(createTabView(inflater, "0", "새글알림"));
+        tlNotification.getTabAt(2).setCustomView(createTabView(inflater, "0", "쪽지"));
 
         return view;
     }
@@ -65,5 +70,15 @@ public class NotificationFragment extends BaseFragment implements TabLayout.OnTa
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    public View createTabView(LayoutInflater inflater, String title, String subTitle) {
+        View tabView = inflater.inflate(R.layout.item_tab_notification, null);
+        TextView tvTabTitle = tabView.findViewById(R.id.tab_title);
+        TextView tvTabSubTitle = tabView.findViewById(R.id.tab_subtitle);
+        tvTabTitle.setText(title);
+        tvTabSubTitle.setText(subTitle);
+
+        return tabView;
     }
 }
