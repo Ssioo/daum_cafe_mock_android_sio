@@ -15,15 +15,20 @@
         android:ems="10"
         android:layout_marginTop="60dp"
         android:hint="이메일 입력"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_edittext_blue"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/et_pw_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="비밀번호 입력"
+        android:background="@drawable/background_edittext_blue"
         android:inputType="textPassword" />
 
     <Button
