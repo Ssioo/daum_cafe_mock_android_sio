@@ -13,10 +13,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafePagerAdapter;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.notification.interfaces.NotificationFragmentView;
 
-public class NotificationFragment extends BaseFragment implements NotificationFragmentView, TabLayout.OnTabSelectedListener{
+public class NotificationFragment extends BaseFragment implements NotificationFragmentView, TabLayout.OnTabSelectedListener {
 
     private TabLayout tlNotification;
     private ViewPager vpNotification;

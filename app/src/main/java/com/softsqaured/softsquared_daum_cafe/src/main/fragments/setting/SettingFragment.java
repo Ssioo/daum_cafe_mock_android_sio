@@ -9,7 +9,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
-public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener{
+public class SettingFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener {
 
     Preference prefLogin;
 

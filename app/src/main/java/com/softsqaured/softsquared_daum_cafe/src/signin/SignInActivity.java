@@ -5,13 +5,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
 import com.softsqaured.softsquared_daum_cafe.src.signin.interfaces.SignInActivityView;
 
-public class SignInActivity extends BaseActivity implements SignInActivityView , View.OnClickListener {
+public class SignInActivity extends BaseActivity implements SignInActivityView, View.OnClickListener {
 
     private Button btnSignIn;
     private EditText etEmail;
@@ -19,6 +20,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView ,
     private TextView tvFindEmail;
     private TextView tvFindPw;
     private CheckBox chkAutoLogin;
+    private ImageView ivClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,13 @@ public class SignInActivity extends BaseActivity implements SignInActivityView ,
         tvFindEmail = findViewById(R.id.tv_findemail_signin);
         tvFindPw = findViewById(R.id.tv_findpw_signin);
         chkAutoLogin = findViewById(R.id.chk_autologin_signin);
+        ivClose = findViewById(R.id.iv_close_signin);
 
         /* Set On Click Listener */
         btnSignIn.setOnClickListener(this);
         tvFindPw.setOnClickListener(this);
         tvFindEmail.setOnClickListener(this);
+        ivClose.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +49,9 @@ public class SignInActivity extends BaseActivity implements SignInActivityView ,
             case R.id.btn_signin_signin:
                 // 서버와 통신 필요.
                 trySignIn();
+                break;
+            case R.id.iv_close_signin:
+                finish();
                 break;
             case R.id.tv_findemail_signin:
             case R.id.tv_findpw_signin:

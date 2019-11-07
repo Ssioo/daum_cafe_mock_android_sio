@@ -38,15 +38,6 @@ public class ApplicationClass extends Application {
     // Retrofit 인스턴스
     public static Retrofit retrofit;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        if (sSharedPreferences == null) {
-            sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
-        }
-    }
-
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
@@ -63,5 +54,14 @@ public class ApplicationClass extends Application {
         }
 
         return retrofit;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        if (sSharedPreferences == null) {
+            sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        }
     }
 }
