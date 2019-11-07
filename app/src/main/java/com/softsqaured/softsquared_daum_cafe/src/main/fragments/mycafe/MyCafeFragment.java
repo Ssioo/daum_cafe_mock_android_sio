@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
+import com.softsqaured.softsquared_daum_cafe.src.addcafe.AddCafeActivity;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeActivityView;
 import com.softsqaured.softsquared_daum_cafe.src.search.SearchActivity;
 
@@ -23,6 +24,7 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
     private TabLayout tlMyCafe;
     private ViewPager vpMyCafe;
     private ImageView ivSearch;
+    private ImageView ivAddCafe;
 
 
     private MyCafePagerAdapter mcpAdapter;
@@ -45,6 +47,7 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
         tlMyCafe = view.findViewById(R.id.tab_mycafe);
         vpMyCafe = view.findViewById(R.id.vp_mycafe);
         ivSearch = view.findViewById(R.id.iv_search_mycafe);
+        ivAddCafe = view.findViewById(R.id.iv_addcafe_mycafe);
 
 
 
@@ -59,6 +62,7 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
 
         /* Set On Click Listener */
         ivSearch.setOnClickListener(this);
+        ivAddCafe.setOnClickListener(this);
 
 
         return view;
@@ -94,6 +98,9 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
         switch (v.getId()) {
             case R.id.iv_search_mycafe:
                 startNextActivity(SearchActivity.class);
+                break;
+            case R.id.iv_addcafe_mycafe:
+                startNextActivity(AddCafeActivity.class);
                 break;
         }
     }
