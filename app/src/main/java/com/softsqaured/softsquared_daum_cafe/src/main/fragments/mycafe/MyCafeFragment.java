@@ -1,6 +1,5 @@
 package com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -48,7 +46,6 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, 
         vpMyCafe = view.findViewById(R.id.vp_mycafe);
         ivSearch = view.findViewById(R.id.iv_search_mycafe);
         ivAddCafe = view.findViewById(R.id.iv_addcafe_mycafe);
-
 
 
         mcpAdapter = new MyCafePagerAdapter(getChildFragmentManager(), 4);

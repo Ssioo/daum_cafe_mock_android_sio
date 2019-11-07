@@ -8,12 +8,12 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.PopularFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.home.HomeFragment;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafeFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.notification.NotificationFragment;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.PopularFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.interfaces.MainActivityView;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafeFragment;
 
 public class MainActivity extends BaseActivity implements MainActivityView, BottomNavigationView.OnNavigationItemSelectedListener {
 

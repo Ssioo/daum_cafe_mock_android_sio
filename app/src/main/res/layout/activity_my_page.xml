@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".src.mypage_cafe.MyPageActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar_mypage"
+        android:background="@android:color/white"
+        android:elevation="2dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:background="@android:color/white"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/iv_profile_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_user_default_profile" />
+
+        <TextView
+            android:id="@+id/tv_username_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_profile_mypage"
+            android:layout_toEndOf="@+id/iv_profile_mypage"
+            android:text="UserName"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_userrole_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_profile_mypage"
+            android:layout_toEndOf="@+id/iv_profile_mypage"
+            android:text="User Role"
+            android:textColor="@android:color/black" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtn_setting_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_background"
+            android:src="@drawable/ic_setting_profile" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ibtn_information_mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            android:layout_toStartOf="@+id/ibtn_setting_mypage"
+            android:background="@drawable/round_background"
+            android:src="@drawable/ic_information" />
+
+
+    </RelativeLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="16dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이메일"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_email_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="wooisso@naver.com" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별/나이"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_age_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="여/23세" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 방문일"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_visitcount_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="5회" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 게시물"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_articlecount_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="1개" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 댓글"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_commentcount_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="1개" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="카페가입"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_date_registercafe_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="2019.11.01" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:paddingVertical="2dp"
+                android:text="최종방문일"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_date_lastvisit_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="2dp"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                tools:text="2019.11.07" />
+
+            <ImageView
+                android:id="@+id/iv_close_userdetail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/ic_expand_less" />
+        </TableRow>
+
+    </TableLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_mypage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        app:tabIndicatorColor="@android:color/holo_red_light">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/item_tab_subtitle" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/item_tab_subtitle" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

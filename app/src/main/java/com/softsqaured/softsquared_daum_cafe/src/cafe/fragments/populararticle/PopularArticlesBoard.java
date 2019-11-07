@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class PopularArticlesBoard extends BaseFragment {
 
+    private RecyclerView rvArticlesPopularArticleBoard;
+
     public static PopularArticlesBoard newInstance() {
         PopularArticlesBoard fragment = new PopularArticlesBoard();
         return fragment;
     }
-
-    private RecyclerView rvArticlesPopularArticleBoard;
 
     @Nullable
     @Override

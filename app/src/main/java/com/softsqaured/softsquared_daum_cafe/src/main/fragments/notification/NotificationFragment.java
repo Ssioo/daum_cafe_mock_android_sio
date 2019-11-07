@@ -72,7 +72,7 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
     }
 
     public View createTabView(LayoutInflater inflater, String title, String subTitle) {
-        View tabView = inflater.inflate(R.layout.item_tab_notification, null);
+        View tabView = inflater.inflate(R.layout.item_tab_subtitle, null);
         TextView tvTabTitle = tabView.findViewById(R.id.tab_title);
         TextView tvTabSubTitle = tabView.findViewById(R.id.tab_subtitle);
         tvTabTitle.setText(title);

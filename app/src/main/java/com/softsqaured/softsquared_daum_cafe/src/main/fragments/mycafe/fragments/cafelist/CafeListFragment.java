@@ -21,6 +21,12 @@ import java.util.ArrayList;
 
 public class CafeListFragment extends BaseFragment implements CafeListFragmentView, SwipeRefreshLayout.OnRefreshListener {
 
+    private RecyclerView rvMyCafeList;
+    private RecyclerView rvAllCafeList;
+    private SwipeRefreshLayout srlMyCafeCafe;
+    private TextView tvCountMyCafe;
+    private TextView tvCountAllCafe;
+
     public CafeListFragment() {
     }
 
@@ -28,13 +34,6 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
         CafeListFragment fragment = new CafeListFragment();
         return fragment;
     }
-
-    private RecyclerView rvMyCafeList;
-    private RecyclerView rvAllCafeList;
-    private SwipeRefreshLayout srlMyCafeCafe;
-
-    private TextView tvCountMyCafe;
-    private TextView tvCountAllCafe;
 
     @Nullable
     @Override

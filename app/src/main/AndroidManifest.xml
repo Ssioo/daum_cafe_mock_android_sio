@@ -16,8 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.addcafe.AddCafeActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".src.mypage_cafe.MyPageActivity"></activity>
+        <activity android:name=".src.mysetting_cafe.MySettingActivity" />
+        <activity
+            android:name=".src.addcafe.AddCafeActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.search.SearchActivity" />
         <activity android:name=".src.signin.SignInActivity" />
         <activity android:name=".src.signup.SignUpActivity" />

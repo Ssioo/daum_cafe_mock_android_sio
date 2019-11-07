@@ -18,7 +18,6 @@ public class CafeBoardPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-
     @NonNull
     @Override
     public Fragment getItem(int position) {

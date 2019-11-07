@@ -33,7 +33,6 @@ public class MyCafePagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-
     @Override
     public int getCount() {
         return mPageCount;

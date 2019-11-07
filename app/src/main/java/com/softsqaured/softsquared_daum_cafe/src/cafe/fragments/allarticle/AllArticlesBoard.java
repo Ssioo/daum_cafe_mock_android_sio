@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class AllArticlesBoard extends BaseFragment {
 
+    private RecyclerView rvArticlesAllArticleBoard;
+
     public static AllArticlesBoard newInstance() {
         AllArticlesBoard fragment = new AllArticlesBoard();
         return fragment;
     }
-
-    private RecyclerView rvArticlesAllArticleBoard;
 
     @Nullable
     @Override

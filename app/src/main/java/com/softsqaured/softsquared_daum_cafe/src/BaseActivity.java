@@ -14,9 +14,8 @@ import com.softsqaured.softsquared_daum_cafe.R;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
-    public ProgressDialog mProgressDialog;
-
     protected final String TAG = getClass().getSimpleName();
+    public ProgressDialog mProgressDialog;
 
     public void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();

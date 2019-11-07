@@ -59,7 +59,7 @@ public class CafeListMyCafeAdapter extends RecyclerView.Adapter<CafeListMyCafeAd
         return cafeListItems.size();
     }
 
-    public class MyCafeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyCafeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView ivCafeThumbnail;
         private TextView tvCafeTitle;
