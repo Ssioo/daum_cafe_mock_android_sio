@@ -1,6 +1,8 @@
 package com.softsqaured.softsquared_daum_cafe.src.main.interfaces;
 
-public interface MainActivityView {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public interface MainActivityView extends BottomNavigationView.OnNavigationItemSelectedListener{
 
     void validateSuccess(String text);
 

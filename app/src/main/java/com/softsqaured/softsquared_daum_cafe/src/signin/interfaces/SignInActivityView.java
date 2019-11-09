@@ -1,6 +1,8 @@
 package com.softsqaured.softsquared_daum_cafe.src.signin.interfaces;
 
-public interface SignInActivityView {
+import android.view.View;
+
+public interface SignInActivityView extends View.OnClickListener{
 
     void validateSuccess(String text);
 

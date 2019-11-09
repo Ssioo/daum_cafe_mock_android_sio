@@ -14,7 +14,7 @@ import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.boardlist.interfaces.BoardListFragmentView;
 
-public class BoardListFragment extends BaseFragment implements BoardListFragmentView, SwipeRefreshLayout.OnRefreshListener {
+public class BoardListFragment extends BaseFragment implements BoardListFragmentView {
 
     private SwipeRefreshLayout srlMyCafeBoard;
     private RecyclerView rvMyCafeBoard;

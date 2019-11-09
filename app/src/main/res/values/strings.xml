@@ -1,6 +1,9 @@
 <resources>
+    <!-- common -->
     <string name="app_name">softsquared_daum_cafe</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+    <string name="nofunction">미구현기능입니다.</string>
+    <!-- SignUp -->
     <string name="signup"><u>회원가입</u></string>
 </resources>

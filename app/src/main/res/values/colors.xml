@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Status Bar -->
+    <color name="color_status_bar">#AAAAAA</color>
+
+    <!-- Main - Bottom Nav -->
+    <color name="color_bottom_nav">#26272B</color>
+
+    <!-- Cafe -->
+    <color name="color_tv_subtitle">#EEEEEE</color>
 </resources>

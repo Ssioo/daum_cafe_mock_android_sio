@@ -15,7 +15,7 @@ import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.PopularF
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 import com.softsqaured.softsquared_daum_cafe.src.main.interfaces.MainActivityView;
 
-public class MainActivity extends BaseActivity implements MainActivityView, BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements MainActivityView {
 
     private BottomNavigationView bottomNavMain;
 

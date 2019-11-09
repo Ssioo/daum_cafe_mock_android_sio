@@ -17,7 +17,7 @@ import com.softsqaured.softsquared_daum_cafe.src.addcafe.AddCafeActivity;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeActivityView;
 import com.softsqaured.softsquared_daum_cafe.src.search.SearchActivity;
 
-public class MyCafeFragment extends BaseFragment implements MyCafeActivityView, TabLayout.OnTabSelectedListener, View.OnClickListener {
+public class MyCafeFragment extends BaseFragment implements MyCafeActivityView {
 
     private TabLayout tlMyCafe;
     private ViewPager vpMyCafe;

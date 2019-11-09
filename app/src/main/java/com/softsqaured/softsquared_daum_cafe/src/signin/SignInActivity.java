@@ -12,7 +12,7 @@ import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
 import com.softsqaured.softsquared_daum_cafe.src.signin.interfaces.SignInActivityView;
 
-public class SignInActivity extends BaseActivity implements SignInActivityView, View.OnClickListener {
+public class SignInActivity extends BaseActivity implements SignInActivityView {
 
     private Button btnSignIn;
     private EditText etEmail;

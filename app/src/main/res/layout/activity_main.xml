@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@android:color/black"
+        android:background="@color/color_bottom_nav"
         app:itemIconTint="@drawable/bottom_nav_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_bottomnav" />

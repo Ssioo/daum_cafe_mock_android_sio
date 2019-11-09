@@ -5,6 +5,6 @@ import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
-public interface NotificationFragmentView {
+public interface NotificationFragmentView extends TabLayout.OnTabSelectedListener{
 
 }

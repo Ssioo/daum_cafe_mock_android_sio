@@ -19,7 +19,7 @@ import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.fragments
 
 import java.util.ArrayList;
 
-public class CafeListFragment extends BaseFragment implements CafeListFragmentView, SwipeRefreshLayout.OnRefreshListener {
+public class CafeListFragment extends BaseFragment implements CafeListFragmentView {
 
     private RecyclerView rvMyCafeList;
     private RecyclerView rvAllCafeList;

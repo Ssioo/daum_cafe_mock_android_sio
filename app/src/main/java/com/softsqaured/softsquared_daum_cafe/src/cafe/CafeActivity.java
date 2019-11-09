@@ -1,7 +1,9 @@
 package com.softsqaured.softsquared_daum_cafe.src.cafe;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -59,6 +61,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     private TextView tvCafeTitle;
     private LinearLayout llToolbarCafe;
     private TextView tvToolbarTitle;
+    private ImageView ivToolbarExpand;
+    private LinearLayout llToolbarContents;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -98,14 +102,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         llToolbarCafe = findViewById(R.id.ll_toolbar_cafe);
 
         /* Toolbar */
-        tvToolbarTitle = new TextView(this);
-        tvToolbarTitle.setText(tvCafeTitle.getText().toString());
-        tvToolbarTitle.setTextColor(Color.WHITE);
-        tvToolbarTitle.setTextSize(16);
-        Toolbar.LayoutParams params = new Toolbar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER;
-        tvToolbarTitle.setLayoutParams(params);
-        tbCafe.addView(tvToolbarTitle);
+        llToolbarContents = new LinearLayout(this);
+        addViewsForToolbar(this, llToolbarContents, tbCafe);
         setSupportActionBar(tbCafe);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
@@ -127,6 +125,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         ivCloseItem1.setOnClickListener(this);
         ivCloseItem2.setOnClickListener(this);
         ivCloseItem3.setOnClickListener(this);
+        tbCafe.setOnClickListener(this);
+
 
         /* TabLayout */
         tlCafe.addOnTabSelectedListener(this);
@@ -138,6 +138,40 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         /* SwipeRefreshLayout - Drawer */
         srlBoardListDrawer.setOnRefreshListener(this);
 
+    }
+
+    private void addViewsForToolbar(Context context, LinearLayout llToolbarContainer, Toolbar toolbar) {
+        // DP to PX
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int dpUnit = (int) metrics.density;
+        // Container
+        llToolbarContainer.setOrientation(LinearLayout.HORIZONTAL);
+        Toolbar.LayoutParams llParams = new Toolbar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        llParams.gravity = Gravity.CENTER;
+        llToolbarContainer.setLayoutParams(llParams);
+        // Title
+        TextView tvTitle = new TextView(context);
+        tvTitle.setText(tvCafeTitle.getText().toString());
+        tvTitle.setTextColor(Color.WHITE);
+        tvTitle.setTextSize(17);
+        tvTitle.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER;
+        tvTitle.setLayoutParams(params);
+        llToolbarContainer.addView(tvTitle);
+        // Icon
+        ImageView ivExpand = new ImageView(context);
+        ivExpand.setImageResource(R.drawable.ic_expane_more_circle);
+        ivExpand.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        ivExpand.setAdjustViewBounds(true);
+        LinearLayout.LayoutParams ivParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ivParams.gravity = Gravity.CENTER;
+        ivParams.setMargins(4 * dpUnit, 16 * dpUnit, 0, 16 * dpUnit);
+        ivExpand.setLayoutParams(ivParams);
+        llToolbarContainer.addView(ivExpand);
+
+        toolbar.addView(llToolbarContainer);
     }
 
     @Override
@@ -153,7 +187,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_close_cafe_drawer:
+            case R.id.toolbar_cafe:
+                ablCafe.setExpanded(true, true);
                 break;
             case R.id.ibtn_setting_cafe_drawer:
                 // Setting Activity 이동
@@ -166,13 +201,13 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
             case R.id.tv_home_cafe_drawer:
                 break;
             case R.id.tv_admin_cafe_drawer:
-                showToast("미구현 기능입니다");
+                showToast(getString(R.string.nofunction));
                 break;
             case R.id.tv_chat_cafe_drawer:
-                showToast("미구현 기능입니다");
+                showToast(getString(R.string.nofunction));
                 break;
             case R.id.tv_search_cafe_drawer:
-                showToast("미구현 기능입니다");
+                showToast(getString(R.string.nofunction));
                 break;
             case R.id.ibtn_close_boardlist1_cafe_drawer:
                 if (DRAWER_ITEM1_OPENED) {
@@ -204,6 +239,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 }
                 DRAWER_ITEM3_OPENED = !DRAWER_ITEM3_OPENED;
                 return;
+            case R.id.iv_close_cafe_drawer:
+                break;
         }
         dlCafe.closeDrawers();
     }
@@ -253,10 +290,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         if (i + appBarLayout.getTotalScrollRange() == 0) {
             // TOTALLY COLLAPSED
             llToolbarCafe.setVisibility(View.INVISIBLE);
-            tvToolbarTitle.setVisibility(View.VISIBLE);
+            llToolbarContents.setVisibility(View.VISIBLE);
         } else {
             llToolbarCafe.setVisibility(View.VISIBLE);
-            tvToolbarTitle.setVisibility(View.INVISIBLE);
+            llToolbarContents.setVisibility(View.INVISIBLE);
         }
     }
 }

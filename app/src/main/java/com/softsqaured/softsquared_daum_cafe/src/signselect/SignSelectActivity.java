@@ -9,9 +9,10 @@ import android.widget.TextView;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseActivity;
 import com.softsqaured.softsquared_daum_cafe.src.signin.SignInActivity;
+import com.softsqaured.softsquared_daum_cafe.src.signselect.interfaces.SignSelectActivityView;
 import com.softsqaured.softsquared_daum_cafe.src.signup.SignUpActivity;
 
-public class SignSelectActivity extends BaseActivity implements View.OnClickListener {
+public class SignSelectActivity extends BaseActivity implements SignSelectActivityView {
 
     private Button btnSignIn;
     private Button btnKakaoSignIn;
