@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.signin.interfaces;
+package com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces;
 
 import android.view.View;
 

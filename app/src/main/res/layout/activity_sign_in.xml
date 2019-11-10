@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".src.signin.SignInActivity">
+    tools:context=".src.signselect.signin.SignInActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,8 @@
         android:id="@+id/header_signin"
         android:orientation="horizontal"
         android:background="@android:color/white"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="60dp"
-        android:hint="이메일 입력"
+        android:hint="@string/type_email_signin"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/background_edittext_blue"
@@ -56,7 +57,7 @@
         android:textSize="14sp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="비밀번호 입력"
+        android:hint="@string/type_pw_signin"
         android:background="@drawable/background_edittext_blue"
         android:inputType="textPassword"
         android:paddingHorizontal="8dp"
@@ -67,19 +68,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="로그인"
+        android:text="@string/signin"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/color_primary_sign"
         android:layout_marginHorizontal="16dp"/>
 
     <CheckBox
         android:id="@+id/chk_autologin_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="@android:color/holo_blue_dark"
-        android:text="로그인 상태 유지"
+        android:buttonTint="@color/color_primary_sign"
+        android:text="@string/autologin_signin"
         android:layout_marginHorizontal="16dp"/>
 
     <LinearLayout
@@ -94,19 +95,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="아이디 찾기" />
+            android:text="@string/find_email" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" | " />
+            android:text="@string/separator" />
 
         <TextView
             android:id="@+id/tv_findpw_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="비밀번호 찾기" />
+            android:text="@string/find_pw" />
 
     </LinearLayout>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".src.signup.SignUpActivity">
+    tools:context=".src.signselect.signup.SignUpActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,8 @@
         android:id="@+id/header_signup"
         android:orientation="horizontal"
         android:background="@android:color/white"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="60dp"
-        android:hint="이메일 입력"
+        android:hint="@string/type_email_signup"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/background_edittext_blue"
@@ -54,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="비밀번호 입력"
+        android:hint="@string/type_pw_signup"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"
         android:layout_marginHorizontal="16dp"
@@ -67,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="이름 입력"
+        android:hint="@string/type_name_signup"
         android:textSize="14sp"
         android:layout_marginBottom="8dp"
         android:layout_marginHorizontal="16dp"
@@ -80,11 +81,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="회원가입"
+        android:text="@string/signup_signup"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/color_primary_sign"
         android:layout_marginHorizontal="16dp" />
 
 </LinearLayout>

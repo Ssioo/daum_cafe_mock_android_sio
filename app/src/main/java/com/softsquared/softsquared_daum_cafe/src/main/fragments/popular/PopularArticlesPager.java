@@ -13,22 +13,31 @@ import java.util.ArrayList;
 public class PopularArticlesPager extends FragmentStatePagerAdapter {
 
     ArrayList<ArrayList<Article>> articles;
+    private int viewType;
 
 
-    public PopularArticlesPager(@NonNull FragmentManager fm, ArrayList<ArrayList<Article>> articles) {
+    public PopularArticlesPager(@NonNull FragmentManager fm, ArrayList<ArrayList<Article>> articles, int viewType) {
         super(fm);
         this.articles = articles;
+        this.viewType = viewType;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        PopularArticleListFragment popularArticleListFragment = new PopularArticleListFragment(articles.get(position));
-        return popularArticleListFragment;
+        switch (position % 3) {
+            case 0:
+                return PopularArticleListFragment.newInstanceNow(articles.get(0), viewType);
+            case 1:
+                return PopularArticleListFragment.newInstanceWeek(articles.get(1), viewType);
+            case 2:
+                return PopularArticleListFragment.newInstanceMonth(articles.get(2), viewType);
+        }
+        return null;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 300;
     }
 }

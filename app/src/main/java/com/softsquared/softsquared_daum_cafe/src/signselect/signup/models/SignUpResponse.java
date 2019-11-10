@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.signup.models;
+package com.softsquared.softsquared_daum_cafe.src.signselect.signup.models;
 
 import com.google.gson.annotations.SerializedName;
 

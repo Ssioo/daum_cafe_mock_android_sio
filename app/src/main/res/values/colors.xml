@@ -15,4 +15,10 @@
 
     <!-- Cafe -->
     <color name="color_tv_subtitle">#EEEEEE</color>
+
+    <!-- Setting Fragment -->
+    <color name="color_background_setting">#F8F8F8</color>
+
+    <!-- SignIn Activity -->
+    <color name="color_primary_sign">#4E87F0</color>
 </resources>

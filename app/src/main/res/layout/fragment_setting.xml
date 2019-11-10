@@ -1,12 +1,610 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background_setting">
 
-    <FrameLayout
-        android:id="@+id/frame_setting"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_setting"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="-1dp"
+        android:background="@android:color/white"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="설정"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/item_signinfo_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그인 정보"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_signinfo_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="wooisso"
+                    android:id="@+id/tv_setting_signinfo_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_version_setting"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="업데이트정보"
+                        android:textSize="15sp"
+                        android:id="@+id/tv_setting_update_title"
+                        android:textColor="@android:color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="현재 3.12.2"
+                        android:id="@+id/tv_setting_update_subtitle"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="최신버전 사용 중"
+                    android:id="@+id/tv_update_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_noti_set_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="알림 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_noti_set_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_noti_check_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="0.5dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="알림 수신 확인"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_noti_check_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_write_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="글쓰기 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_write_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_read_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="글읽기 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_read_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_board_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="게시판 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_board_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_spammail_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="쪽지 차단 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_spammail_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_homepage_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시작화면 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_homepage_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="홈"
+                    android:id="@+id/tv_setting_homepage_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_homemycafe_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내카페 기본탭 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_homemycafe_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="카페"
+                    android:id="@+id/tv_setting_homemycafe_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_theme_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="카페 테마 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_theme_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="블랙"
+                    android:id="@+id/tv_setting_theme_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_language_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="언어 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_language_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="시스템 기본"
+                    android:id="@+id/tv_setting_language_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_lock_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="0.5dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="암호 설정"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_lock_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="사용 안함"
+                    android:id="@+id/tv_setting_lock_desc"
+                    android:textColor="@android:color/holo_red_light"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_cache_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="저장 데이터 관리"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_cache_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_lab_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="실험실"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_lab_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_serviceinfo_setting"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@android:color/white"
+                android:elevation="1dp"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="서비스 정보"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_setting_serviceinfo_title"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_chevron_right_black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 </LinearLayout>

@@ -4,8 +4,27 @@
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="nofunction">미구현기능입니다.</string>
-    <!-- SignUp -->
-    <string name="signup"><u>회원가입</u></string>
+    <string name="separator"> | </string>
+
+    <!-- SignSelect -->
+    <string name="signup_signselect"><u>회원가입</u></string>
+    <string name="daumsignin_signselect">Daum으로 로그인</string>
+    <string name="kakaosignin_signselect">카카오계정으로 로그인</string>
+    <string name="kakaodirectsignin_signselect">카카오계정 직접 입력</string>
+
+    <!-- SIgnIn Activity -->
+    <string name="type_email_signin">이메일 입력</string>
+    <string name="type_pw_signin">비밀번호 입력</string>
+    <string name="signin">로그인</string>
+    <string name="autologin_signin">로그인 상태 유지</string>
+    <string name="find_email">이메일 찾기</string>
+    <string name="find_pw">비밀번호 찾기</string>
+
+    <!-- SignUp Activity -->
+    <string name="signup_signup">회원가입</string>
+    <string name="type_email_signup">이메일 입력</string>
+    <string name="type_pw_signup">비밀번호 입력</string>
+    <string name="type_name_signup">이름 입력</string>
 
     <!-- Popular Fragment -->
     <string name="drawer_popular_now">실시간 인기글</string>
@@ -13,6 +32,18 @@
     <string name="drawer_popular_month">월간 인기글</string>
     <string name="drawer_popular_week_description">지난 4주동안의 인기글입니다.</string>
     <string name="drawer_popular_month_description">지난 6개월 동안의 인기글입니다.</string>
+    <string name="drawer_popular_now_subtitle">TODAY</string>
     <string name="drawer_popular_week_subtitle">WEEKLY</string>
     <string name="drawer_popular_month_subtitle">MONTHLY</string>
+
+    <!-- MyCafe Cafe Fragment -->
+    <string name="favorite_cafe_mycafe">즐겨찾는 카페</string>
+    <string name="all_cafe_mycafe">내 전체 카페</string>
+    <string name="edit_cafe_mycafe">편집</string>
+
+    <!-- MyCafe Board Fragment -->
+    <string name="favorite_board_mycafe">즐겨찾는 게시판</string>
+
+    <!-- MyCafe Notification Fragment -->
+    <string name="mynoti_notification_mycafe">내 소식</string>
 </resources>

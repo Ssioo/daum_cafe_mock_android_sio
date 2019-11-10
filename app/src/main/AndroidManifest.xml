@@ -22,8 +22,8 @@
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.mypage_cafe.MyPageActivity"/>
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.mysetting_cafe.MySettingActivity" />
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.search.SearchActivity" />
-        <activity android:name="com.softsquared.softsquared_daum_cafe.src.signin.SignInActivity" />
-        <activity android:name="com.softsquared.softsquared_daum_cafe.src.signup.SignUpActivity" />
+        <activity android:name=".src.signselect.signin.SignInActivity" />
+        <activity android:name=".src.signselect.signup.SignUpActivity" />
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity" />
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity" />
         <activity android:name="com.softsquared.softsquared_daum_cafe.src.main.MainActivity" />

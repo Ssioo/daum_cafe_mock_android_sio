@@ -15,7 +15,8 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iv_close_signselect"
@@ -42,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/signup"
+        android:text="@string/signup_signselect"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,7 @@
         android:id="@+id/btn_signin_signselect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Daum 아이디로 로그인"
+        android:text="@string/daumsignin_signselect"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:background="@android:color/white"
@@ -67,7 +68,8 @@
         android:id="@+id/btn_kakao_signin_signselect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="카카오계정으로 로그인"
+        android:layout_marginBottom="8dp"
+        android:text="@string/kakaosignin_signselect"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:background="#FAFA33"
@@ -80,7 +82,7 @@
         android:id="@+id/tv_kakao_direct_signin_signselect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="카카오계정 직접 입력"
+        android:text="@string/kakaodirectsignin_signselect"
         android:textColor="@android:color/black"
         android:textSize="12sp"
         android:layout_marginBottom="4dp"

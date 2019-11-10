@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.signup;
+package com.softsquared.softsquared_daum_cafe.src.signselect.signup;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.signup.interfaces.SignUpActivityView;
+import com.softsquared.softsquared_daum_cafe.src.signselect.signup.interfaces.SignUpActivityView;
 
 public class SignUpActivity extends BaseActivity implements SignUpActivityView {
 

@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -42,15 +44,25 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     private LinearLayout llSelectMonthlyPopular;
     private TextView tvToolbarTitleCollapsed;
     private TextView tvToolbarTitleExpanded;
+    private TextView tvToolbarSubTitleExpanded;
+    private LinearLayout llToolbarTitleContainer;
     private AppBarLayout ablPopular;
     private ViewPager vpPopular;
     private TextView tvCurrentHourDrawer;
     private TextView tvCurrentHourDescDrawer;
+    private ImageView ivBackgroundPopular;
+    private ImageView ivBlackboxPopular;
 
     private Context mContext;
 
-    int dpUnit;
-    int todayHour;
+    private int dpUnit;
+    private int todayHour;
+    private SimpleDateFormat sdfCurrentHour = new SimpleDateFormat("a hh:00", Locale.ENGLISH);
+    private Calendar today;
+    private int articlesViewType = 0;
+
+    // dummy
+    private ArrayList<ArrayList<Article>> dummy = new ArrayList<>();
 
     public PopularFragment() {
     }
@@ -77,8 +89,13 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         dpUnit = (int) metrics.density;
 
         // Constants - Today
-        Calendar today = Calendar.getInstance();
-        todayHour = today.get(Calendar.HOUR_OF_DAY);
+        today = Calendar.getInstance();
+        todayHour = today.get(Calendar.HOUR);
+        if (todayHour == 0)
+            todayHour = 12;
+
+        // Constants - ImageView Transition Animation
+
 
         /* findViewByID */
         tbFavorite = view.findViewById(R.id.toolbar_popular);
@@ -90,8 +107,12 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         vpPopular = view.findViewById(R.id.vp_popular);
         tvToolbarTitleCollapsed = view.findViewById(R.id.tv_toolbar_title_collapsed_popular);
         tvToolbarTitleExpanded = view.findViewById(R.id.tv_toolbar_title_expanded_popular);
+        tvToolbarSubTitleExpanded = view.findViewById(R.id.tv_toolbar_subtitle_expanded_popular);
+        llToolbarTitleContainer = view.findViewById(R.id.ll_toolbar_title_container_expanded_popular);
         tvCurrentHourDrawer = view.findViewById(R.id.tv_current_hour_popular_drawer);
         tvCurrentHourDescDrawer = view.findViewById(R.id.tv_current_hour_desc_popular_drawer);
+        ivBackgroundPopular = view.findViewById(R.id.iv_toolbar_background_popular);
+        ivBlackboxPopular = view.findViewById(R.id.iv_blackbox_toolbar_popular);
 
         /* Toolbar */
         setHasOptionsMenu(true);
@@ -105,7 +126,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         ablPopular.addOnOffsetChangedListener(this);
 
         // dummy data
-        ArrayList<ArrayList<Article>> dummy = new ArrayList<>();
         ArrayList<Article> dummy1 = new ArrayList<>();
         dummy1.add(new Article("과제 신나", "소프트스퀘어드" ,""));
         dummy1.add(new Article("과제 신나", "소프트스퀘어드" ,""));
@@ -122,12 +142,18 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         dummy3.add(new Article("과신 제나", "소프트스퀘어드" ,""));
         dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
         dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
         dummy.add(dummy1);
         dummy.add(dummy2);
         dummy.add(dummy3);
 
         /* ViewPager */
-        vpPopular.setAdapter(new PopularArticlesPager(getChildFragmentManager(), dummy));
+        vpPopular.setAdapter(new PopularArticlesPager(getChildFragmentManager(), dummy, articlesViewType));
+        vpPopular.setCurrentItem(150);
+        vpPopular.addOnPageChangeListener(this);
         vpLayoutParams = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         vpLayoutParams.setBehavior(new AppBarLayout.ScrollingViewBehavior());
 
@@ -140,7 +166,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         /* Set TextView */
         tvToolbarTitleExpanded.setText(todayHour + "시, 인기글");
         tvToolbarTitleCollapsed.setText(todayHour + "시, 인기글");
-        SimpleDateFormat sdfCurrentHour = new SimpleDateFormat("a HH:00", Locale.ENGLISH);
+        tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_now_subtitle));
         tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
         tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
 
@@ -155,13 +181,25 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
             case android.R.id.home:
                 dlPopular.openDrawer(GravityCompat.START);
                 break;
+            case R.id.tb_imagelist_popular:
+                if (articlesViewType == 0) {
+                    PopularArticlesPager paAdapter = new PopularArticlesPager(getChildFragmentManager(), dummy, 1);
+                    vpPopular.setAdapter(paAdapter);
+                    item.setIcon(R.drawable.ic_image_list_disabled);
+                } else {
+                    vpPopular.setAdapter(new PopularArticlesPager(getChildFragmentManager(), dummy, 0));
+                    item.setIcon(R.drawable.ic_image_list);
+                }
+                articlesViewType = (articlesViewType == 0) ? 1 : 0;
+                vpPopular.setCurrentItem(150);
+                break;
         }
         return true;
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_toolbar_cafe, menu);
+        inflater.inflate(R.menu.menu_toolbar_popular, menu);
     }
 
     @Override
@@ -194,10 +232,61 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
             expandedTitleAlpha = 1.0f;
         }
         tvToolbarTitleCollapsed.setAlpha(collapsedTitleAlpha);
-        tvToolbarTitleExpanded.setAlpha(expandedTitleAlpha);
+        llToolbarTitleContainer.setAlpha(expandedTitleAlpha);
+        ivBlackboxPopular.setAlpha(0.3f - Math.abs((i + appBarLayout.getTotalScrollRange()) * 0.1f / (float) appBarLayout.getTotalScrollRange())); // Alpha : 0.2 ~ 0.3
 
         // viewPager 마진 동적 변경
-        vpLayoutParams.topMargin = (int) (-48 * dpUnit * Math.abs((i + appBarLayout.getTotalScrollRange()) / (float) appBarLayout.getTotalScrollRange()) - 1.0f);
+        vpLayoutParams.topMargin = (int) (-48 * dpUnit * (Math.abs((i + appBarLayout.getTotalScrollRange()) / (float) appBarLayout.getTotalScrollRange())));
         vpPopular.setLayoutParams(vpLayoutParams);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        switch (position % 3) {
+            /* Set View */
+            case 0:
+                tvToolbarTitleExpanded.setText(todayHour + "시, 인기글");
+                tvToolbarTitleCollapsed.setText(todayHour + "시, 인기글");
+                tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
+                tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
+                tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_now_subtitle));
+                tvToolbarSubTitleExpanded.setLetterSpacing(0.8f);
+                // ImageView FadeIn FadeOut
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background1);
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
+                break;
+            case 1:
+                tvToolbarTitleExpanded.setText(getString(R.string.drawer_popular_week));
+                tvToolbarTitleCollapsed.setText(getString(R.string.drawer_popular_week));
+                tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_week_subtitle));
+                tvToolbarSubTitleExpanded.setLetterSpacing(0.5f);
+                // ImageView FadeIn FadeOut
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background2);
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
+
+                break;
+            case 2:
+                tvToolbarTitleExpanded.setText(getString(R.string.drawer_popular_month));
+                tvToolbarTitleCollapsed.setText(getString(R.string.drawer_popular_month));
+                tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_month_subtitle));
+                tvToolbarSubTitleExpanded.setLetterSpacing(0.3f);
+                // ImageView FadeIn FadeOut
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background3);
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
+                ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
