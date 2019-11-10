@@ -6,4 +6,13 @@
     <string name="nofunction">미구현기능입니다.</string>
     <!-- SignUp -->
     <string name="signup"><u>회원가입</u></string>
+
+    <!-- Popular Fragment -->
+    <string name="drawer_popular_now">실시간 인기글</string>
+    <string name="drawer_popular_week">주간 인기글</string>
+    <string name="drawer_popular_month">월간 인기글</string>
+    <string name="drawer_popular_week_description">지난 4주동안의 인기글입니다.</string>
+    <string name="drawer_popular_month_description">지난 6개월 동안의 인기글입니다.</string>
+    <string name="drawer_popular_week_subtitle">WEEKLY</string>
+    <string name="drawer_popular_month_subtitle">MONTHLY</string>
 </resources>

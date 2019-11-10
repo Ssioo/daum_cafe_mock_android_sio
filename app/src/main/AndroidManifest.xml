@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.softsqaured.softsquared_daum_cafe">
+    package="com.softsquared.softsquared_daum_cafe">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".src.ApplicationClass"
+        android:name="com.softsquared.softsquared_daum_cafe.src.ApplicationClass"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -17,17 +17,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".src.addcafe.AddCafeActivity"
+            android:name="com.softsquared.softsquared_daum_cafe.src.addcafe.AddCafeActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".src.mypage_cafe.MyPageActivity"/>
-        <activity android:name=".src.mysetting_cafe.MySettingActivity" />
-        <activity android:name=".src.search.SearchActivity" />
-        <activity android:name=".src.signin.SignInActivity" />
-        <activity android:name=".src.signup.SignUpActivity" />
-        <activity android:name=".src.signselect.SignSelectActivity" />
-        <activity android:name=".src.cafe.CafeActivity" />
-        <activity android:name=".src.main.MainActivity" />
-        <activity android:name=".src.splash.SplashActivity">
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.mypage_cafe.MyPageActivity"/>
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.mysetting_cafe.MySettingActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.search.SearchActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.signin.SignInActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.signup.SignUpActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.main.MainActivity" />
+        <activity android:name="com.softsquared.softsquared_daum_cafe.src.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginEnd="?attr/actionBarSize"
     android:id="@+id/drawer_popular"
-    android:layout_gravity="start"
     android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -21,13 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="실시간 인기글"
+            android:text="@string/drawer_popular_now"
             android:textColor="@android:color/black"
             android:textSize="20sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AM 02:00"
+            tools:text="AM 02:00"
             android:textSize="10sp"
             android:textStyle="bold"
             android:scaleX="1.2"
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지금, 2시의 인기글입니다."
+            tools:text="지금, 2시의 인기글입니다."
             android:id="@+id/tv_current_hour_desc_popular_drawer"
             android:textColor="@android:color/black"
             android:layout_marginTop="10dp"/>
@@ -55,14 +55,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주간 인기글"
+            android:text="@string/drawer_popular_week"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WEEKLY"
+            android:text="@string/drawer_popular_week_subtitle"
             android:textSize="10sp"
             android:textStyle="bold"
             android:scaleX="1.2"
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지난 4주동안의 인기글입니다."
+            android:text="@string/drawer_popular_week_description"
             android:textColor="@android:color/black"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
@@ -88,14 +88,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="월간 인기글"
+            android:text="@string/drawer_popular_month"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MONTHLY"
+            android:text="@string/drawer_popular_month_subtitle"
             android:textSize="10sp"
             android:letterSpacing="0.2"
             android:scaleX="1.2"
@@ -104,7 +104,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지난 6개월 동안의 인기글입니다."
+            android:text="@string/drawer_popular_month_description"
             android:textColor="@android:color/black"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
