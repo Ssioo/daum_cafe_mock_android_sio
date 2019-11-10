@@ -7,17 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.adapter.RecyclerViewDecoration;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.fragments.interfaces.PopularArticleListFragmentView;
 import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.models.PopularArticleListAdapter;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticleListAdapter;
 
 import java.util.ArrayList;
 
-public class PopularArticleListFragment extends BaseFragment {
+public class PopularArticleListFragment extends BaseFragment implements PopularArticleListFragmentView {
 
     private SwipeRefreshLayout srlPopular;
     private RecyclerView rvPopular;
@@ -39,16 +42,17 @@ public class PopularArticleListFragment extends BaseFragment {
         /* RecyclerView */
         // dummy
         rvPopular.setAdapter(new PopularArticleListAdapter(articlesPopular, getActivity()));
+        rvPopular.addItemDecoration(new RecyclerViewDecoration(30));
 
         /* SwipeRefreshLayout On Refresh Listener */
-        srlPopular.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                srlPopular.setRefreshing(false);
-            }
-        });
+        srlPopular.setOnRefreshListener(this);
 
 
         return view;
+    }
+
+    @Override
+    public void onRefresh() {
+        srlPopular.setRefreshing(false);
     }
 }

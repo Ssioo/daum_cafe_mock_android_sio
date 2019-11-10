@@ -1,4 +1,4 @@
-package com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.models;
+package com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsqaured.softsquared_daum_cafe.R;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 
 import java.util.ArrayList;
 

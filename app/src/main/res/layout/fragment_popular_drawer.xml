@@ -31,12 +31,14 @@
             android:textSize="10sp"
             android:textStyle="bold"
             android:scaleX="1.2"
+            android:id="@+id/tv_current_hour_popular_drawer"
             android:letterSpacing="0.2"
             android:textColor="#EE3333"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지금, 2시의 인기글입니다."
+            android:id="@+id/tv_current_hour_desc_popular_drawer"
             android:textColor="@android:color/black"
             android:layout_marginTop="10dp"/>
     </LinearLayout>

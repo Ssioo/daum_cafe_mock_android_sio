@@ -10,6 +10,9 @@
     <!-- Main - Bottom Nav -->
     <color name="color_bottom_nav">#26272B</color>
 
+    <!-- Main - PopularFragment -->
+    <color name="color_background_popular">#F2F3F7</color>
+
     <!-- Cafe -->
     <color name="color_tv_subtitle">#EEEEEE</color>
 </resources>

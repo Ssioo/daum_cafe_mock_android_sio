@@ -2,27 +2,31 @@ package com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsqaured.softsquared_daum_cafe.R;
 import com.softsqaured.softsquared_daum_cafe.src.BaseFragment;
 import com.softsqaured.softsquared_daum_cafe.src.addcafe.AddCafeActivity;
-import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeActivityView;
+import com.softsqaured.softsquared_daum_cafe.src.main.MainActivity;
+import com.softsqaured.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeFragmentView;
 import com.softsqaured.softsquared_daum_cafe.src.search.SearchActivity;
 
-public class MyCafeFragment extends BaseFragment implements MyCafeActivityView {
+public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
 
     private TabLayout tlMyCafe;
     private ViewPager vpMyCafe;
-    private ImageView ivSearch;
-    private ImageView ivAddCafe;
+    private Toolbar tbMyCafe;
 
 
     private MyCafePagerAdapter mcpAdapter;
@@ -44,22 +48,25 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView {
         /* findViewByID */
         tlMyCafe = view.findViewById(R.id.tab_mycafe);
         vpMyCafe = view.findViewById(R.id.vp_mycafe);
-        ivSearch = view.findViewById(R.id.iv_search_mycafe);
-        ivAddCafe = view.findViewById(R.id.iv_addcafe_mycafe);
-
+        tbMyCafe = view.findViewById(R.id.toolbar_mycafe);
 
         mcpAdapter = new MyCafePagerAdapter(getChildFragmentManager(), 4);
         vpMyCafe.setAdapter(mcpAdapter);
+
+        /* Toolbar */
+        setHasOptionsMenu(true);
+        ((MainActivity) getActivity()).setSupportActionBar(tbMyCafe);
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_add_cafe);
+
 
         /* Viewpager Add on Page Change Listener */
         vpMyCafe.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlMyCafe));
 
         /* TabLayout Add on Tab Selected Listener */
         tlMyCafe.addOnTabSelectedListener(this);
-
-        /* Set On Click Listener */
-        ivSearch.setOnClickListener(this);
-        ivAddCafe.setOnClickListener(this);
 
 
         return view;
@@ -91,14 +98,20 @@ public class MyCafeFragment extends BaseFragment implements MyCafeActivityView {
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_search_mycafe:
-                startNextActivity(SearchActivity.class);
-                break;
-            case R.id.iv_addcafe_mycafe:
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_toolbar_mycafe, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
                 startNextActivity(AddCafeActivity.class);
                 break;
+            case R.id.tb_search_mycafe:
+                startNextActivity(SearchActivity.class);
+                break;
         }
+        return true;
     }
 }

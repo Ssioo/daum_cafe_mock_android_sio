@@ -281,6 +281,15 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     }
 
     @Override
+    public void onBackPressed() {
+        if (dlCafe.isDrawerOpen(GravityCompat.END)) {
+            dlCafe.closeDrawers();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
     public void onRefresh() {
         srlBoardListDrawer.setRefreshing(false);
     }

@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
-public interface MyCafeActivityView extends TabLayout.OnTabSelectedListener, View.OnClickListener {
+public interface MyCafeFragmentView extends TabLayout.OnTabSelectedListener {
 
     void validateSuccess(String text);
 
