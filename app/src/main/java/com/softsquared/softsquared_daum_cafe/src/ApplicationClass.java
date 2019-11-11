@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.config.XAccessTokenInterceptor;
@@ -36,10 +37,6 @@ public class ApplicationClass extends Application {
 
     //날짜 형식
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-
-    // FirebaseStorage 인스턴스
-    public static FirebaseStorage firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");
-    public static StorageReference imageStorageRef = firebaseStorage.getReference().child("images"); // images 폴더 참조.
 
     // Retrofit 인스턴스
     public static Retrofit retrofit;

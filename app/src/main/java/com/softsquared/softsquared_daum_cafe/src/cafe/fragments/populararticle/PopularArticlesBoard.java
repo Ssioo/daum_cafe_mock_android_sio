@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
-import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnListListAdapter;
+import com.softsquared.softsquared_daum_cafe.src.cafe.adapter.ArticleOnListListAdapter;
 
 import java.util.ArrayList;
 
@@ -39,11 +39,11 @@ public class PopularArticlesBoard extends BaseFragment {
 
         // dummy Data
         ArrayList<ArticleOnList> dummy = new ArrayList<>();
-        dummy.add(new ArticleOnList("테스트1", "시오", "2019.11.02", "2", "2", "자유게시판"));
-        dummy.add(new ArticleOnList("테스트2", "시오", "2019.11.02", "2", "0", "자유게시판"));
-        dummy.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", "5", "12", "자유게시판"));
-        dummy.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", "10", "2", "자유게시판"));
-        dummy.add(new ArticleOnList("테스트5", "시오", "2019.11.01", "30", "27", "자유게시판"));
+        dummy.add(new ArticleOnList("테스트1", "시오", "2019.11.02", 2, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트2", "시오", "2019.11.02", 2, 0, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", 5, 12, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", 10, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트5", "시오", "2019.11.01", 30, 27, "자유게시판"));
 
         rvArticlesPopularArticleBoard.setAdapter(new ArticleOnListListAdapter(dummy, getActivity()));
         return view;

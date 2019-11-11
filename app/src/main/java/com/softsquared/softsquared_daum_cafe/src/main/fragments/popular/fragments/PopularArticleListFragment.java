@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,6 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
     private SwipeRefreshLayout srlPopular;
     private RecyclerView rvPopular;
     private ArrayList<Article> articlesPopular;
-    private PopularArticleListAdapter palAdapter;
 
     private int viewType;
 
@@ -58,10 +58,7 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
 
         /* RecyclerView */
         // dummy
-        palAdapter = new PopularArticleListAdapter(articlesPopular, getActivity(), viewType);
-        palAdapter.setAnimationsLocked(false);
-        palAdapter.setDelayEnterAnimation(true);
-        rvPopular.setAdapter(palAdapter);
+        rvPopular.setAdapter(new PopularArticleListAdapter(articlesPopular, getActivity(), viewType));
         if (viewType == 0) {
             rvPopular.addItemDecoration(new RecyclerViewDecoration(30, 30));
         } else if (viewType == 1) {
@@ -70,15 +67,13 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
 
         /* SwipeRefreshLayout On Refresh Listener */
         srlPopular.setOnRefreshListener(this);
+        srlPopular.setColorSchemeColors(Color.RED);
 
         return view;
     }
 
     @Override
     public void onRefresh() {
-        palAdapter.setAnimationsLocked(false);
-        palAdapter.setDelayEnterAnimation(false);
-        palAdapter.notifyDataSetChanged();
         srlPopular.setRefreshing(false);
     }
 }

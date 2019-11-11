@@ -4,14 +4,14 @@ public class ArticleOnList {
     private String title;
     private String author;
     private String createDate;
-    private String viewCount;
-    private String commentCount;
+    private int viewCount;
+    private int commentCount;
     private String board;
 
     public ArticleOnList() {
     }
 
-    public ArticleOnList(String title, String author, String createDate, String viewCount, String commentCount, String board) {
+    public ArticleOnList(String title, String author, String createDate, int viewCount, int commentCount, String board) {
         this.title = title;
         this.author = author;
         this.createDate = createDate;
@@ -32,11 +32,11 @@ public class ArticleOnList {
         return createDate;
     }
 
-    public String getViewCount() {
+    public int getViewCount() {
         return viewCount;
     }
 
-    public String getCommentCount() {
+    public int getCommentCount() {
         return commentCount;
     }
 

@@ -30,6 +30,7 @@ import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
 import com.softsquared.softsquared_daum_cafe.src.mypage_cafe.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.mysetting_cafe.MySettingActivity;
+import com.softsquared.softsquared_daum_cafe.src.write.WriteActivity;
 
 public class CafeActivity extends BaseActivity implements CafeActivityView {
 
@@ -61,6 +62,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     private TextView tvToolbarTitle;
     private ImageView ivToolbarExpand;
     private LinearLayout llToolbarContents;
+    private TextView tvWrite;
+    private TextView tvSearchBottom;
+    private TextView tvRefresh;
+    private ImageView ivShowNav;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -98,6 +103,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         ivNotiCafe = findViewById(R.id.iv_noti_cafe);
         tvCafeTitle = findViewById(R.id.tv_cafe_title_cafe);
         llToolbarCafe = findViewById(R.id.ll_toolbar_cafe);
+        tvWrite = findViewById(R.id.tv_write_cafe);
+        tvSearchBottom = findViewById(R.id.tv_search_cafe);
+        tvRefresh = findViewById(R.id.tv_refresh_cafe);
+        ivShowNav = findViewById(R.id.iv_show_nav_cafe);
 
         /* Toolbar */
         llToolbarContents = new LinearLayout(this);
@@ -124,6 +133,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         ivCloseItem2.setOnClickListener(this);
         ivCloseItem3.setOnClickListener(this);
         tbCafe.setOnClickListener(this);
+        tvWrite.setOnClickListener(this);
+        tvSearchBottom.setOnClickListener(this);
+        tvRefresh.setOnClickListener(this);
+        ivShowNav.setOnClickListener(this);
 
 
         /* TabLayout */
@@ -187,6 +200,18 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         switch (v.getId()) {
             case R.id.toolbar_cafe:
                 ablCafe.setExpanded(true, true);
+                break;
+            case R.id.iv_show_nav_cafe:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.tv_search_cafe:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.tv_write_cafe:
+                startNextActivity(WriteActivity.class);
+                break;
+            case R.id.tv_refresh_cafe:
+                showToast(getString(R.string.nofunction));
                 break;
             case R.id.ibtn_setting_cafe_drawer:
                 // Setting Activity 이동

@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.cafe.models;
+package com.softsquared.softsquared_daum_cafe.src.cafe.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.softsquared_daum_cafe.R;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,11 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
             holder.tvCreateDate.setText(article.getCreateDate());
             holder.tvAuthor.setText(article.getAuthor());
             holder.tvViewCount.setText("조회 " + article.getViewCount());
-            holder.tvCommentCount.setText(article.getCommentCount());
+            if (article.getCommentCount() == 0) {
+                holder.tvCommentCount.setVisibility(View.INVISIBLE);
+            } else {
+                holder.tvCommentCount.setText(String.valueOf(article.getCommentCount()));
+            }
             holder.tvBoard.setText(article.getBoard());
         }
     }

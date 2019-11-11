@@ -10,12 +10,17 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
     public ProgressDialog mProgressDialog;
+
+    public static FirebaseStorage firebaseStorage;
+    public static StorageReference imageStorageRef;
 
     public void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
@@ -46,6 +51,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        // FirebaseStorage 인스턴스
+        firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");
+        imageStorageRef = firebaseStorage.getReference().child("images"); // images 폴더 참조.
     }
 
     @Override

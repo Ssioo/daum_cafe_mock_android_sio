@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular;
+package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

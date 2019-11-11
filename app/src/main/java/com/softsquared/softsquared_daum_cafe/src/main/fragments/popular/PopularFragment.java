@@ -27,6 +27,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticlesPager;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.interfaces.PopularFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 
