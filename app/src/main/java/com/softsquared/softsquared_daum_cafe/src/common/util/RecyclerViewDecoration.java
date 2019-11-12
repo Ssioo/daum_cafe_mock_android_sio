@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.util;
+package com.softsquared.softsquared_daum_cafe.src.common.util;
 
 import android.graphics.Rect;
 import android.view.View;

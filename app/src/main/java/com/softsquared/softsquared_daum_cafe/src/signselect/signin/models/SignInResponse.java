@@ -1,22 +1,14 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signin.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.softsquared.softsquared_daum_cafe.src.common.models.DefaultResponse;
 
-public class SignInResponse {
+public class SignInResponse extends DefaultResponse {
     @SerializedName("jwt")
     private String token;
 
     @SerializedName("userInfo")
-    private String userInfo;
-
-    @SerializedName("isSuccess")
-    private boolean success;
-
-    @SerializedName("message")
-    private String message;
-
-    @SerializedName("code")
-    private int code;
+    private UserInfo userInfo;
 
     public SignInResponse() {
     }
@@ -25,19 +17,40 @@ public class SignInResponse {
         return token;
     }
 
-    public String getUserInfo() {
+    public UserInfo getUserInfo() {
         return userInfo;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
+    public static class UserInfo {
+        @SerializedName("iduser")
+        private int iduser;
+        @SerializedName("id")
+        private String userId;
+        @SerializedName("pwd")
+        private String hashPw;
+        @SerializedName("name")
+        private String name;
+        @SerializedName("status")
+        private String status;
 
-    public String getMessage() {
-        return message;
-    }
+        public int getIduser() {
+            return iduser;
+        }
 
-    public int getCode() {
-        return code;
+        public String getUserId() {
+            return userId;
+        }
+
+        public String getHashPw() {
+            return hashPw;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getStatus() {
+            return status;
+        }
     }
 }

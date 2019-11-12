@@ -1,6 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces;
 
-import com.softsquared.softsquared_daum_cafe.src.main.models.DefaultResponse;
+import com.softsquared.softsquared_daum_cafe.src.common.models.DefaultResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

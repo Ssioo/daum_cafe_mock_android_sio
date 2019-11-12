@@ -1,29 +1,8 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signup.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.softsquared.softsquared_daum_cafe.src.common.models.DefaultResponse;
 
-public class SignUpResponse {
-    @SerializedName("isSuccess")
-    private boolean success;
+public class SignUpResponse extends DefaultResponse {
 
-    @SerializedName("code")
-    private int code;
-
-    @SerializedName("message")
-    private String message;
-
-    public SignUpResponse() {
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

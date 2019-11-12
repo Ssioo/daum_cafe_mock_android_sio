@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.softsquared_daum_cafe.R;
+import com.softsquared.softsquared_daum_cafe.src.article_detail.ArticleDetailActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 
 import java.util.ArrayList;
@@ -17,17 +19,19 @@ import java.util.ArrayList;
 public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnListListAdapter.ArticleViewHoler> {
 
     private LayoutInflater layoutInflater;
+    private Context mContext;
     private ArrayList<ArticleOnList> articlesOnList;
 
     public ArticleOnListListAdapter(ArrayList<ArticleOnList> articlesOnList, Context context) {
         this.articlesOnList = articlesOnList;
+        this.mContext = context;
         layoutInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public ArticleViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.item_cafe, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_article_cafe, parent, false);
 
         ArticleViewHoler vh = new ArticleViewHoler(view);
         return vh;
@@ -82,7 +86,8 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
         @Override
         public void onClick(View v) {
             if (v == itemView) {
-
+                Intent intent = new Intent(mContext, ArticleDetailActivity.class);
+                mContext.startActivity(intent);
             }
         }
     }

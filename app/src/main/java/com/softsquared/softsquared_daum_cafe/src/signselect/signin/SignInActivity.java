@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,14 @@ import android.widget.TextView;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.SignInActivityView;
+
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class SignInActivity extends BaseActivity implements SignInActivityView {
 
@@ -47,7 +55,6 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_signin_signin:
-                // 서버와 통신 필요.
                 trySignIn();
                 break;
             case R.id.iv_close_signin:
@@ -55,7 +62,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
                 break;
             case R.id.tv_findemail_signin:
             case R.id.tv_findpw_signin:
-                showToast("미구현 기능입니다.");
+                showToast(getString(R.string.nofunction));
                 break;
         }
     }
@@ -68,8 +75,15 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     }
 
     @Override
-    public void validateSuccess(String text) {
+    public void validateSuccess(String token, String id, String name) {
         hideProgressDialog();
+        showToast("로그인에 성공하였습니다.");
+        isUserLogin = true;
+        userName = name;
+        userId = id;
+        X_ACCESS_TOKEN = token;
+        sSharedPreferences.edit().putString("X_ACCESS_TOKEN", X_ACCESS_TOKEN).apply();
+        startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }
 

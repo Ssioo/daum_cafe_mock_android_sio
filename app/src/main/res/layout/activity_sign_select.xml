@@ -64,15 +64,11 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="16dp"/>
 
-    <Button
+    <com.kakao.usermgmt.LoginButton
         android:id="@+id/btn_kakao_signin_signselect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/kakaosignin_signselect"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:background="#FAFA33"
         app:layout_constraintBottom_toTopOf="@+id/btn_signin_signselect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

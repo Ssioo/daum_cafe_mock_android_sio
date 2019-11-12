@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_person"/>
 
     <item
-        android:id="@+id/nav_favorite"
+        android:id="@+id/nav_popular"
         android:title="FAVORITE"
         android:icon="@drawable/ic_favorite" />
 

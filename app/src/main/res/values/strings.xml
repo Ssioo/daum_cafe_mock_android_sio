@@ -5,6 +5,7 @@
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="nofunction">미구현기능입니다.</string>
     <string name="separator">  |  </string>
+    <string name="kakao_app_key">66ac8e8aa72f51d657e9feb64e61cb0f</string>
 
     <!-- SignSelect -->
     <string name="signup_signselect"><u>회원가입</u></string>

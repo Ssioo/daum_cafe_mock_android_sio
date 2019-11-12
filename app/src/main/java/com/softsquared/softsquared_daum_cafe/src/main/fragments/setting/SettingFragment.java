@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,10 @@ import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.interfaces.SettingFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
+
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
 
 public class SettingFragment extends BaseFragment implements SettingFragmentView {
 
@@ -41,6 +46,7 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
     private LinearLayout llItemCache;
     private LinearLayout llItemLab;
     private LinearLayout llItemServiceInfo;
+    private TextView tvUserNameSetting;
 
     @Nullable
     @Override
@@ -65,6 +71,7 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
         llItemCache = view.findViewById(R.id.item_cache_setting);
         llItemLab = view.findViewById(R.id.item_lab_setting);
         llItemServiceInfo = view.findViewById(R.id.item_serviceinfo_setting);
+        tvUserNameSetting = view.findViewById(R.id.tv_setting_signinfo_desc);
 
         /* Toolbar */
         setHasOptionsMenu(true);
@@ -73,6 +80,11 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
         actionBar.setDisplayShowTitleEnabled(false);
 
         /* Setting View Init*/
+        if (!isUserLogin) {
+            tvUserNameSetting.setText("로그인 하세요");
+        } else {
+            tvUserNameSetting.setText(userName);
+        }
 
         /* Set On Click Listener */
         llItemSignInfo.setOnClickListener(this);

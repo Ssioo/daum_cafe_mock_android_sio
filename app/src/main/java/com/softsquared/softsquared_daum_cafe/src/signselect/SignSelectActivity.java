@@ -1,11 +1,13 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kakao.usermgmt.LoginButton;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.SignInActivity;
@@ -15,15 +17,20 @@ import com.softsquared.softsquared_daum_cafe.src.signselect.signup.SignUpActivit
 public class SignSelectActivity extends BaseActivity implements SignSelectActivityView {
 
     private Button btnSignIn;
-    private Button btnKakaoSignIn;
+    private LoginButton btnKakaoSignIn;
     private TextView tvSignUp;
     private TextView tvKakaoDirectSignIn;
     private ImageView ivClose;
+
+    public static Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_select);
+
+        /* Activity */
+        mActivity = this;
 
         /* findViewByID */
         btnSignIn = findViewById(R.id.btn_signin_signselect);
@@ -34,7 +41,6 @@ public class SignSelectActivity extends BaseActivity implements SignSelectActivi
 
         /* Set On Click Listener */
         btnSignIn.setOnClickListener(this);
-        btnKakaoSignIn.setOnClickListener(this);
         tvSignUp.setOnClickListener(this);
         tvKakaoDirectSignIn.setOnClickListener(this);
         ivClose.setOnClickListener(this);
@@ -45,9 +51,6 @@ public class SignSelectActivity extends BaseActivity implements SignSelectActivi
         switch (v.getId()) {
             case R.id.btn_signin_signselect:
                 startNextActivity(SignInActivity.class);
-                break;
-            case R.id.btn_kakao_signin_signselect:
-                showToast("미구현 기능입니다");
                 break;
             case R.id.tv_signup_signselect:
                 startNextActivity(SignUpActivity.class);

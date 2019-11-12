@@ -13,7 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
-import com.softsquared.softsquared_daum_cafe.src.util.RecyclerViewDecoration;
+import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.interfaces.PopularArticleListFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticleListAdapter;

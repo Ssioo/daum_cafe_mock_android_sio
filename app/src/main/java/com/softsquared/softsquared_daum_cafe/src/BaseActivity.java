@@ -37,6 +37,12 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startNextActivity(Class<?> activity, final int flag) {
+        Intent intent = new Intent(this, activity);
+        intent.addFlags(flag);
+        startActivity(intent);
+    }
+
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);

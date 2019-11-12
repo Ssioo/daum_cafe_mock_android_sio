@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.main.models;
+package com.softsquared.softsquared_daum_cafe.src.common.models;
 
 import com.google.gson.annotations.SerializedName;
 

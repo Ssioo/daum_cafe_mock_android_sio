@@ -2,10 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="84dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp"
     android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/iv_img_article_cafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/iv_cafe_thumbnail_square"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginVertical="6dp" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -18,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="article title"
+            tools:text="article title"
             android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
@@ -31,7 +43,7 @@
                 android:id="@+id/tv_article_author_articlelist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Author"
+                tools:text="Author"
                 android:textSize="13sp"/>
 
             <TextView
@@ -40,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/tv_article_author_articlelist"
                 android:layout_marginStart="8dp"
-                android:text="yyyy.MM.dd"
+                tools:text="yyyy.MM.dd"
                 android:textSize="13sp"/>
 
             <TextView
@@ -49,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/tv_article_date_articlelist"
                 android:layout_marginStart="8dp"
-                android:text="조회 n"
+                tools:text="조회 n"
                 android:textSize="13sp"/>
         </RelativeLayout>
 
@@ -58,17 +70,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="article board"
+            tools:text="article board"
             android:textSize="13sp"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_article_countcomment_articlelist"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/round_background"
         android:gravity="center"
-        android:text="1"
+        tools:text="1"
         android:textColor="@android:color/black"/>
 </LinearLayout>

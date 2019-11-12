@@ -11,6 +11,6 @@
         android:id="@+id/rv_articlelist_cafe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_cafe"
+        tools:listitem="@layout/item_article_cafe"
         tools:itemCount="5"/>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
