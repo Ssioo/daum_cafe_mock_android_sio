@@ -55,7 +55,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
-            android:background="@drawable/round_background"
+            android:background="@drawable/background_round_grey_padding"
             android:src="@drawable/ic_setting_profile" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -65,7 +65,7 @@
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
             android:layout_toStartOf="@+id/ibtn_setting_mypage"
-            android:background="@drawable/round_background"
+            android:background="@drawable/background_round_grey_padding"
             android:src="@drawable/ic_information" />
 
 

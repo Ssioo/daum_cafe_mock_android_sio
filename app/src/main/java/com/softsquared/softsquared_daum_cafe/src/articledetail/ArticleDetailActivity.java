@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.article_detail;
+package com.softsquared.softsquared_daum_cafe.src.articledetail;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.article_detail.interfaces.ArticleDetailActivityView;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
 
 public class ArticleDetailActivity extends BaseActivity implements ArticleDetailActivityView {
 

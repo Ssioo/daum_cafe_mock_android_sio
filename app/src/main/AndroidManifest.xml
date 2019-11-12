@@ -18,9 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.article_detail.ArticleDetailActivity"></activity>
+        <activity android:name=".src.signselect.signout.SignOutActivity"></activity>
+        <activity android:name=".src.articledetail.ArticleDetailActivity" />
         <activity
-            android:name=".src.write.WriteActivity"
+            android:name=".src.cafe.write.WriteActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".src.main.fragments.mycafe.addcafe.AddCafeActivity"

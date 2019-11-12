@@ -31,7 +31,7 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityVie
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
-import com.softsquared.softsquared_daum_cafe.src.write.WriteActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
 
 import java.util.ArrayList;
 

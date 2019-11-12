@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.softsquared_daum_cafe.R;
-import com.softsquared.softsquared_daum_cafe.src.article_detail.ArticleDetailActivity;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 
 import java.util.ArrayList;

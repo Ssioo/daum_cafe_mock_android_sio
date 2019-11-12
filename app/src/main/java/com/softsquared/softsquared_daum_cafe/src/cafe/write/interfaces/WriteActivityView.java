@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.write.interfaces;
+package com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces;
 
 import android.view.View;
 

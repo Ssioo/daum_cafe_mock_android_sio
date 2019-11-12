@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.write;
+package com.softsquared.softsquared_daum_cafe.src.cafe.write;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,13 +16,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.write.interfaces.WriteActivityView;
+import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 

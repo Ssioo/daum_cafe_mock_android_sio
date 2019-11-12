@@ -17,6 +17,7 @@ import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.interfaces.SettingFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
+import com.softsquared.softsquared_daum_cafe.src.signselect.signout.SignOutActivity;
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
@@ -110,9 +111,13 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.item_signinfo_setting:
-                startNextActivity(SignSelectActivity.class);
+                if (!isUserLogin)
+                    startNextActivity(SignSelectActivity.class);
+                else
+                    startNextActivity(SignOutActivity.class);
                 break;
             case R.id.item_version_setting:
+                showToast("최신 버전입니다.");
                 break;
             case R.id.item_noti_set_setting:
                 break;
