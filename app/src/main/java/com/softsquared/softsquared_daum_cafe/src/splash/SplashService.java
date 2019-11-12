@@ -31,6 +31,7 @@ public class SplashService {
                 final AutoSignInResponse autoSignInResponse = response.body();
                 if (autoSignInResponse == null || !autoSignInResponse.getIsSuccess()) {
                     mSplashActivityView.validateFailure(null);
+                    Log.i("AutoLogin", String.valueOf(autoSignInResponse.getCode()));
                     return;
                 }
                 Log.i("AutoSignInReceive", "processing...");
@@ -45,7 +46,7 @@ public class SplashService {
                         }
                         // userinfo 받아옴
                         Log.i("UserInfoReceived", "ok");
-                        mSplashActivityView.validateSuccess(userInfo.getUserInfo().getUserEmail(), userInfo.getUserInfo().getUserName());
+                        mSplashActivityView.validateSuccess(userInfo.getUserInfo().get(0).getUserEmail(), userInfo.getUserInfo().get(0).getUserName());
                     }
 
                     @Override

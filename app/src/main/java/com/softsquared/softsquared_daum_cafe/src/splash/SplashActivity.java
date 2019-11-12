@@ -1,7 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.splash;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -10,9 +9,7 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashActivityView;
-import com.softsquared.softsquared_daum_cafe.src.splash.models.UserInfoResponse;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;

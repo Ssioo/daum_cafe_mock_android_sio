@@ -51,7 +51,7 @@ public class ApplicationClass extends Application {
     public static String TAG = "DAUM_APP";
 
     // JWT Token 값
-    public static String X_ACCESS_TOKEN = null;
+    public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
 
     // User Login 값
     public static boolean isUserLogin = false;

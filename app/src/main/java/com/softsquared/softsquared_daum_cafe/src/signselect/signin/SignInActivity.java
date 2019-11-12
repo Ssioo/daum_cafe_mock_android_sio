@@ -81,8 +81,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         isUserLogin = true;
         userName = name;
         userId = id;
-        X_ACCESS_TOKEN = token;
-        sSharedPreferences.edit().putString("X_ACCESS_TOKEN", X_ACCESS_TOKEN).apply();
+        sSharedPreferences.edit().putString(X_ACCESS_TOKEN, token).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }

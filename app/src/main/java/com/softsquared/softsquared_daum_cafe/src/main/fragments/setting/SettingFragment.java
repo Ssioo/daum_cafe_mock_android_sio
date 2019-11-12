@@ -18,7 +18,6 @@ import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.interfaces.SettingFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
 
