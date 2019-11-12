@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.mysetting_cafe;
+package com.softsquared.softsquared_daum_cafe.src.cafe.mysetting;
 
 import android.os.Bundle;
 

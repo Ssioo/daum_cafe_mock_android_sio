@@ -49,7 +49,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private boolean IMAGE_ATTACHED = false;
 
     private static final int MAXIMUM_IMG_WIDTH = 1080;
-    private static final int MAXIMUM_IMG_HEIGHT = 1080;
+    private static final int MAXIMUM_IMG_HEIGHT = 2280;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
@@ -21,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public static FirebaseStorage firebaseStorage;
     public static StorageReference imageStorageRef;
+    public static String fcmToken;
 
     public void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
@@ -55,6 +61,18 @@ public class BaseActivity extends AppCompatActivity {
         // FirebaseStorage 인스턴스
         firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");
         imageStorageRef = firebaseStorage.getReference().child("images"); // images 폴더 참조.
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        fcmToken = task.getResult().getToken();
+                    }
+                });
     }
 
     @Override

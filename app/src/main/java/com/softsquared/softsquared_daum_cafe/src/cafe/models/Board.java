@@ -34,4 +34,5 @@ public class Board {
     public void setUserStarred(boolean userStarred) {
         this.userStarred = userStarred;
     }
+
 }

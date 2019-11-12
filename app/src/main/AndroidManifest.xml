@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".src.ApplicationClass"
@@ -18,13 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.write.WriteActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".src.article_detail.ArticleDetailActivity"></activity>
         <activity
-            android:name=".src.addcafe.AddCafeActivity"
+            android:name=".src.write.WriteActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".src.mypage_cafe.MyPageActivity" />
-        <activity android:name=".src.mysetting_cafe.MySettingActivity" />
+        <activity
+            android:name=".src.main.fragments.mycafe.addcafe.AddCafeActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".src.cafe.mypage.MyPageActivity" />
+        <activity android:name=".src.cafe.mysetting.MySettingActivity" />
         <activity android:name=".src.search.SearchActivity" />
         <activity android:name=".src.signselect.signin.SignInActivity" />
         <activity android:name=".src.signselect.signup.SignUpActivity" />
@@ -38,6 +40,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".src.service.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

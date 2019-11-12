@@ -28,9 +28,12 @@ import com.google.android.material.tabs.TabLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
-import com.softsquared.softsquared_daum_cafe.src.mypage_cafe.MyPageActivity;
-import com.softsquared.softsquared_daum_cafe.src.mysetting_cafe.MySettingActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
+import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.write.WriteActivity;
+
+import java.util.ArrayList;
 
 public class CafeActivity extends BaseActivity implements CafeActivityView {
 
@@ -138,13 +141,37 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         tvRefresh.setOnClickListener(this);
         ivShowNav.setOnClickListener(this);
 
+        // dummy data
+        ArrayList<ArrayList<ArticleOnList>> dummylist = new ArrayList<>();
+        ArrayList<ArticleOnList> dummy = new ArrayList<>();
+        dummy.add(new ArticleOnList("테스트1", "시오", "2019.11.02", 2, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트2", "시오", "2019.11.02", 2, 0, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", 5, 12, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", 10, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트5", "시오", "2019.11.01", 30, 27, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트6", "시오", "2019.11.02", 2, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트7", "시오", "2019.11.02", 2, 0, "자유게시판"));
+        dummy.add(new ArticleOnList("테스트8", "보유미", "2019.11.01", 5, 12, "자유게시판"));
+        dummy.add(new ArticleOnList("페이징테스트9", "보유미", "2019.11.01", 10, 2, "자유게시판"));
+        dummy.add(new ArticleOnList("페이징테스트10", "시오", "2019.11.01", 30, 27, "자유게시판"));
+        dummy.add(new ArticleOnList("페이징테스트11", "시오", "2019.11.01", 38, 27, "자유게시판"));
+        ArrayList<ArticleOnList> dummy1 = new ArrayList<>();
+        dummy1.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", 10, 2, "자유게시판"));
+        dummy1.add(new ArticleOnList("테스트1", "시오", "2019.11.02", 2, 2, "자유게시판"));
+        dummy1.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", 5, 12, "자유게시판"));
+        dummy1.add(new ArticleOnList("테스트2", "시오", "2019.11.02", 2, 0, "자유게시판"));
+        dummy1.add(new ArticleOnList("테스트6", "시오", "2019.11.02", 2, 2, "자유게시판"));
+        dummy1.add(new ArticleOnList("테스트5", "시오", "2019.11.01", 30, 27, "자유게시판"));
+        dummylist.add(dummy);
+        dummylist.add(dummy1);
+
 
         /* TabLayout */
         tlCafe.addOnTabSelectedListener(this);
 
         /* ViewPager */
         vpCafe.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlCafe));
-        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2));
+        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, dummylist));
 
         /* SwipeRefreshLayout - Drawer */
         srlBoardListDrawer.setOnRefreshListener(this);

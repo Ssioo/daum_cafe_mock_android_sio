@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.cafe.adapter;
+package com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
     @NonNull
     @Override
     public ArticleViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.item_cafe_article, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_cafe, parent, false);
 
         ArticleViewHoler vh = new ArticleViewHoler(view);
         return vh;

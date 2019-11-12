@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".src.addcafe.AddCafeActivity">
+    tools:context=".src.main.fragments.mycafe.addcafe.AddCafeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

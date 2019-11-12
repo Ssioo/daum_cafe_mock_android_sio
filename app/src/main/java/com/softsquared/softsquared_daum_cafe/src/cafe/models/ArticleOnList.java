@@ -43,4 +43,6 @@ public class ArticleOnList {
     public String getBoard() {
         return board;
     }
+
+
 }

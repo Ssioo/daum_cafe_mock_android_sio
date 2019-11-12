@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.addcafe;
+package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.addcafe;
 
 import android.os.Bundle;
 import android.view.MenuItem;

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/srl_cafe"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_articlelist_cafe_allarticleboard"
+        android:id="@+id/rv_articlelist_cafe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_cafe_article"
+        tools:listitem="@layout/item_cafe"
         tools:itemCount="5"/>
-</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
