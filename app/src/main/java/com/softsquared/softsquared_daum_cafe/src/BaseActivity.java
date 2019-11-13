@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ public class BaseActivity extends AppCompatActivity {
     public static FirebaseStorage firebaseStorage;
     public static StorageReference imageStorageRef;
     public static String fcmToken;
+
+    public static int dpUnit;
 
     public void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
@@ -63,6 +66,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        // Constants - DP to PX
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        dpUnit = (int) metrics.density;
 
         // FirebaseStorage 인스턴스
         firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");

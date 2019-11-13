@@ -2,7 +2,6 @@ package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static com.softsquared.softsquared_daum_cafe.src.BaseActivity.dpUnit;
+
 public class PopularFragment extends BaseFragment implements PopularFragmentView {
 
     private Toolbar tbFavorite;
@@ -56,7 +57,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
     private Context mContext;
 
-    private int dpUnit;
     private int todayHour;
     private SimpleDateFormat sdfCurrentHour = new SimpleDateFormat("a hh:00", Locale.ENGLISH);
     private Calendar today;
@@ -64,6 +64,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
     // dummy
     private ArrayList<ArrayList<Article>> dummy = new ArrayList<>();
+    private CoordinatorLayout.LayoutParams vpLayoutParams;
 
     public PopularFragment() {
     }
@@ -84,10 +85,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular, container, false);
 
-        // Constants - DP to PX
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        dpUnit = (int) metrics.density;
 
         // Constants - Today
         today = Calendar.getInstance();
@@ -128,25 +125,25 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
         // dummy data
         ArrayList<Article> dummy1 = new ArrayList<>();
-        dummy1.add(new Article("과제 신나", "소프트스퀘어드" ,""));
-        dummy1.add(new Article("과제 신나", "소프트스퀘어드" ,""));
-        dummy1.add(new Article("과제 신나요", "소프트스퀘어드" ,""));
+        dummy1.add(new Article("과제 신나", "소프트스퀘어드", ""));
+        dummy1.add(new Article("과제 신나", "소프트스퀘어드", ""));
+        dummy1.add(new Article("과제 신나요", "소프트스퀘어드", ""));
         ArrayList<Article> dummy2 = new ArrayList<>();
-        dummy2.add(new Article("과제 신나", "소프트스퀘어드" ,""));
-        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드" ,""));
-        dummy2.add(new Article("과제 신나", "소프트스퀘어드" ,""));
-        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드" ,""));
+        dummy2.add(new Article("과제 신나", "소프트스퀘어드", ""));
+        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
+        dummy2.add(new Article("과제 신나", "소프트스퀘어드", ""));
+        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
         ArrayList<Article> dummy3 = new ArrayList<>();
-        dummy3.add(new Article("과제 안 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("신제 과나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("과나 신제", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("과신 제나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드" ,""));
+        dummy3.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("신제 과나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("과나 신제", "소프트스퀘어드", ""));
+        dummy3.add(new Article("과신 제나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
+        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
         dummy.add(dummy1);
         dummy.add(dummy2);
         dummy.add(dummy3);
@@ -173,8 +170,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
         return view;
     }
-
-    private CoordinatorLayout.LayoutParams vpLayoutParams;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -207,12 +202,15 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.drawer_item1_popular:
+                vpPopular.setCurrentItem(150);
                 dlPopular.closeDrawers();
                 break;
             case R.id.drawer_item2_popular:
+                vpPopular.setCurrentItem(151);
                 dlPopular.closeDrawers();
                 break;
             case R.id.drawer_item3_popular:
+                vpPopular.setCurrentItem(152);
                 dlPopular.closeDrawers();
                 break;
         }
