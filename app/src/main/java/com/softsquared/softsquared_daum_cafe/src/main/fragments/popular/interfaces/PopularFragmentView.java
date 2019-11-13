@@ -2,9 +2,11 @@ package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.interfa
 
 import android.view.View;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.AppBarLayout;
 
-public interface PopularFragmentView extends View.OnClickListener, AppBarLayout.OnOffsetChangedListener, ViewPager.OnPageChangeListener {
+public interface PopularFragmentView extends View.OnClickListener
+        , AppBarLayout.OnOffsetChangedListener, ViewPager.OnPageChangeListener, DrawerLayout.DrawerListener {
 }

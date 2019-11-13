@@ -41,6 +41,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
     private Toolbar tbFavorite;
     private DrawerLayout dlPopular;
+    private CoordinatorLayout clPopular;
     private LinearLayout llSelectNowPopular;
     private LinearLayout llSelectWeeklyPopular;
     private LinearLayout llSelectMonthlyPopular;
@@ -92,8 +93,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         if (todayHour == 0)
             todayHour = 12;
 
-        // Constants - ImageView Transition Animation
-
 
         /* findViewByID */
         tbFavorite = view.findViewById(R.id.toolbar_popular);
@@ -111,6 +110,8 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         tvCurrentHourDescDrawer = view.findViewById(R.id.tv_current_hour_desc_popular_drawer);
         ivBackgroundPopular = view.findViewById(R.id.iv_toolbar_background_popular);
         ivBlackboxPopular = view.findViewById(R.id.iv_blackbox_toolbar_popular);
+        clPopular = view.findViewById(R.id.cl_popular);
+
 
         /* Toolbar */
         setHasOptionsMenu(true);
@@ -122,6 +123,9 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
         /* AppBarLayout Add On Offset Change Listener */
         ablPopular.addOnOffsetChangedListener(this);
+
+        /* DrawerLayout Slide Listener */
+        dlPopular.addDrawerListener(this);
 
         // dummy data
         ArrayList<Article> dummy1 = new ArrayList<>();
@@ -274,7 +278,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         }
         tvToolbarTitleCollapsed.setAlpha(collapsedTitleAlpha);
         llToolbarTitleContainer.setAlpha(expandedTitleAlpha);
-        ivBlackboxPopular.setAlpha(0.3f - Math.abs((i + appBarLayout.getTotalScrollRange()) * 0.1f / (float) appBarLayout.getTotalScrollRange())); // Alpha : 0.2 ~ 0.3
+        ivBlackboxPopular.setAlpha(0.35f - Math.abs((i + appBarLayout.getTotalScrollRange()) * 0.15f / (float) appBarLayout.getTotalScrollRange())); // Alpha : 0.2 ~ 0.35
 
         // viewPager 마진 동적 변경
         vpLayoutParams.topMargin = (int) (-48 * dpUnit * (Math.abs((i + appBarLayout.getTotalScrollRange()) / (float) appBarLayout.getTotalScrollRange())));
@@ -328,6 +332,26 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+        clPopular.setTranslationX((dlPopular.getWidth() - 84 * dpUnit) * slideOffset);
+    }
+
+    @Override
+    public void onDrawerOpened(@NonNull View drawerView) {
+
+    }
+
+    @Override
+    public void onDrawerClosed(@NonNull View drawerView) {
+
+    }
+
+    @Override
+    public void onDrawerStateChanged(int newState) {
 
     }
 }

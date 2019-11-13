@@ -31,7 +31,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     private FrameLayout flMain;
 
     private CoordinatorLayout.LayoutParams mLayoutParams;
-    private AlertDialog mLoginAlert;
 
     private boolean FIRST_LOADING = true;
     private int actionBarHeight = 0;
@@ -48,21 +47,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
         /* Init View */
         getSupportFragmentManager().beginTransaction().add(R.id.frame_main, PopularFragment.newInstance(), "POPULAR").commit();
-
-        /* AlertDialog Init */
-        mLoginAlert = new AlertDialog.Builder(this).setMessage("로그인 후 이용할 수 있습니다.\n로그인 하시겠습니까?")
-                .setPositiveButton("로그인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startNextActivity(SignSelectActivity.class);
-                        dialog.dismiss();
-                    }
-                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                }).setCancelable(true).create();
 
         /* Bottom Navigation View */
         bottomNavMain.setSelectedItemId(R.id.nav_popular);

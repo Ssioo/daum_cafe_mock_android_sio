@@ -2,6 +2,7 @@ package com.softsquared.softsquared_daum_cafe.src;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,11 +21,13 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
+import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
     public ProgressDialog mProgressDialog;
+    public AlertDialog mLoginAlert;
 
     public static FirebaseStorage firebaseStorage;
     public static StorageReference imageStorageRef;
@@ -71,6 +75,22 @@ public class BaseActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         dpUnit = (int) metrics.density;
+
+        // Login Alert
+        /* AlertDialog Init */
+        mLoginAlert = new AlertDialog.Builder(this).setMessage("로그인 후 이용할 수 있습니다.\n로그인 하시겠습니까?")
+                .setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startNextActivity(SignSelectActivity.class);
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).setCancelable(true).create();
 
         // FirebaseStorage 인스턴스
         firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");

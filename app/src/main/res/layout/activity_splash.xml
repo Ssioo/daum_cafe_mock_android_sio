@@ -28,7 +28,7 @@
         android:fontFamily="@font/daum_bold"
         android:gravity="bottom|end"
         android:scaleY="0.9"
-        android:text="cafe"
+        android:text="@string/title_splash"
         android:textColor="@android:color/holo_red_light"
         android:textSize="72sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:fontFamily="@font/daum_regular"
         android:gravity="right"
         android:lineSpacingExtra="8sp"
-        android:text="모든 이야기의 시작\n다음카페"
+        android:text="@string/desc_splash"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

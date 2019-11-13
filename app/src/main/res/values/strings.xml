@@ -1,11 +1,15 @@
 <resources>
     <!-- common -->
-    <string name="app_name">softsquared_daum_cafe</string>
+    <string name="app_name">다다음카페</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="nofunction">미구현기능입니다.</string>
     <string name="separator">&#160;&#160;|&#160;&#160;</string>
     <string name="kakao_app_key">66ac8e8aa72f51d657e9feb64e61cb0f</string>
+
+    <!-- Splash Activity -->
+    <string name="title_splash">cafe</string>
+    <string name="desc_splash">모든 이야기의 시작\n다다음카페</string>
 
     <!-- SignSelect -->
     <string name="signup_signselect"><u>회원가입</u></string>

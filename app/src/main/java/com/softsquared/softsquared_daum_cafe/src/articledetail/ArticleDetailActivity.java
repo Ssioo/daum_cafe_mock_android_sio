@@ -26,14 +26,15 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+
 public class ArticleDetailActivity extends BaseActivity implements ArticleDetailActivityView {
 
     private SwipeRefreshLayout srlActicleDetail;
     private Toolbar tbArticleDetail;
     private DrawerLayout dlArticleDetail;
     private ImageView ivCloseDrawer;
-    private AppCompatImageButton ibtnSetting;
-    private LinearLayout llProfileDrawer;
     private TextView tvHome;
     private TextView tvAdmin;
     private TextView tvChat;
@@ -44,6 +45,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private RecyclerView rvBoardList1;
     private RecyclerView rvBoardList2;
     private RecyclerView rvBoardList3;
+    private LinearLayout llProfileDrawer;
+    private TextView tvUserName;
+    private AppCompatImageButton ibtnSetting;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -71,6 +75,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         rvBoardList1 = findViewById(R.id.rv_boardlist1_articledetail);
         rvBoardList2 = findViewById(R.id.rv_boardlist2_articledetail);
         rvBoardList3 = findViewById(R.id.rv_boardlist3_articledetail);
+        tvUserName = findViewById(R.id.tv_username_articledetail_drawer);
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -93,6 +98,12 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         ivCloseItem1.setOnClickListener(this);
         ivCloseItem2.setOnClickListener(this);
         ivCloseItem3.setOnClickListener(this);
+
+        /* Set View */
+        if (isUserLogin)
+            tvUserName.setText(userName);
+        else
+            tvUserName.setText("로그인 해주세요.");
     }
 
     @Override
@@ -126,10 +137,16 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ibtn_setting_articledetail_drawer:
-                startNextActivity(MySettingActivity.class);
+                if (isUserLogin)
+                    startNextActivity(MySettingActivity.class);
+                else
+                    mLoginAlert.show();
                 break;
             case R.id.ll_profile_articledetail_drawer:
-                startNextActivity(MyPageActivity.class);
+                if (isUserLogin)
+                    startNextActivity(MyPageActivity.class);
+                else
+                    mLoginAlert.show();
                 break;
             case R.id.tv_home_articledetail_drawer:
                 finish();

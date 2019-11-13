@@ -2,9 +2,11 @@ package com.softsquared.softsquared_daum_cafe.src;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
@@ -16,6 +18,7 @@ import com.kakao.auth.ISessionConfig;
 import com.kakao.auth.KakaoAdapter;
 import com.kakao.auth.KakaoSDK;
 import com.softsquared.softsquared_daum_cafe.config.XAccessTokenInterceptor;
+import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 import com.softsquared.softsquared_daum_cafe.src.splash.models.UserInfoResponse;
 
 import java.text.SimpleDateFormat;

@@ -27,6 +27,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.adpater.CafeBoardPagerAdapter;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
@@ -35,40 +36,44 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
 
 import java.util.ArrayList;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+
 public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     private DrawerLayout dlCafe;
+    private AppBarLayout ablCafe;
     private Toolbar tbCafe;
+    private TextView tvToolbarTitle;
+    private ImageView ivThumbnailCafe;
+    private TextView tvCafeTitle;
+    private ImageView ivStarCafe;
+    private ImageView ivInfoCafe;
+    private ImageView ivNotiCafe;
+    private LinearLayout llToolbarCafe;
+    private ImageView ivToolbarExpand;
+    private LinearLayout llToolbarContents;
     private TabLayout tlCafe;
     private ViewPager vpCafe;
+    private TextView tvWrite;
+    private TextView tvSearchBottom;
+    private TextView tvRefresh;
+    private ImageView ivShowNav;
     private ImageView ivCloseDrawer;
-    private AppCompatImageButton ibtnSetting;
-    private LinearLayout llProfileDrawer;
     private TextView tvHome;
     private TextView tvAdmin;
     private TextView tvChat;
     private TextView tvSearch;
+    private SwipeRefreshLayout srlBoardListDrawer;
     private AppCompatImageButton ivCloseItem1;
     private AppCompatImageButton ivCloseItem2;
     private AppCompatImageButton ivCloseItem3;
     private RecyclerView rvBoardList1;
     private RecyclerView rvBoardList2;
     private RecyclerView rvBoardList3;
-    private SwipeRefreshLayout srlBoardListDrawer;
-    private AppBarLayout ablCafe;
-    private ImageView ivThumbnailCafe;
-    private ImageView ivStarCafe;
-    private ImageView ivInfoCafe;
-    private ImageView ivNotiCafe;
-    private TextView tvCafeTitle;
-    private LinearLayout llToolbarCafe;
-    private TextView tvToolbarTitle;
-    private ImageView ivToolbarExpand;
-    private LinearLayout llToolbarContents;
-    private TextView tvWrite;
-    private TextView tvSearchBottom;
-    private TextView tvRefresh;
-    private ImageView ivShowNav;
+    private LinearLayout llProfileDrawer;
+    private TextView tvUserNameDrawer;
+    private AppCompatImageButton ibtnSetting;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -110,6 +115,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         tvSearchBottom = findViewById(R.id.tv_search_cafe);
         tvRefresh = findViewById(R.id.tv_refresh_cafe);
         ivShowNav = findViewById(R.id.iv_show_nav_cafe);
+        tvUserNameDrawer = findViewById(R.id.tv_username_cafe_drawer);
 
         /* Toolbar */
         llToolbarContents = new LinearLayout(this);
@@ -117,7 +123,6 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         setSupportActionBar(tbCafe);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
-
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_chevron_left);
 
@@ -176,13 +181,15 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         /* SwipeRefreshLayout - Drawer */
         srlBoardListDrawer.setOnRefreshListener(this);
 
+        /* Init View */
+        if (isUserLogin)
+            tvUserNameDrawer.setText(userName);
+        else
+            tvUserNameDrawer.setText("로그인해주세요.");
+
     }
 
     private void addViewsForToolbar(Context context, LinearLayout llToolbarContainer, Toolbar toolbar) {
-        // DP to PX
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int dpUnit = (int) metrics.density;
         // Container
         llToolbarContainer.setOrientation(LinearLayout.HORIZONTAL);
         Toolbar.LayoutParams llParams = new Toolbar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -242,11 +249,17 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 break;
             case R.id.ibtn_setting_cafe_drawer:
                 // Setting Activity 이동
-                startNextActivity(MySettingActivity.class);
+                if (isUserLogin)
+                    startNextActivity(MySettingActivity.class);
+                else
+                    mLoginAlert.show();
                 break;
             case R.id.ll_profile_cafe_drawer:
                 // Profile Activity 이동
-                startNextActivity(MyPageActivity.class);
+                if (isUserLogin)
+                    startNextActivity(MyPageActivity.class);
+                else
+                    mLoginAlert.show();
                 break;
             case R.id.tv_home_cafe_drawer:
                 break;
