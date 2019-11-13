@@ -12,7 +12,7 @@
         android:id="@+id/iv_img_article_cafe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/iv_cafe_thumbnail_square"
+        android:src="@drawable/iv_thumbnail_cafe_square"
         android:visibility="gone"
         tools:visibility="visible"
         android:adjustViewBounds="true"

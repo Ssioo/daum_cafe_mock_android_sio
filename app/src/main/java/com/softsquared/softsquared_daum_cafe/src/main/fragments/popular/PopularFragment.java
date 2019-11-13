@@ -49,11 +49,11 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     private TextView tvToolbarSubTitleExpanded;
     private LinearLayout llToolbarTitleContainer;
     private AppBarLayout ablPopular;
+    private ImageView ivBackgroundPopular;
+    private ImageView ivBlackboxPopular;
     private ViewPager vpPopular;
     private TextView tvCurrentHourDrawer;
     private TextView tvCurrentHourDescDrawer;
-    private ImageView ivBackgroundPopular;
-    private ImageView ivBlackboxPopular;
 
     private Context mContext;
 
@@ -161,14 +161,56 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         llSelectWeeklyPopular.setOnClickListener(this);
         llSelectNowPopular.setOnClickListener(this);
 
-        /* Set TextView */
+        /* Set View init */
         tvToolbarTitleExpanded.setText(todayHour + "시, 인기글");
         tvToolbarTitleCollapsed.setText(todayHour + "시, 인기글");
         tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_now_subtitle));
         tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
         tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
+        setPopularBackground(todayHour);
 
         return view;
+    }
+
+    private void setPopularBackground(int hour) {
+        switch (hour) {
+            case 1:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background1);
+                break;
+            case 2:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background2);
+                break;
+            case 3:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background3);
+                break;
+            case 4:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background4);
+                break;
+            case 5:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background5);
+                break;
+            case 6:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background6);
+                break;
+            case 7:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background7);
+                break;
+            case 8:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background6);
+                break;
+            case 9:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background5);
+                break;
+            case 10:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background4);
+                break;
+            case 11:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background3);
+                break;
+            case 12:
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background2);
+                break;
+        }
     }
 
     @Override
@@ -257,7 +299,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
                 tvToolbarSubTitleExpanded.setLetterSpacing(0.8f);
                 // ImageView FadeIn FadeOut
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
-                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background1);
+                setPopularBackground(todayHour);
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
                 break;
             case 1:
@@ -266,7 +308,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
                 tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_week_subtitle));
                 tvToolbarSubTitleExpanded.setLetterSpacing(0.5f);
                 // ImageView FadeIn FadeOut
-                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background2);
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background_week);
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
 
@@ -277,7 +319,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
                 tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_month_subtitle));
                 tvToolbarSubTitleExpanded.setLetterSpacing(0.3f);
                 // ImageView FadeIn FadeOut
-                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background3);
+                ivBackgroundPopular.setImageResource(R.drawable.iv_popular_background_month);
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadeout_half));
                 ivBackgroundPopular.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fadein_half));
                 break;

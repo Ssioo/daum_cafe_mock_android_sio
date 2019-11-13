@@ -50,5 +50,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/iv_cafe_thumbnail_square" />
+        app:srcCompat="@drawable/iv_thumbnail_cafe_square" />
 </LinearLayout>

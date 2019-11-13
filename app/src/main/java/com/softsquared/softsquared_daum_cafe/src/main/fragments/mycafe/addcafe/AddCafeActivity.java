@@ -17,7 +17,7 @@ public class AddCafeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_cafe);
+        setContentView(R.layout.activity_addcafe);
 
         /* findViweByID */
         tbAddCafe = findViewById(R.id.toolbar_addcafe);

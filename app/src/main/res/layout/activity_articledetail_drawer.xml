@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:clickable="false">
+
+        <ImageView
+            android:id="@+id/iv_close_articledetail_drawer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_close" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_articledetail_drawer"
+            android:orientation="horizontal"
+            android:background="#DDDDDD"
+            android:elevation="2dp"
+            style="?android:buttonBarStyle"
+            android:showDividers="middle">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingVertical="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="홈"
+                android:id="@+id/tv_home_articledetail_drawer"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingVertical="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:text="관리"
+                android:id="@+id/tv_admin_articledetail_drawer"
+                android:gravity="center"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingVertical="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:text="채팅"
+                android:gravity="center"
+                android:id="@+id/tv_chat_articledetail_drawer"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingVertical="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:text="검색"
+                android:id="@+id/tv_search_articledetail_drawer"
+                android:gravity="center"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/srl_drawer_articledetail_drawer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#DDDDDD">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="최근 방문 게시판"
+                        android:elevation="2dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_expand_less"
+                        android:layout_marginEnd="8dp"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/ibtn_close_boardlist1_articledetail_drawer"
+                        android:paddingHorizontal="8dp" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="3"
+                    android:id="@+id/rv_boardlist1_articledetail"
+                    tools:listitem="@layout/item_boardlist_cafe"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#DDDDDD">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="즐겨찾는 게시판"
+                        android:elevation="2dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_expand_less"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:id="@+id/ibtn_close_boardlist2_articledetail_drawer"
+                        android:paddingHorizontal="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    android:id="@+id/rv_boardlist2_articledetail"
+                    tools:listitem="@layout/item_boardlist_cafe"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#DDDDDD">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="전체 게시판"
+                        android:elevation="2dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_expand_less"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/ibtn_close_boardlist3_articledetail_drawer"
+                        android:scaleType="centerCrop"
+                        android:paddingHorizontal="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_boardlist3_articledetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_boardlist_cafe" />
+
+            </LinearLayout>
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:paddingVertical="8dp"
+            android:id="@+id/ll_profile_articledetail_drawer"
+            android:background="#DDDDDD">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_user_default_profile"
+                android:id="@+id/iv_user_profile_img_articledetail_drawer"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="UserName"
+                android:id="@+id/tv_username_articledetail_drawer"
+                android:elevation="2dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="6dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_setting_profile"
+                android:background="@android:color/transparent"
+                android:id="@+id/ibtn_setting_articledetail_drawer"
+                android:paddingHorizontal="16dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

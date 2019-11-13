@@ -50,5 +50,5 @@
         android:layout_gravity="end"
         android:layout_weight="1"
         android:scaleType="fitEnd"
-        app:srcCompat="@drawable/iv_cafe_thumbnail_square" />
+        app:srcCompat="@drawable/iv_thumbnail_cafe_square" />
 </LinearLayout>
