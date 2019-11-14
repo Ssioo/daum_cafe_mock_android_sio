@@ -4,10 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
 import java.io.IOException;
@@ -26,8 +28,12 @@ import java.io.InputStream;
 public class WriteActivity extends BaseActivity implements WriteActivityView {
 
     private static final int REQUEST_FROM_ALBUM = 1;
+    private static final int MAXIMUM_IMG_WIDTH = 1080;
+    private static final int MAXIMUM_IMG_HEIGHT = 2280;
 
     private Toolbar tbWrite;
+    private Button btnSubmit;
+    private Button btnSave;
     private ImageView ivCamera;
     private ImageView ivMedia;
     private ImageView ivClip;
@@ -37,13 +43,11 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private ImageView ivStorage;
     private ImageView ivSetting;
     private ImageView ivImg;
-
-    private Uri mImageCaptureUri;
+    private Bitmap bmIvImg;
+    private EditText etTitle;
+    private EditText etContents;
 
     private boolean IMAGE_ATTACHED = false;
-
-    private static final int MAXIMUM_IMG_WIDTH = 1080;
-    private static final int MAXIMUM_IMG_HEIGHT = 2280;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,10 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         ivStorage = findViewById(R.id.iv_storage_write);
         ivSetting = findViewById(R.id.iv_setting_write);
         ivImg = findViewById(R.id.iv_img_write);
+        btnSave = findViewById(R.id.btn_save_write);
+        btnSubmit = findViewById(R.id.btn_submit_write);
+        etTitle = findViewById(R.id.et_title_write);
+        etContents = findViewById(R.id.et_contents_write);
 
         /* Toolbar */
         setSupportActionBar(tbWrite);
@@ -79,6 +87,8 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         ivStorage.setOnClickListener(this);
         ivSetting.setOnClickListener(this);
         ivImg.setOnClickListener(this);
+        btnSubmit.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
 
     }
 
@@ -123,10 +133,10 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                     options.inJustDecodeBounds = false;
                     in.close(); // InputStream 재사용 불가
                     in = getContentResolver().openInputStream(data.getData());
-                    Bitmap bitmap = BitmapFactory.decodeStream(in, null, options);
+                    bmIvImg = BitmapFactory.decodeStream(in, null, options);
                     in.close();
                     IMAGE_ATTACHED = true;
-                    ivImg.setImageBitmap(bitmap);
+                    ivImg.setImageBitmap(bmIvImg);
                     ivImg.setVisibility(View.VISIBLE);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -185,6 +195,31 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                             }
                         }).create().show();
                 break;
+            case R.id.btn_save_write:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.btn_submit_write:
+                // Server Connecting...h
+                if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
+                    postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", "");
+                break;
         }
+    }
+
+    private void postArticle(String title, String contents, String categoryType, String cafeName, String imgUri) {
+        final WriteService writeService = new WriteService(this);
+        writeService.postArticle(title, contents, categoryType, cafeName, imgUri);
+    }
+
+    @Override
+    public void validateSuccess(String message) {
+        showToast("글 작성에 성공하였습니다.");
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        showToast("글 작성에 실패하였습니다.");
     }
 }

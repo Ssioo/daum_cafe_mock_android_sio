@@ -10,19 +10,18 @@ import android.widget.TextView;
 import com.kakao.usermgmt.LoginButton;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.signselect.signin.SignInActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.interfaces.SignSelectActivityView;
+import com.softsquared.softsquared_daum_cafe.src.signselect.signin.SignInActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signup.SignUpActivity;
 
 public class SignSelectActivity extends BaseActivity implements SignSelectActivityView {
 
+    public static Activity mActivity;
     private Button btnSignIn;
     private LoginButton btnKakaoSignIn;
     private TextView tvSignUp;
     private TextView tvKakaoDirectSignIn;
     private ImageView ivClose;
-
-    public static Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

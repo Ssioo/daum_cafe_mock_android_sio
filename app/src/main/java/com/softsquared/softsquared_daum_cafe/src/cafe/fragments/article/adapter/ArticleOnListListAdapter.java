@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,9 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
 
     private LayoutInflater layoutInflater;
     private Context mContext;
-    private ArrayList<ArticleOnList> articlesOnList;
+    private ArrayList<CafeResponse.Result> articlesOnList;
 
-    public ArticleOnListListAdapter(ArrayList<ArticleOnList> articlesOnList, Context context) {
+    public ArticleOnListListAdapter(ArrayList<CafeResponse.Result> articlesOnList, Context context) {
         this.articlesOnList = articlesOnList;
         this.mContext = context;
         layoutInflater = LayoutInflater.from(context);
@@ -39,18 +40,18 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
 
     @Override
     public void onBindViewHolder(@NonNull ArticleViewHoler holder, int position) {
-        ArticleOnList article = articlesOnList.get(position);
+        CafeResponse.Result article = articlesOnList.get(position);
         if (article != null) {
             holder.tvTitle.setText(article.getTitle());
-            holder.tvCreateDate.setText(article.getCreateDate());
-            holder.tvAuthor.setText(article.getAuthor());
-            holder.tvViewCount.setText("조회 " + article.getViewCount());
-            if (article.getCommentCount() == 0) {
+            holder.tvCreateDate.setText(article.getCreatedAt());
+            holder.tvAuthor.setText(article.getUserId());
+            //holder.tvViewCount.setText("조회 " + article.getViewCount());
+            /*if (article.getCommentCount() == 0) {
                 holder.tvCommentCount.setVisibility(View.INVISIBLE);
             } else {
                 holder.tvCommentCount.setText(String.valueOf(article.getCommentCount()));
-            }
-            holder.tvBoard.setText(article.getBoard());
+            }*/
+            //holder.tvBoard.setText(article.getBoard());
         }
     }
 

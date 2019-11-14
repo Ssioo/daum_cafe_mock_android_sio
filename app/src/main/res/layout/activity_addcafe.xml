@@ -86,7 +86,7 @@
             android:text="대소문자를 구문, (-), (.)을 사용해주세요." />
 
         <TextView
-            android:id="@+id/et_cafe_url_count_addcafe"
+            android:id="@+id/tv_cafe_url_count_addcafe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

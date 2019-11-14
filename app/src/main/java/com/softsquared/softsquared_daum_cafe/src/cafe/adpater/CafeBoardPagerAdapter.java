@@ -7,15 +7,16 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.ArticlesBoardFragment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 
 import java.util.ArrayList;
 
 public class CafeBoardPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mPageCount;
-    private ArrayList<ArrayList<ArticleOnList>> mArticleListList;
+    private ArrayList<ArrayList<CafeResponse.Result>> mArticleListList;
 
-    public CafeBoardPagerAdapter(@NonNull FragmentManager fm, int pagecount, ArrayList<ArrayList<ArticleOnList>> articleListList) {
+    public CafeBoardPagerAdapter(@NonNull FragmentManager fm, int pagecount, ArrayList<ArrayList<CafeResponse.Result>> articleListList) {
         super(fm);
         this.mPageCount = pagecount;
         this.mArticleListList = articleListList;

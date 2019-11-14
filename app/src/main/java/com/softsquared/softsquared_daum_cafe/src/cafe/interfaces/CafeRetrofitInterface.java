@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.interfaces;
 
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.common.models.DefaultResponse;
 
 import okhttp3.RequestBody;
@@ -12,15 +13,6 @@ import retrofit2.http.Query;
 
 public interface CafeRetrofitInterface {
 
-    @GET("/jwt")
-    Call<DefaultResponse> getTest();
-
-    @GET("/test/{number}")
-    Call<DefaultResponse> getTestPathAndQuery(
-            @Path("number") int number,
-            @Query("content") final String content
-    );
-
-    @POST("/test")
-    Call<DefaultResponse> postTest(@Body RequestBody params);
+    @GET("anicafe/board")
+    Call<CafeResponse> getArticles();
 }

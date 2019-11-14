@@ -6,7 +6,9 @@
     android:orientation="horizontal"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp"
-    android:background="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    android:elevation="1dp"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/iv_img_article_cafe"

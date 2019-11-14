@@ -6,6 +6,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
+
+import java.util.ArrayList;
 
 public interface CafeActivityView
         extends View.OnClickListener,
@@ -13,7 +16,7 @@ public interface CafeActivityView
         TabLayout.OnTabSelectedListener,
         SwipeRefreshLayout.OnRefreshListener{
 
-    void validateSuccess(String text);
+    void validateSuccess(ArrayList<CafeResponse.Result> results);
 
     void validateFailure(String message);
 }

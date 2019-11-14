@@ -16,9 +16,9 @@ import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.Si
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
 
 public class SignInActivity extends BaseActivity implements SignInActivityView {
 

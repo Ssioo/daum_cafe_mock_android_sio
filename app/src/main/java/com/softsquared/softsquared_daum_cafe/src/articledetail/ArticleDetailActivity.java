@@ -20,11 +20,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.adapter.CommentListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.models.Comment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
+import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
+
+import java.util.ArrayList;
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
@@ -33,6 +38,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     private SwipeRefreshLayout srlActicleDetail;
     private Toolbar tbArticleDetail;
+    private RecyclerView rvComments;
     private DrawerLayout dlArticleDetail;
     private ImageView ivCloseDrawer;
     private TextView tvHome;
@@ -76,6 +82,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         rvBoardList2 = findViewById(R.id.rv_boardlist2_articledetail);
         rvBoardList3 = findViewById(R.id.rv_boardlist3_articledetail);
         tvUserName = findViewById(R.id.tv_username_articledetail_drawer);
+        rvComments = findViewById(R.id.rv_comments_articledetail);
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -86,6 +93,15 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
         /* RefreshLayout */
         srlActicleDetail.setOnRefreshListener(this);
+
+        /* RecyclerView */
+        // dummy
+        ArrayList<Comment> dummy = new ArrayList<>();
+        dummy.add(new Comment("Test", "Description1", "Sio", "2019.11.14", ""));
+        dummy.add(new Comment("Test", "Description2", "Boyumi", "2019.11.14", ""));
+        dummy.add(new Comment("Test", "Description3", "Sio", "2019.11.14", ""));
+        rvComments.setAdapter(new CommentListAdapter(dummy, this));
+        rvComments.addItemDecoration(new RecyclerViewDecoration(1, 0));
 
         /* Set On Click Listener */
         ivCloseDrawer.setOnClickListener(this);

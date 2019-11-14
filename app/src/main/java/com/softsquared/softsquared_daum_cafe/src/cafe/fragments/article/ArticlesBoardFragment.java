@@ -17,6 +17,8 @@ import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.interfaces.ArticlesBoardFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.adapter.ArticleOnListListAdapter;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
+import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 
 import java.util.ArrayList;
 
@@ -25,14 +27,16 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
     private RecyclerView rvArticlesCafe;
     private SwipeRefreshLayout srlArticlesCafe;
 
-    private ArrayList<ArticleOnList> mArticleOnLists;
+    private ArticleOnListListAdapter articleOnListListAdapter;
 
-    public ArticlesBoardFragment(ArrayList<ArticleOnList> mArticleOnLists) {
-        this.mArticleOnLists = mArticleOnLists;
+    private ArrayList<CafeResponse.Result> mArticleOnLists;
+
+    public ArticlesBoardFragment(ArrayList<CafeResponse.Result> results) {
+        this.mArticleOnLists = results;
     }
 
-    public static ArticlesBoardFragment newInstance(ArrayList<ArticleOnList> articleOnLists) {
-        ArticlesBoardFragment fragment = new ArticlesBoardFragment(articleOnLists);
+    public static ArticlesBoardFragment newInstance(ArrayList<CafeResponse.Result> results) {
+        ArticlesBoardFragment fragment = new ArticlesBoardFragment(results);
         return fragment;
     }
 
@@ -47,7 +51,9 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
 
         /* RecyclerView */
         rvArticlesCafe.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvArticlesCafe.setAdapter(new ArticleOnListListAdapter(mArticleOnLists, getActivity()));
+        articleOnListListAdapter = new ArticleOnListListAdapter(mArticleOnLists, getActivity());
+        rvArticlesCafe.setAdapter(articleOnListListAdapter);
+        rvArticlesCafe.addItemDecoration(new RecyclerViewDecoration(1, 0));
 
         /* SwipeRefreshLayout */
         srlArticlesCafe.setOnRefreshListener(this);
@@ -60,6 +66,7 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
 
     @Override
     public void onRefresh() {
+        articleOnListListAdapter.notifyDataSetChanged();
         srlArticlesCafe.setRefreshing(false);
     }
 }

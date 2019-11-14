@@ -1,9 +1,10 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +31,7 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.adpater.CafeBoardPagerAdapter;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
-import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
@@ -40,6 +42,8 @@ import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserL
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
 
 public class CafeActivity extends BaseActivity implements CafeActivityView {
+
+    public static final int REQUEST_TO_WRITE = 1000;
 
     private DrawerLayout dlCafe;
     private AppBarLayout ablCafe;
@@ -79,11 +83,16 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     private boolean DRAWER_ITEM2_OPENED = true;
     private boolean DRAWER_ITEM3_OPENED = true;
 
+    ArrayList<ArrayList<CafeResponse.Result>> articleList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe);
+
+        /* Get Articles From Server */
+        getArticles("anicafe");
 
         /* findViewByID */
         dlCafe = findViewById(R.id.dl_cafe);
@@ -146,37 +155,11 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         tvRefresh.setOnClickListener(this);
         ivShowNav.setOnClickListener(this);
 
-        // dummy data
-        ArrayList<ArrayList<ArticleOnList>> dummylist = new ArrayList<>();
-        ArrayList<ArticleOnList> dummy = new ArrayList<>();
-        dummy.add(new ArticleOnList("테스트1", "시오", "2019.11.02", 2, 2, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트2", "시오", "2019.11.02", 2, 0, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", 5, 12, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", 10, 2, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트5", "시오", "2019.11.01", 30, 27, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트6", "시오", "2019.11.02", 2, 2, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트7", "시오", "2019.11.02", 2, 0, "자유게시판"));
-        dummy.add(new ArticleOnList("테스트8", "보유미", "2019.11.01", 5, 12, "자유게시판"));
-        dummy.add(new ArticleOnList("페이징테스트9", "보유미", "2019.11.01", 10, 2, "자유게시판"));
-        dummy.add(new ArticleOnList("페이징테스트10", "시오", "2019.11.01", 30, 27, "자유게시판"));
-        dummy.add(new ArticleOnList("페이징테스트11", "시오", "2019.11.01", 38, 27, "자유게시판"));
-        ArrayList<ArticleOnList> dummy1 = new ArrayList<>();
-        dummy1.add(new ArticleOnList("테스트4", "보유미", "2019.11.01", 10, 2, "자유게시판"));
-        dummy1.add(new ArticleOnList("테스트1", "시오", "2019.11.02", 2, 2, "자유게시판"));
-        dummy1.add(new ArticleOnList("테스트3", "보유미", "2019.11.01", 5, 12, "자유게시판"));
-        dummy1.add(new ArticleOnList("테스트2", "시오", "2019.11.02", 2, 0, "자유게시판"));
-        dummy1.add(new ArticleOnList("테스트6", "시오", "2019.11.02", 2, 2, "자유게시판"));
-        dummy1.add(new ArticleOnList("테스트5", "시오", "2019.11.01", 30, 27, "자유게시판"));
-        dummylist.add(dummy);
-        dummylist.add(dummy1);
-
-
         /* TabLayout */
         tlCafe.addOnTabSelectedListener(this);
 
         /* ViewPager */
         vpCafe.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tlCafe));
-        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, dummylist));
 
         /* SwipeRefreshLayout - Drawer */
         srlBoardListDrawer.setOnRefreshListener(this);
@@ -219,14 +202,34 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         toolbar.addView(llToolbarContainer);
     }
 
-    @Override
-    public void validateSuccess(String text) {
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_TO_WRITE) {
+            Log.i("REFRESH TEST", "ok from write");
+            getArticles("anicafe");
+        }
     }
 
     @Override
+    public void validateSuccess(ArrayList<CafeResponse.Result> results) {
+        articleList.clear();
+        articleList.add(results);
+        articleList.add(results);
+        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList));
+    }
+    @Override
     public void validateFailure(String message) {
 
+    }
+
+    private void getArticles(String cafeName) {
+        final CafeService cafeService = new CafeService(this);
+        cafeService.getArticles(cafeName);
     }
 
     @Override
@@ -242,6 +245,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 showToast(getString(R.string.nofunction));
                 break;
             case R.id.tv_write_cafe:
+                // Write Activity로 이동
                 startNextActivity(WriteActivity.class);
                 break;
             case R.id.tv_refresh_cafe:
@@ -354,6 +358,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     @Override
     public void onRefresh() {
+        Log.i("REFRESH TEST", "ok from refresh");
+        getArticles("anicafe"); // -> Article Fragment에서 처리
         srlBoardListDrawer.setRefreshing(false);
     }
 

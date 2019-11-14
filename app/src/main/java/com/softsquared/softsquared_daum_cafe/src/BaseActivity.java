@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
@@ -42,6 +43,11 @@ public class BaseActivity extends AppCompatActivity {
     public void startNextActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
         startActivity(intent);
+    }
+
+    public void startNextActivityForResult(Class<?> activity, int resuestCode) {
+        Intent intent = new Intent(this, activity);
+        startActivityForResult(intent, resuestCode);
     }
 
     public void startNextActivity(Class<?> activity, final int flag) {
@@ -107,6 +113,7 @@ public class BaseActivity extends AppCompatActivity {
                         fcmToken = task.getResult().getToken();
                     }
                 });
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
 
     @Override

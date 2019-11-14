@@ -1,8 +1,9 @@
-package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter;
+package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.adapter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.softsquared_daum_cafe.R;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 
 import java.util.ArrayList;
@@ -122,7 +125,7 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public class ArticleNoImageViewHolder extends RecyclerView.ViewHolder {
+    public class ArticleNoImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvNum;
         TextView tvArticleTitle;
@@ -134,6 +137,16 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
             tvNum = itemView.findViewById(R.id.tv_num_article_noimage_popular);
             tvArticleTitle = itemView.findViewById(R.id.tv_title_article_noimage_popular);
             tvCafeName = itemView.findViewById(R.id.tv_cafename_article_noimage_popular);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v == itemView) {
+                Intent intent = new Intent(v.getContext(), ArticleDetailActivity.class);
+                v.getContext().startActivity(intent);
+            }
         }
     }
 }

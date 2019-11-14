@@ -1,6 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.main;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,7 +19,6 @@ import com.softsquared.softsquared_daum_cafe.src.main.fragments.notification.Not
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.PopularFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.interfaces.MainActivityView;
-import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 
@@ -46,12 +43,12 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
 
         /* Init View */
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_main, PopularFragment.newInstance(), "POPULAR").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_main, HomeFragment.newInstance(), "HOME").commit();
 
         /* Bottom Navigation View */
-        bottomNavMain.setSelectedItemId(R.id.nav_popular);
+        bottomNavMain.setSelectedItemId(R.id.nav_home);
         bottomNavMain.setOnNavigationItemSelectedListener(this);
-        bottomNavMain.setBackgroundColor(getColor(R.color.color_bottom_nav));
+        setBottomNav(0);
 
         /* Constants */
         FIRST_LOADING = false;
@@ -82,8 +79,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         flMain.setLayoutParams(mLayoutParams);
         if (marginBottom == 0) {
             bottomNavMain.setBackgroundColor(Color.TRANSPARENT);
-        }
-        else
+        } else
             bottomNavMain.setBackgroundColor(getColor(R.color.color_bottom_nav));
     }
 
@@ -95,30 +91,30 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                 setBottomNav(0);
                 return true;
             case R.id.nav_mycafe:
-                setBottomNav(actionBarHeight);
                 if (!isUserLogin && !FIRST_LOADING) {
                     mLoginAlert.show();
                     return false;
                 } else if (isUserLogin) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, MyCafeFragment.newInstance(), "MYCAFE").commit();
-                    return true;
                 }
-            case R.id.nav_popular:
                 setBottomNav(actionBarHeight);
+                return true;
+            case R.id.nav_popular:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, PopularFragment.newInstance(), "POPULAR").commit();
+                setBottomNav(actionBarHeight);
                 return true;
             case R.id.nav_notification:
-                setBottomNav(actionBarHeight);
                 if (!isUserLogin && !FIRST_LOADING) {
                     mLoginAlert.show();
                     return false;
                 } else if (isUserLogin) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, NotificationFragment.newInstance(), "NOTIFICATION").commit();
-                    return true;
                 }
-            case R.id.nav_setting:
                 setBottomNav(actionBarHeight);
+                return true;
+            case R.id.nav_setting:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, SettingFragment.newInstance(), "SETTING").commit();
+                setBottomNav(actionBarHeight);
                 return true;
         }
         return false;

@@ -14,9 +14,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.adapter.PopularArticleListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.interfaces.PopularArticleListFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticleListAdapter;
 
 import java.util.ArrayList;
 
@@ -24,8 +24,8 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
 
     private SwipeRefreshLayout srlPopular;
     private RecyclerView rvPopular;
-    private ArrayList<Article> articlesPopular;
 
+    private ArrayList<Article> articlesPopular;
     private int viewType;
 
     public PopularArticleListFragment(ArrayList<Article> articlesPopular, int viewType) {

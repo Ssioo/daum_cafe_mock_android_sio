@@ -278,7 +278,7 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         }
         tvToolbarTitleCollapsed.setAlpha(collapsedTitleAlpha);
         llToolbarTitleContainer.setAlpha(expandedTitleAlpha);
-        ivBlackboxPopular.setAlpha(0.35f - Math.abs((i + appBarLayout.getTotalScrollRange()) * 0.15f / (float) appBarLayout.getTotalScrollRange())); // Alpha : 0.2 ~ 0.35
+        ivBlackboxPopular.setAlpha(0.4f - Math.abs((i + appBarLayout.getTotalScrollRange()) * 0.2f / (float) appBarLayout.getTotalScrollRange())); // Alpha : 0.2 ~ 0.4
 
         // viewPager 마진 동적 변경
         vpLayoutParams.topMargin = (int) (-48 * dpUnit * (Math.abs((i + appBarLayout.getTotalScrollRange()) / (float) appBarLayout.getTotalScrollRange())));
