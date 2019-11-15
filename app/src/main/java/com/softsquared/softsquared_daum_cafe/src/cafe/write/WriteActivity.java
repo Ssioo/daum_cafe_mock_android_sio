@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
 import java.io.IOException;
@@ -201,10 +201,11 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
             case R.id.btn_submit_write:
                 // Server Connecting...h
                 if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
-                    postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", "");
+                    postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
                 break;
         }
     }
+
 
     private void postArticle(String title, String contents, String categoryType, String cafeName, String imgUri) {
         final WriteService writeService = new WriteService(this);
@@ -213,6 +214,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
 
     @Override
     public void validateSuccess(String message) {
+        hideProgressDialog();
         showToast("글 작성에 성공하였습니다.");
         setResult(RESULT_OK);
         finish();
@@ -221,5 +223,25 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     @Override
     public void validateFailure(String message) {
         showToast("글 작성에 실패하였습니다.");
+    }
+
+    private void postImageToFirebaseAndpostArticle(String title, String contents, String categoryType, String cafeName) {
+        showUploadProgressDialog();
+        final WriteService writeService = new WriteService(this);
+        if (IMAGE_ATTACHED)
+            writeService.postImgToFirebase(bmIvImg);
+        else
+            writeService.postArticle(title, contents, categoryType, cafeName, "");
+    }
+
+    @Override
+    public void validateImageSuccess(String url) {
+        postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
+    }
+
+    @Override
+    public void validateImageFailure(String message) {
+        hideProgressDialog();
+        showToast("이미지 업로드에 실패하였습니다.");
     }
 }

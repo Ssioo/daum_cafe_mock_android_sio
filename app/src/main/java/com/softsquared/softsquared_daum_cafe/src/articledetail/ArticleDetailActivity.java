@@ -22,6 +22,7 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.adapter.CommentListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.models.ArticleDetailResponse;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.Comment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
@@ -38,6 +39,10 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     private SwipeRefreshLayout srlActicleDetail;
     private Toolbar tbArticleDetail;
+    private TextView tvArticleTitle;
+    private TextView tvArticleAuthor;
+    private TextView tvArticleContents;
+    private TextView tvArticleCreatedAt;
     private RecyclerView rvComments;
     private DrawerLayout dlArticleDetail;
     private ImageView ivCloseDrawer;
@@ -83,6 +88,13 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         rvBoardList3 = findViewById(R.id.rv_boardlist3_articledetail);
         tvUserName = findViewById(R.id.tv_username_articledetail_drawer);
         rvComments = findViewById(R.id.rv_comments_articledetail);
+        tvArticleTitle = findViewById(R.id.tv_title_article_detail);
+        tvArticleAuthor = findViewById(R.id.tv_author_articledetail);
+        tvArticleContents = findViewById(R.id.tv_contents_article_detail);
+        tvArticleCreatedAt = findViewById(R.id.tv_article_createtime_articledetail);
+
+        /* Get Contents From Server */
+        getContents(1);
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -210,5 +222,24 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 break;
         }
         dlArticleDetail.closeDrawers();
+    }
+
+    private void getContents(int boardId) {
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.getArticleDetail(boardId);
+    }
+
+    @Override
+    public void validateSuccess(ArrayList<ArticleDetailResponse.Result> results) {
+        /* Set View */
+        tvArticleAuthor.setText(results.get(0).getUserId());
+        tvArticleTitle.setText(results.get(0).getTitle());
+        tvArticleContents.setText(results.get(0).getCotents());
+        tvArticleCreatedAt.setText(results.get(0).getCreatedAt());
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        showToast("내용을 불러오는데 실패하였습니다.");
     }
 }

@@ -59,6 +59,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tv_title_article_detail"
                         android:text="Article Title"
                         android:textSize="18sp"
                         android:layout_marginHorizontal="16dp"
@@ -84,6 +85,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignTop="@id/iv_user_profile_img_articledetail"
+                            android:id="@+id/tv_author_articledetail"
                             android:layout_marginStart="12dp"
                             android:text="User Name" />
 
@@ -130,6 +132,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="32dp"
                         android:textSize="15sp"
+                        android:id="@+id/tv_contents_article_detail"
                         android:text="Article Contents"
                         android:paddingBottom="8dp"
                         android:paddingHorizontal="16dp"

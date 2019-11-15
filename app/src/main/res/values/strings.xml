@@ -2,6 +2,7 @@
     <!-- common -->
     <string name="app_name">다다음카페</string>
     <string name="loading">로딩중입니다.</string>
+    <string name="uploading">업로드중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="nofunction">미구현기능입니다.</string>
     <string name="separator">&#160;&#160;|&#160;&#160;</string>

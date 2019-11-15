@@ -51,6 +51,10 @@ dependencies {
 
     //https://developer.kakao.com/docs/android
     implementation group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+    // https://github.com/firebase/FirebaseUI-Android
+    implementation 'com.firebaseui:firebase-ui-storage:6.1.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
