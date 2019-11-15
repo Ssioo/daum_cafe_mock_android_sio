@@ -16,7 +16,6 @@ import com.softsquared.softsquared_daum_cafe.src.signselect.signup.SignUpActivit
 
 public class SignSelectActivity extends BaseActivity implements SignSelectActivityView {
 
-    public static Activity mActivity;
     private Button btnSignIn;
     private LoginButton btnKakaoSignIn;
     private TextView tvSignUp;
@@ -28,8 +27,6 @@ public class SignSelectActivity extends BaseActivity implements SignSelectActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_select);
 
-        /* Activity */
-        mActivity = this;
 
         /* findViewByID */
         btnSignIn = findViewById(R.id.btn_signin_signselect);
@@ -55,7 +52,7 @@ public class SignSelectActivity extends BaseActivity implements SignSelectActivi
                 startNextActivity(SignUpActivity.class);
                 break;
             case R.id.tv_kakao_direct_signin_signselect:
-                showToast("미구현 기능입니다");
+                showToast(getString(R.string.nofunction));
                 break;
             case R.id.iv_close_signselect:
                 finish();

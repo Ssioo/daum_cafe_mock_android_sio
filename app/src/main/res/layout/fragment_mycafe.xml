@@ -23,9 +23,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="내카페"
+                android:text="@string/mycafe_mycafe"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -41,26 +41,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:text="카페" />
+                android:text="@string/cafe_mycafe" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:text="게시판" />
+                android:text="@string/board_mycafe" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:text="친구" />
+                android:text="@string/friend_mycafe" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
-                android:text="북마크" />
+                android:text="@string/bookmark_mycafe" />
         </com.google.android.material.tabs.TabLayout>
 
     </LinearLayout>

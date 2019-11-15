@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/iv_profile_mypage"
             android:layout_toEndOf="@+id/iv_profile_mypage"
-            android:text="UserName"
+            tools:text="UserName"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_profile_mypage"
             android:layout_toEndOf="@+id/iv_profile_mypage"
-            android:text="User Role"
+            tools:text="User Role"
             android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성별/나이"
+                android:text="@string/gender_age_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -131,7 +131,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="총 방문일"
+                android:text="@string/visit_count_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -151,7 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="총 게시물"
+                android:text="@string/article_count_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="총 댓글"
+                android:text="@string/comment_count_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -191,7 +191,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="카페가입"
+                android:text="@string/register_date_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
                 android:paddingVertical="2dp"
-                android:text="최종방문일"
+                android:text="@string/recent_visit_date_mypage"
                 android:textColor="@android:color/black" />
 
             <TextView

@@ -55,10 +55,108 @@
     <string name="favorite_cafe_mycafe">즐겨찾는 카페</string>
     <string name="all_cafe_mycafe">내 전체 카페</string>
     <string name="edit_cafe_mycafe">편집</string>
+    <string name="mycafe_mycafe">내 카페</string>
+    <string name="cafe_mycafe">카페</string>
+    <string name="board_mycafe">게시판</string>
+    <string name="friend_mycafe">친구</string>
+    <string name="bookmark_mycafe">북마크</string>
 
     <!-- MyCafe Board Fragment -->
     <string name="favorite_board_mycafe">즐겨찾는 게시판</string>
 
     <!-- MyCafe Notification Fragment -->
     <string name="mynoti_notification_mycafe">내 소식</string>
+
+    <!-- MyCafe Bookmark Fragment -->
+    <string name="archive_bookmark_mycafe">보관함</string>
+
+    <!-- Home Fragment -->
+    <string name="cafe_home">cafe</string>
+
+    <!-- Setting Fragment -->
+    <string name="setting_setting">설정</string>
+    <string name="login_info_setting">로그인 정보</string>
+    <string name="update_info_setting">업데이트정보</string>
+    <string name="update_info_subtitle_setting">현재 3.12.2</string>
+    <string name="update_info_desc_setting">최신버전 사용 중</string>
+    <string name="noti_set_setting">알림 설정</string>
+    <string name="noti_check_setting">알림 수신 확인</string>
+    <string name="write_setting">글쓰기 설정</string>
+    <string name="read_setting">글읽기 설정</string>
+    <string name="board_setting">게시판 설정</string>
+    <string name="spam_setting">쪽지 차단 설정</string>
+    <string name="start_page_setting">시작화면 설정</string>
+    <string name="start_page_desc_setting">홈</string>
+    <string name="start_tab_setting">내카페 기본탭 설정</string>
+    <string name="start_tab_desc_setting">홈</string>
+    <string name="theme_setting">카페 테마 설정</string>
+    <string name="theme_desc_setting">블랙</string>
+    <string name="language_setting">언어 설정</string>
+    <string name="language_desc_setting">시스템 기본</string>
+    <string name="lock_setting">암호 설정</string>
+    <string name="lock_desc_setting">사용 안함</string>
+    <string name="cache_setting">저장 데이터 관리</string>
+    <string name="lab_setting">실험실</string>
+    <string name="service_info_setting">서비스 정보</string>
+
+    <!-- AddCafe Activity -->
+    <string name="cafe_name_addcafe">카페 이름</string>
+    <string name="addcafe_addcafe">카페 만들기</string>
+    <string name="constraint1_addcafe">한글, 영문, 숫자, 기호만 입력해 주세요.</string>
+    <string name="constraint2_addcafe">대소문자를 구문, (-), (.)을 사용해주세요.</string>
+    <string name="cafe_name_count_addcafe">0/60</string>
+    <string name="cafe_url_count_addcafe">0/20</string>
+    <string name="cafe_url_addcafe">카페 주소</string>
+    <string name="agreement_addcafe">개인정보보호 의무 동의</string>
+    <string name="agreement_check_addcafe">카페지기의 개인정보보호 의무를 확인해주시기 바랍니다.</string>
+    <string name="submit_addcafe">카페 만들기</string>
+
+    <!-- ArticleDetail Activity -->
+    <string name="all_article_articledetail">전체글</string>
+    <string name="comment_articledetail">댓글</string>
+    <string name="write_comment_articledetail">댓글쓰기</string>
+    <string name="prev_article_articledetail">이전</string>
+    <string name="next_article_articledetail">다음</string>
+    <string name="searching_articledetail">검색하기</string>
+    <string name="search_articledetail">검색</string>
+    <string name="share_articledetail">공유하기</string>
+    <string name="home_articledetail">홈</string>
+    <string name="admin_articledetail">관리</string>
+    <string name="chat_articledetail">채팅</string>
+    <string name="recent_board_articledetail">최근 방문 게시판</string>
+    <string name="favorite_board_articledetail">즐겨찾는 게시판</string>
+    <string name="all_board_articledetail">전체 게시판</string>
+
+    <!-- Cafe Activity -->
+    <string name="all_article_cafe">전체글</string>
+    <string name="popular_article_cafe">인기글</string>
+    <string name="searching_cafe">@string/searching_articledetail</string>
+    <string name="write_article_cafe">글쓰기</string>
+    <string name="refresh_cafe">새로고침</string>
+    <string name="home_cafe">홈</string>
+    <string name="admin_cafe">관리</string>
+    <string name="chat_cafe">채팅</string>
+    <string name="search_cafe">검색</string>
+    <string name="recent_board_cafe">최근 방문 게시판</string>
+    <string name="favorite_board_cafe">즐겨찾는 게시판</string>
+    <string name="all_board_cafe">전체 게시판</string>
+
+    <!-- MyPage Activity -->
+    <string name="gender_age_mypage">성별/나이</string>
+    <string name="visit_count_mypage">총 방문일</string>
+    <string name="article_count_mypage">총 게시물</string>
+    <string name="comment_count_mypage">총 댓글</string>
+    <string name="register_date_mypage">카페가입</string>
+    <string name="recent_visit_date_mypage">최종방문일</string>
+
+    <!-- Write Activity -->
+    <string name="write_write">글쓰기</string>
+    <string name="submit_write">등록</string>
+    <string name="save_write">임시저장</string>
+    <string name="select_board_write">게시판 선택</string>
+    <string name="title_hint_write">제목</string>
+    <string name="contents_hint_write">내용</string>
+
+
+
 </resources>

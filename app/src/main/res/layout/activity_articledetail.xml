@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
-                android:text="전체글"
+                android:text="@string/all_article_articledetail"
                 android:layout_gravity="center"
                 android:id="@+id/tv_toolbar_title_articledetail" />
         </androidx.appcompat.widget.Toolbar>
@@ -51,7 +51,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Board Title"
+                        tools:text="Board Title"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@android:color/holo_red_light"/>
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_title_article_detail"
-                        android:text="Article Title"
+                        tools:text="Article Title"
                         android:textSize="18sp"
                         android:layout_marginHorizontal="16dp"
                         android:textColor="@android:color/black" />
@@ -87,7 +87,7 @@
                             android:layout_alignTop="@id/iv_user_profile_img_articledetail"
                             android:id="@+id/tv_author_articledetail"
                             android:layout_marginStart="12dp"
-                            android:text="User Name" />
+                            tools:text="User Name" />
 
                         <TextView
                             android:layout_toEndOf="@id/iv_user_profile_img_articledetail"
@@ -96,12 +96,12 @@
                             android:id="@+id/tv_article_createtime_articledetail"
                             android:layout_marginStart="12dp"
                             android:layout_alignBottom="@id/iv_user_profile_img_articledetail"
-                            android:text="HH:mm" />
+                            tools:text="HH:mm" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="90"
+                            tools:text="90"
                             android:layout_marginStart="12dp"
                             android:layout_toEndOf="@id/tv_article_createtime_articledetail"
                             android:layout_alignTop="@id/tv_article_createtime_articledetail"
@@ -111,7 +111,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/background_round_grey_padding"
-                            android:text="1"
+                            tools:text="1"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true" />
 
@@ -133,7 +133,7 @@
                         android:paddingTop="32dp"
                         android:textSize="15sp"
                         android:id="@+id/tv_contents_article_detail"
-                        android:text="Article Contents"
+                        tools:text="Article Contents"
                         android:paddingBottom="8dp"
                         android:paddingHorizontal="16dp"
                         android:textColor="@android:color/black" />
@@ -171,7 +171,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="댓글"
+                            android:text="@string/comment_articledetail"
                             android:textSize="16sp"
                             android:textColor="@android:color/black"/>
 
@@ -211,7 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="댓글쓰기"
+                            android:text="@string/write_comment_articledetail"
                             android:textColor="@android:color/black"
                             android:textSize="15sp"/>
 
@@ -235,7 +235,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이전" />
+                            android:text="@string/prev_article_articledetail" />
 
                     </LinearLayout>
 
@@ -247,7 +247,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="다음" />
+                            android:text="@string/next_article_articledetail" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -275,7 +275,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_write_comment_articledetail"
-                android:text="검색하기" />
+                android:text="@string/searching_articledetail" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_comment_articledetail"
-                android:text="댓글" />
+                android:text="@string/comment_articledetail" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -293,7 +293,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_share_articledetail"
-                android:text="공유하기" />
+                android:text="@string/share_articledetail" />
         </LinearLayout>
 
     </LinearLayout>

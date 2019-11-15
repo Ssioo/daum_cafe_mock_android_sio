@@ -45,7 +45,7 @@
                 android:paddingVertical="16dp"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="홈"
+                android:text="@string/home_cafe"
                 android:id="@+id/tv_home_cafe_drawer"
                 android:textColor="@android:color/black"/>
 
@@ -56,7 +56,7 @@
                 android:textSize="16sp"
                 android:paddingVertical="16dp"
                 android:background="?attr/selectableItemBackground"
-                android:text="관리"
+                android:text="@string/admin_cafe"
                 android:id="@+id/tv_admin_cafe_drawer"
                 android:gravity="center"
                 android:textColor="@android:color/black"/>
@@ -68,7 +68,7 @@
                 android:textSize="16sp"
                 android:paddingVertical="16dp"
                 android:background="?attr/selectableItemBackground"
-                android:text="채팅"
+                android:text="@string/chat_cafe"
                 android:gravity="center"
                 android:id="@+id/tv_chat_cafe_drawer"
                 android:textColor="@android:color/black"/>
@@ -80,7 +80,7 @@
                 android:textSize="16sp"
                 android:paddingVertical="16dp"
                 android:background="?attr/selectableItemBackground"
-                android:text="검색"
+                android:text="@string/search_cafe"
                 android:id="@+id/tv_search_cafe_drawer"
                 android:gravity="center"
                 android:textColor="@android:color/black"/>
@@ -109,7 +109,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="최근 방문 게시판"
+                        android:text="@string/recent_board_cafe"
                         android:elevation="2dp"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="6dp"/>
@@ -143,7 +143,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="즐겨찾는 게시판"
+                        android:text="@string/favorite_board_cafe"
                         android:elevation="2dp"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="6dp"/>
@@ -178,7 +178,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="전체 게시판"
+                        android:text="@string/all_board_cafe"
                         android:elevation="2dp"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="6dp"/>
@@ -230,7 +230,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="UserName"
+                tools:text="UserName"
                 android:id="@+id/tv_username_cafe_drawer"
                 android:elevation="2dp"
                 android:paddingHorizontal="8dp"

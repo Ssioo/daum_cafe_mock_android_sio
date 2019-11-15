@@ -70,7 +70,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="게시판 선택"
+                    android:text="@string/select_board_write"
                     android:textSize="15sp"
                     android:textColor="@android:color/black"
                     android:id="@+id/tv_board_title_write" />
@@ -83,7 +83,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="제목"
+                android:hint="@string/title_hint_write"
                 android:id="@+id/et_title_write"
                 android:background="@android:color/white"
                 android:elevation="1dp"
@@ -99,7 +99,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:gravity="top|start"
-                android:hint="내용"
+                android:hint="@string/contents_hint_write"
                 android:inputType="text|textMultiLine|textImeMultiLine"
                 android:paddingHorizontal="16dp"
                 android:paddingTop="20dp"

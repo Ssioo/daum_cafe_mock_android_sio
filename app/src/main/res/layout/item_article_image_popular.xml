@@ -40,7 +40,7 @@
             android:id="@+id/tv_cafename_article_popular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="소프트스퀘어드"
+            tools:text="Cafe Name"
             android:layout_weight="1"
             android:textSize="12sp"/>
     </LinearLayout>

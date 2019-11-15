@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="카페 만들기"
+        app:title="@string/addcafe_addcafe"
         android:id="@+id/toolbar_addcafe"
         android:background="@android:color/white"
         android:elevation="2dp"/>
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="카페 이름"
+        android:text="@string/cafe_name_addcafe"
         android:textColor="@android:color/black"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"/>
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="한글, 영문, 숫자, 기호만 입력해 주세요."
+            android:text="@string/constraint1_addcafe"
             android:layout_gravity="start"
             android:textSize="12sp" />
 
@@ -51,14 +51,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="0/60" />
+            android:text="@string/cafe_name_count_addcafe" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="카페 주소"
+        android:text="@string/cafe_url_addcafe"
         android:textColor="@android:color/black"
         android:layout_marginHorizontal="16dp"/>
 
@@ -83,14 +83,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="대소문자를 구문, (-), (.)을 사용해주세요." />
+            android:text="@string/constraint2_addcafe" />
 
         <TextView
             android:id="@+id/tv_cafe_url_count_addcafe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="0/20" />
+            android:text="@string/cafe_url_count_addcafe" />
 
     </LinearLayout>
 
@@ -106,7 +106,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="개인정보보호 의무 동의"
+            android:text="@string/agreement_addcafe"
             android:paddingHorizontal="16dp"
             android:textColor="@android:color/black"/>
 
@@ -124,7 +124,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingHorizontal="16dp"
-        android:text="카페지기의 개인정보보호 의무를 확인해주시기 바랍니다." />
+        android:text="@string/agreement_check_addcafe" />
 
 
     <Button
@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@android:color/holo_red_light"
-        android:text="카페 만들기"
+        android:text="@string/submit_addcafe"
         android:textColor="@android:color/white" />
 
 

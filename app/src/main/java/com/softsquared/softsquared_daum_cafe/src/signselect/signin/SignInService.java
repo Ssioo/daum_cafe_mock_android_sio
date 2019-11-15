@@ -32,7 +32,10 @@ public class SignInService {
                     signInActivityView.validateFailure(null);
                     return;
                 }
-
+                if (signInResponse.getUserInfo() == null) {
+                    signInActivityView.validateFailure(null);
+                    return;
+                }
                 signInActivityView.validateSuccess(signInResponse.getToken(), signInResponse.getUserInfo().getUserId(), signInResponse.getUserInfo().getName());
             }
 

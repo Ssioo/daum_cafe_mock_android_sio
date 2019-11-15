@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_cafe_title_cafe"
-                        android:text="Cafe Name"
+                        tools:text="Cafe Name"
                         android:layout_gravity="center"
                         android:textColor="@android:color/white"
                         android:textSize="17sp"
@@ -171,12 +171,12 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체글" />
+                    android:text="@string/all_article_cafe" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="인기글" />
+                    android:text="@string/popular_article_cafe" />
 
             </com.google.android.material.tabs.TabLayout>
 
@@ -210,7 +210,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_search_cafe"
-                android:text="검색하기" />
+                android:text="@string/searching_cafe" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_write_cafe"
-                android:text="글쓰기" />
+                android:text="@string/write_article_cafe" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -228,7 +228,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:id="@+id/tv_refresh_cafe"
-                android:text="새로고침" />
+                android:text="@string/refresh_cafe" />
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

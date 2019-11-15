@@ -199,7 +199,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                 showToast(getString(R.string.nofunction));
                 break;
             case R.id.btn_submit_write:
-                // Server Connecting...h
+                // Server Connecting...
                 if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
                     postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
                 break;

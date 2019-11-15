@@ -1,10 +1,13 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
@@ -56,9 +59,22 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                 break;
             case R.id.btn_signout_signout:
                 // 로그아웃
-                sSharedPreferences.edit().putString(X_ACCESS_TOKEN, null).apply();
-                isUserLogin = false;
-                finish();
+                new AlertDialog.Builder(this).setMessage("로그아웃하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sSharedPreferences.edit().putString(X_ACCESS_TOKEN, null).apply();
+                                isUserLogin = false;
+                                dialog.dismiss();
+                                finish();
+                            }
+                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
+
                 break;
             case R.id.tv_add_anotherid_signout:
                 showToast(getString(R.string.nofunction));

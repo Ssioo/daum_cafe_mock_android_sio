@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="설정"
+            android:text="@string/setting_setting"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="로그인 정보"
+                    android:text="@string/login_info_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_signinfo_title"
                     android:textColor="@android:color/black"
@@ -60,7 +60,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="wooisso"
+                    tools:text="wooisso"
                     android:id="@+id/tv_setting_signinfo_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -93,7 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="업데이트정보"
+                        android:text="@string/update_info_setting"
                         android:textSize="15sp"
                         android:id="@+id/tv_setting_update_title"
                         android:textColor="@android:color/black"
@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="현재 3.12.2"
+                        android:text="@string/update_info_subtitle_setting"
                         android:id="@+id/tv_setting_update_subtitle"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -117,7 +117,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="최신버전 사용 중"
+                    android:text="@string/update_info_desc_setting"
                     android:id="@+id/tv_update_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -145,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="알림 설정"
+                    android:text="@string/noti_set_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_noti_set_title"
                     android:textColor="@android:color/black"
@@ -175,7 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="알림 수신 확인"
+                    android:text="@string/noti_check_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_noti_check_title"
                     android:textColor="@android:color/black"
@@ -205,7 +205,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="글쓰기 설정"
+                    android:text="@string/write_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_write_title"
                     android:textColor="@android:color/black"
@@ -235,7 +235,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="글읽기 설정"
+                    android:text="@string/read_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_read_title"
                     android:textColor="@android:color/black"
@@ -265,7 +265,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="게시판 설정"
+                    android:text="@string/board_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_board_title"
                     android:textColor="@android:color/black"
@@ -295,7 +295,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="쪽지 차단 설정"
+                    android:text="@string/spam_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_spammail_title"
                     android:textColor="@android:color/black"
@@ -324,7 +324,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="시작화면 설정"
+                    android:text="@string/start_page_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_homepage_title"
                     android:textColor="@android:color/black"
@@ -337,7 +337,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="홈"
+                    android:text="@string/start_page_desc_setting"
                     android:id="@+id/tv_setting_homepage_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -364,7 +364,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="내카페 기본탭 설정"
+                    android:text="@string/start_tab_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_homemycafe_title"
                     android:textColor="@android:color/black"
@@ -377,7 +377,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="카페"
+                    android:text="@string/start_tab_desc_setting"
                     android:id="@+id/tv_setting_homemycafe_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -404,7 +404,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="카페 테마 설정"
+                    android:text="@string/theme_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_theme_title"
                     android:textColor="@android:color/black"
@@ -417,7 +417,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="블랙"
+                    android:text="@string/theme_desc_setting"
                     android:id="@+id/tv_setting_theme_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -444,7 +444,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="언어 설정"
+                    android:text="@string/language_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_language_title"
                     android:textColor="@android:color/black"
@@ -457,7 +457,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="시스템 기본"
+                    android:text="@string/language_desc_setting"
                     android:id="@+id/tv_setting_language_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -484,7 +484,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="암호 설정"
+                    android:text="@string/lock_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_lock_title"
                     android:textColor="@android:color/black"
@@ -497,7 +497,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
-                    android:text="사용 안함"
+                    android:text="@string/lock_desc_setting"
                     android:id="@+id/tv_setting_lock_desc"
                     android:textColor="@android:color/holo_red_light"/>
 
@@ -525,7 +525,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="저장 데이터 관리"
+                    android:text="@string/cache_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_cache_title"
                     android:textColor="@android:color/black"
@@ -555,7 +555,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="실험실"
+                    android:text="@string/lab_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_lab_title"
                     android:textColor="@android:color/black"
@@ -586,7 +586,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="서비스 정보"
+                    android:text="@string/service_info_setting"
                     android:textSize="15sp"
                     android:id="@+id/tv_setting_serviceinfo_title"
                     android:textColor="@android:color/black"
