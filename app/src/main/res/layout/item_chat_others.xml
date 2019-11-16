@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_username_chat_others"
+        tools:text="userName"
+        android:textColor="@android:color/black"
+        android:paddingHorizontal="12dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username_chat_others"
+        android:background="@drawable/background_round_border_square_grey"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="12dp"
+        tools:text="Chat Data"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:gravity="start"
+        android:id="@+id/tv_content_chat_others"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content_chat_others"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/tv_time_chat_others"
+        tools:text="chat time"
+        android:paddingHorizontal="12dp"
+        android:textSize="12sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

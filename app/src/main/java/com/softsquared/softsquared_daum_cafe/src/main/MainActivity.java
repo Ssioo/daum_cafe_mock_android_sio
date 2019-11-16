@@ -20,7 +20,8 @@ import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.PopularF
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.interfaces.MainActivityView;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
 
@@ -91,10 +92,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                 setBottomNav(0);
                 return true;
             case R.id.nav_mycafe:
-                if (!isUserLogin && !FIRST_LOADING) {
+                if (!sSharedPreferences.getBoolean(USER_LOGINNED, false) && !FIRST_LOADING) {
                     mLoginAlert.show();
                     return false;
-                } else if (isUserLogin) {
+                } else if (sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, MyCafeFragment.newInstance(), "MYCAFE").commit();
                 }
                 setBottomNav(actionBarHeight);
@@ -104,10 +105,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                 setBottomNav(actionBarHeight);
                 return true;
             case R.id.nav_notification:
-                if (!isUserLogin && !FIRST_LOADING) {
+                if (!sSharedPreferences.getBoolean(USER_LOGINNED, false) && !FIRST_LOADING) {
                     mLoginAlert.show();
                     return false;
-                } else if (isUserLogin) {
+                } else if (sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, NotificationFragment.newInstance(), "NOTIFICATION").commit();
                 }
                 setBottomNav(actionBarHeight);

@@ -14,11 +14,11 @@ import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.SignInActivityView;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
 
 public class SignInActivity extends BaseActivity implements SignInActivityView {
 
@@ -78,9 +78,9 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     public void validateSuccess(String token, String id, String name) {
         hideProgressDialog();
         showToast("로그인에 성공하였습니다.");
-        isUserLogin = true;
-        userName = name;
-        userId = id;
+        sSharedPreferences.edit().putBoolean(USER_LOGINNED, true);
+        sSharedPreferences.edit().putString(USER_NAME, id).apply();
+        sSharedPreferences.edit().putString(USER_ID, id).apply();
         sSharedPreferences.edit().putString(X_ACCESS_TOKEN, token).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();

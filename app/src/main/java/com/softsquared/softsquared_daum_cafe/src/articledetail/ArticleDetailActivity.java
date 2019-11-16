@@ -1,6 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.articledetail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -24,16 +23,15 @@ import com.softsquared.softsquared_daum_cafe.src.articledetail.adapter.CommentLi
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.ArticleDetailResponse;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.Comment;
-import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.SettingFragment;
 
 import java.util.ArrayList;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class ArticleDetailActivity extends BaseActivity implements ArticleDetailActivityView {
 
@@ -128,8 +126,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         ivCloseItem3.setOnClickListener(this);
 
         /* Set View */
-        if (isUserLogin)
-            tvUserName.setText(userName);
+        if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
+            tvUserName.setText(sSharedPreferences.getString(USER_ID, ""));
         else
             tvUserName.setText("로그인 해주세요.");
     }
@@ -165,13 +163,13 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ibtn_setting_articledetail_drawer:
-                if (isUserLogin)
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
                     startNextActivity(MySettingActivity.class);
                 else
                     mLoginAlert.show();
                 break;
             case R.id.ll_profile_articledetail_drawer:
-                if (isUserLogin)
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
                     startNextActivity(MyPageActivity.class);
                 else
                     mLoginAlert.show();

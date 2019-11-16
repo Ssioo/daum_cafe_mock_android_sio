@@ -194,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:background="@drawable/background_round_border_sqaure_grey"
+                        android:background="@drawable/background_round_border_square_grey"
                         android:paddingVertical="12dp"
                         android:paddingHorizontal="20dp"
                         android:layout_marginTop="24dp"

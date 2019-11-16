@@ -19,8 +19,9 @@ import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.interfac
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.SignOutActivity;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class SettingFragment extends BaseFragment implements SettingFragmentView {
 
@@ -80,10 +81,10 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
         actionBar.setDisplayShowTitleEnabled(false);
 
         /* Setting View Init*/
-        if (!isUserLogin) {
+        if (!sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
             tvUserNameSetting.setText("로그인 하세요");
         } else {
-            tvUserNameSetting.setText(userName);
+            tvUserNameSetting.setText(sSharedPreferences.getString(USER_NAME, ""));
         }
 
         /* Set On Click Listener */
@@ -111,7 +112,7 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.item_signinfo_setting:
-                if (!isUserLogin)
+                if (!sSharedPreferences.getBoolean(USER_LOGINNED, false))
                     startNextActivity(SignSelectActivity.class);
                 else
                     startNextActivity(SignOutActivity.class);

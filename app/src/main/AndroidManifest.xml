@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.signselect.signout.SignOutActivity"></activity>
+        <activity android:name=".src.chat.ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".src.signselect.signout.SignOutActivity" />
         <activity android:name=".src.articledetail.ArticleDetailActivity" />
         <activity
             android:name=".src.cafe.write.WriteActivity"
@@ -53,7 +55,6 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />

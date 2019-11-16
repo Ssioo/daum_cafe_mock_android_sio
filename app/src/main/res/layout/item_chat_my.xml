@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_round_border_square_grey"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="12dp"
+        tools:text="Chat Data"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:gravity="end"
+        android:id="@+id/tv_content_chat_my"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_content_chat_my"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/tv_time_chat_my"
+        tools:text="chat time"
+        android:paddingHorizontal="12dp"
+        android:textSize="12sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

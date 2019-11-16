@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -57,10 +58,10 @@ public class ApplicationClass extends Application {
     public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
 
     // User Login 값
-    public static boolean isUserLogin = false;
-    public static String userId;
-    public static String userName;
-    public static String userProfileImg;
+    public static String USER_LOGINNED = "is-user-login";
+    public static String USER_ID = "user-id";
+    public static String USER_NAME = "user-name";
+    //public static String userProfileImg;
 
     //날짜 형식
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
@@ -118,6 +119,7 @@ public class ApplicationClass extends Application {
                     .readTimeout(5000, TimeUnit.MILLISECONDS)
                     .connectTimeout(5000, TimeUnit.MILLISECONDS)
                     .addNetworkInterceptor(new XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+                    .addNetworkInterceptor(new StethoInterceptor())
                     .build();
 
             retrofit = new Retrofit.Builder()

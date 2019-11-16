@@ -13,10 +13,10 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutActivityView;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userId;
 
 public class SignOutActivity extends BaseActivity implements SignOutActivityView {
 
@@ -45,7 +45,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
         tvAddAnotherId.setOnClickListener(this);
 
         /* Set View */
-        tvUserId.setText(userId);
+        tvUserId.setText(sSharedPreferences.getString(USER_ID, null));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 sSharedPreferences.edit().putString(X_ACCESS_TOKEN, null).apply();
-                                isUserLogin = false;
+                                sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
                                 dialog.dismiss();
                                 finish();
                             }

@@ -35,11 +35,13 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
+import com.softsquared.softsquared_daum_cafe.src.chat.ChatActivity;
 
 import java.util.ArrayList;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.isUserLogin;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.userName;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class CafeActivity extends BaseActivity implements CafeActivityView {
 
@@ -165,8 +167,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         srlBoardListDrawer.setOnRefreshListener(this);
 
         /* Init View */
-        if (isUserLogin)
-            tvUserNameDrawer.setText(userName);
+        if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
+            tvUserNameDrawer.setText(sSharedPreferences.getString(USER_ID, ""));
         else
             tvUserNameDrawer.setText("로그인해주세요.");
 
@@ -253,14 +255,14 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 break;
             case R.id.ibtn_setting_cafe_drawer:
                 // Setting Activity 이동
-                if (isUserLogin)
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
                     startNextActivity(MySettingActivity.class);
                 else
                     mLoginAlert.show();
                 break;
             case R.id.ll_profile_cafe_drawer:
                 // Profile Activity 이동
-                if (isUserLogin)
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
                     startNextActivity(MyPageActivity.class);
                 else
                     mLoginAlert.show();
@@ -271,7 +273,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 showToast(getString(R.string.nofunction));
                 break;
             case R.id.tv_chat_cafe_drawer:
-                showToast(getString(R.string.nofunction));
+                // Chat Activity로 이동
+                startNextActivity(ChatActivity.class);
                 break;
             case R.id.tv_search_cafe_drawer:
                 showToast(getString(R.string.nofunction));
