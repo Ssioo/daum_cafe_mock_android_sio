@@ -27,8 +27,10 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticlesPager;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.adapter.PopularArticleListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.interfaces.PopularFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,14 +59,15 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     private TextView tvCurrentHourDescDrawer;
 
     private Context mContext;
+    private PopularArticlesPager paPager;
 
     private int todayHour;
     private SimpleDateFormat sdfCurrentHour = new SimpleDateFormat("a hh:00", Locale.ENGLISH);
     private Calendar today;
-    private int articlesViewType = 0;
+    private int articlesViewType = PopularArticleListAdapter.VIEWTYPE_DEFAULT;
 
-    // dummy
-    private ArrayList<ArrayList<Article>> dummy = new ArrayList<>();
+    // articles
+    private ArrayList<ArrayList<PopularResponse.Result>> articles = new ArrayList<>();
     private CoordinatorLayout.LayoutParams vpLayoutParams;
 
     public PopularFragment() {
@@ -86,13 +89,11 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular, container, false);
 
-
         // Constants - Today
         today = Calendar.getInstance();
         todayHour = today.get(Calendar.HOUR);
         if (todayHour == 0)
             todayHour = 12;
-
 
         /* findViewByID */
         tbFavorite = view.findViewById(R.id.toolbar_popular);
@@ -112,7 +113,6 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         ivBlackboxPopular = view.findViewById(R.id.iv_blackbox_toolbar_popular);
         clPopular = view.findViewById(R.id.cl_popular);
 
-
         /* Toolbar */
         setHasOptionsMenu(true);
         ((MainActivity) mContext).setSupportActionBar(tbFavorite);
@@ -127,33 +127,32 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         /* DrawerLayout Slide Listener */
         dlPopular.addDrawerListener(this);
 
-        // dummy data
-        ArrayList<Article> dummy1 = new ArrayList<>();
-        dummy1.add(new Article("과제 신나", "소프트스퀘어드", ""));
-        dummy1.add(new Article("과제 신나", "소프트스퀘어드", ""));
-        dummy1.add(new Article("과제 신나요", "소프트스퀘어드", ""));
-        ArrayList<Article> dummy2 = new ArrayList<>();
-        dummy2.add(new Article("과제 신나", "소프트스퀘어드", ""));
-        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
-        dummy2.add(new Article("과제 신나", "소프트스퀘어드", ""));
-        dummy2.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
-        ArrayList<Article> dummy3 = new ArrayList<>();
-        dummy3.add(new Article("과제 안 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("신제 과나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("과나 신제", "소프트스퀘어드", ""));
-        dummy3.add(new Article("과신 제나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy3.add(new Article("제과 신나", "소프트스퀘어드", ""));
-        dummy.add(dummy1);
-        dummy.add(dummy2);
-        dummy.add(dummy3);
+        // articles data
+        ArrayList<PopularResponse.Result> dummy1 = new ArrayList<>();
+        dummy1.add(new PopularResponse.Result("", "", ""));
+        dummy1.add(new PopularResponse.Result("", "", ""));
+        dummy1.add(new PopularResponse.Result("", "", ""));
+        dummy1.add(new PopularResponse.Result("", "", ""));
+        dummy1.add(new PopularResponse.Result("", "", ""));
+        ArrayList<PopularResponse.Result> dummy2 = new ArrayList<>();
+        dummy2.add(new PopularResponse.Result("", "", ""));
+        dummy2.add(new PopularResponse.Result("", "", ""));
+        dummy2.add(new PopularResponse.Result("", "", ""));
+        dummy2.add(new PopularResponse.Result("", "", ""));
+        dummy2.add(new PopularResponse.Result("", "", ""));
+        ArrayList<PopularResponse.Result> dummy3 = new ArrayList<>();
+        dummy3.add(new PopularResponse.Result("", "", ""));
+        dummy3.add(new PopularResponse.Result("", "", ""));
+        dummy3.add(new PopularResponse.Result("", "", ""));
+        dummy3.add(new PopularResponse.Result("", "", ""));
+        dummy3.add(new PopularResponse.Result("", "", ""));
+        articles.add(dummy1);
+        articles.add(dummy2);
+        articles.add(dummy3);
 
         /* ViewPager */
-        vpPopular.setAdapter(new PopularArticlesPager(getChildFragmentManager(), dummy, articlesViewType));
+        paPager = new PopularArticlesPager(getChildFragmentManager(), articles, articlesViewType);
+        vpPopular.setAdapter(paPager);
         vpPopular.setCurrentItem(150);
         vpPopular.addOnPageChangeListener(this);
         vpLayoutParams = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -172,6 +171,9 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
         tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
         setPopularBackground(todayHour);
+
+        /* get Articles From Server */
+        getArticles();
 
         return view;
     }
@@ -224,15 +226,14 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
                 dlPopular.openDrawer(GravityCompat.START);
                 break;
             case R.id.tb_imagelist_popular:
-                if (articlesViewType == 0) {
-                    PopularArticlesPager paAdapter = new PopularArticlesPager(getChildFragmentManager(), dummy, 1);
-                    vpPopular.setAdapter(paAdapter);
+                articlesViewType = (articlesViewType == PopularArticleListAdapter.VIEWTYPE_IMAGE) ? PopularArticleListAdapter.VIEWTYPE_NOIMAGE : PopularArticleListAdapter.VIEWTYPE_IMAGE;
+                if (articlesViewType == PopularArticleListAdapter.VIEWTYPE_NOIMAGE) {
                     item.setIcon(R.drawable.ic_image_list_disabled);
-                } else {
-                    vpPopular.setAdapter(new PopularArticlesPager(getChildFragmentManager(), dummy, 0));
+                } else if (articlesViewType == PopularArticleListAdapter.VIEWTYPE_IMAGE) {
                     item.setIcon(R.drawable.ic_image_list);
                 }
-                articlesViewType = (articlesViewType == 0) ? 1 : 0;
+                paPager = new PopularArticlesPager(getChildFragmentManager(), articles, articlesViewType);
+                vpPopular.setAdapter(paPager);
                 vpPopular.setCurrentItem(150);
                 break;
         }
@@ -353,5 +354,31 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
     @Override
     public void onDrawerStateChanged(int newState) {
 
+    }
+
+    @Override
+    public void validateSuccess(ArrayList<PopularResponse.Result> results) {
+        hideProgressDialog();
+        articles.clear();
+        articles.add(results);
+        articles.add(results);
+        articles.add(results);
+        if (articlesViewType == PopularArticleListAdapter.VIEWTYPE_DEFAULT)
+            articlesViewType = PopularArticleListAdapter.VIEWTYPE_IMAGE;
+        paPager = new PopularArticlesPager(getChildFragmentManager(), articles, articlesViewType);
+        vpPopular.setAdapter(paPager);
+        vpPopular.setCurrentItem(150);
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        hideProgressDialog();
+        showToast((message == null) ? getString(R.string.network_error) : message);
+    }
+
+    public void getArticles() {
+        showProgressDialog();
+        final PopularService popularService = new PopularService(this);
+        popularService.getPopularArticles();
     }
 }

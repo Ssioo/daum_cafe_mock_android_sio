@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.softsquared.softsquared_daum_cafe.R;
+
 public class BaseFragment extends Fragment {
+
+    public ProgressDialog mProgressDialog;
 
     protected final String TAG = getClass().getSimpleName();
 
@@ -24,6 +29,22 @@ public class BaseFragment extends Fragment {
     public void startNextActivity(Class<?> activity) {
         Intent intent = new Intent(getActivity(), activity);
         getActivity().startActivity(intent);
+    }
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this.getActivity());
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
     @Override

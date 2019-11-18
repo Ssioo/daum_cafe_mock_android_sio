@@ -68,6 +68,7 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 ChatRequest chatRequest = dataSnapshot.getValue(ChatRequest.class);
                 chatListViewAdapter.addChat(chatRequest);
+                rvChat.scrollToPosition(chatListViewAdapter.getItemCount() - 1);
             }
 
             @Override
@@ -110,10 +111,11 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
         switch (v.getId()) {
             case R.id.tv_submit_chat:
                 Date createdAt = new Date();
-                ChatRequest chatRequest = new ChatRequest(sSharedPreferences.getString(USER_ID, ""), etInputChat.getText().toString(), createdAt.getTime());
+                ChatRequest chatRequest = new ChatRequest(sSharedPreferences.getString(USER_NAME, ""), etInputChat.getText().toString(), createdAt.getTime());
                 fdrChat.push().setValue(chatRequest);
                 etInputChat.setText("");
                 break;
         }
     }
+
 }

@@ -1,7 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signin;
 
-import android.util.Log;
-
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.SignInActivityView;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.SignInRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.models.SignInRequest;
@@ -11,9 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.getRetrofit;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class SignInService {
     private final SignInActivityView signInActivityView;
@@ -28,15 +24,24 @@ public class SignInService {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 final SignInResponse signInResponse = response.body();
+
+                // 로그인 실패 시
                 if (signInResponse == null || !signInResponse.getIsSuccess()) {
                     signInActivityView.validateFailure(null);
                     return;
                 }
-                if (signInResponse.getUserInfo() == null) {
+
+                // userinfo가 null이면, token으로 로그인했을 수도 있음.
+                if (signInResponse.getUserInfo() == null && signInResponse.getName() == null) {
                     signInActivityView.validateFailure(null);
                     return;
                 }
-                signInActivityView.validateSuccess(signInResponse.getToken(), signInResponse.getUserInfo().getUserId(), signInResponse.getUserInfo().getName());
+                if (signInResponse.getUserInfo() != null) {
+                    signInActivityView.validateSuccessWithNewToken(signInResponse.getToken(), signInResponse.getUserInfo().getUserId(), signInResponse.getUserInfo().getName());
+                }
+                if (signInResponse.getName() != null) {
+                    signInActivityView.validateSuccessWithoutNewToken(signInResponse.getName());
+                }
             }
 
             @Override
@@ -44,5 +49,9 @@ public class SignInService {
                 signInActivityView.validateFailure(null);
             }
         });
+    }
+
+    void getUserInfo() {
+
     }
 }

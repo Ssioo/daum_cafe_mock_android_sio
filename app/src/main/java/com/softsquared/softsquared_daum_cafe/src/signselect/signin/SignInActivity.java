@@ -75,13 +75,24 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     }
 
     @Override
-    public void validateSuccess(String token, String id, String name) {
+    public void validateSuccessWithNewToken(String token, String id, String name) {
         hideProgressDialog();
         showToast("로그인에 성공하였습니다.");
-        sSharedPreferences.edit().putBoolean(USER_LOGINNED, true);
-        sSharedPreferences.edit().putString(USER_NAME, id).apply();
+        sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
+        sSharedPreferences.edit().putString(USER_NAME, name).apply();
         sSharedPreferences.edit().putString(USER_ID, id).apply();
         sSharedPreferences.edit().putString(X_ACCESS_TOKEN, token).apply();
+        startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+    }
+
+    @Override
+    public void validateSuccessWithoutNewToken(String name) {
+        hideProgressDialog();
+        showToast("로그인에 성공하였습니다.");
+        sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
+        sSharedPreferences.edit().putString(USER_NAME, name).apply();
+        sSharedPreferences.edit().putString(USER_ID, name).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }

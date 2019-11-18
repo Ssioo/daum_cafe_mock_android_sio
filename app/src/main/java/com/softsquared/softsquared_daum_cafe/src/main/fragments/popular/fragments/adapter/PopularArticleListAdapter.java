@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,17 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.util.ArrayList;
 
 public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<Article> articles;
+    public static final int VIEWTYPE_DEFAULT = 0;
+    public static final int VIEWTYPE_IMAGE = 1;
+    public static final int VIEWTYPE_NOIMAGE = 2;
+
+    private ArrayList<PopularResponse.Result> articles;
     private LayoutInflater layoutInflater;
     private int viewType;
 
@@ -39,7 +45,7 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
         this.delayEnterAnimation = delayEnterAnimation;
     }
 
-    public PopularArticleListAdapter(ArrayList<Article> articles, Context context, int viewType) {
+    public PopularArticleListAdapter(ArrayList<PopularResponse.Result> articles, Context context, int viewType) {
         this.articles = articles;
         layoutInflater = LayoutInflater.from(context);
         this.viewType = viewType;
@@ -51,29 +57,34 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
-        if (viewType == 0) {
+        if (viewType == VIEWTYPE_IMAGE) {
             view = layoutInflater.inflate(R.layout.item_article_image_popular, parent, false);
             return new ArticleViewHolder(view);
-        } else if (viewType == 1) {
+        } else if (viewType == VIEWTYPE_NOIMAGE) {
             view = layoutInflater.inflate(R.layout.item_article_noimage_popular, parent, false);
             return new ArticleNoImageViewHolder(view);
+        } else if (viewType == VIEWTYPE_DEFAULT) {
+            view = layoutInflater.inflate(R.layout.item_article_default_popular, parent, false);
+            return new ArticleDefaultViewHoler(view);
         }
         return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Article article = articles.get(position);
+        PopularResponse.Result article = articles.get(position);
         if (article != null) {
-            if (getItemViewType(position) == 0) {
+            if (holder instanceof ArticleViewHolder) {
                 ((ArticleViewHolder) holder).tvNum.setText(String.format("%02d", position + 1));
-                ((ArticleViewHolder) holder).tvCafeName.setText(article.getCafeName());
-                ((ArticleViewHolder) holder).tvArticleTitle.setText(article.getArticleTitle());
+                //((ArticleViewHolder) holder).tvCafeName.setText(article.getCafeName());
+                ((ArticleViewHolder) holder).tvArticleTitle.setText(article.getTitle());
                 //img
-            } else if (getItemViewType(position) == 1) {
+            } else if (holder instanceof ArticleDefaultViewHoler) {
+                Log.i("DEFAULT", "DEFAULT");
+            } else if (holder instanceof ArticleNoImageViewHolder) {
                 ((ArticleNoImageViewHolder) holder).tvNum.setText(String.format("%02d", position + 1));
-                ((ArticleNoImageViewHolder) holder).tvCafeName.setText(article.getCafeName());
-                ((ArticleNoImageViewHolder) holder).tvArticleTitle.setText(article.getArticleTitle());
+                //((ArticleNoImageViewHolder) holder).tvCafeName.setText(article.getCafeName());
+                ((ArticleNoImageViewHolder) holder).tvArticleTitle.setText(article.getTitle());
             }
         }
         runEnterAnimation(holder.itemView, position);
@@ -122,6 +133,20 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
             tvCafeName = itemView.findViewById(R.id.tv_cafename_article_popular);
             ivImg = itemView.findViewById(R.id.iv_img_article_popular);
 
+        }
+    }
+
+    public class ArticleDefaultViewHoler extends ArticleNoImageViewHolder {
+
+        ImageView ivImg;
+
+        public ArticleDefaultViewHoler(@NonNull View itemView) {
+            super(itemView);
+
+            tvNum = itemView.findViewById(R.id.tv_num_article_popular_default);
+            tvArticleTitle = itemView.findViewById(R.id.tv_title_article_popular_default);
+            tvCafeName = itemView.findViewById(R.id.tv_cafename_article_popular_default);
+            ivImg = itemView.findViewById(R.id.iv_img_article_popular_default);
         }
     }
 

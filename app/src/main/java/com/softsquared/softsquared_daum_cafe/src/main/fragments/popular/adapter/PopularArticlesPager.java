@@ -7,16 +7,17 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.PopularArticleListFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.util.ArrayList;
 
 public class PopularArticlesPager extends FragmentStatePagerAdapter {
 
-    ArrayList<ArrayList<Article>> articles;
+    ArrayList<ArrayList<PopularResponse.Result>> articles;
     private int viewType;
 
 
-    public PopularArticlesPager(@NonNull FragmentManager fm, ArrayList<ArrayList<Article>> articles, int viewType) {
+    public PopularArticlesPager(@NonNull FragmentManager fm, ArrayList<ArrayList<PopularResponse.Result>> articles, int viewType) {
         super(fm);
         this.articles = articles;
         this.viewType = viewType;

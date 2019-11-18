@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutActivityView;
+import com.softsquared.softsquared_daum_cafe.src.splash.SplashActivity;
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
@@ -63,9 +64,10 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                sSharedPreferences.edit().putString(X_ACCESS_TOKEN, null).apply();
+                                sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
                                 sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
                                 dialog.dismiss();
+                                startNextActivity(SplashActivity.class);
                                 finish();
                             }
                         }).setNegativeButton("취소", new DialogInterface.OnClickListener() {

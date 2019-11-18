@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class ChatListViewAdapter extends RecyclerView.Adapter {
@@ -68,7 +68,7 @@ public class ChatListViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (chatRequests.get(position).getUserName().equals(sSharedPreferences.getString(USER_ID, "")))
+        if (chatRequests.get(position).getUserName().equals(sSharedPreferences.getString(USER_NAME, "")))
             return VIEWTYPE_MINE;
         else
             return VIEWTYPE_OTHERS;
