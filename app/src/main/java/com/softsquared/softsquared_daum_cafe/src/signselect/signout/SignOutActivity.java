@@ -14,7 +14,7 @@ import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutActivityView;
 import com.softsquared.softsquared_daum_cafe.src.splash.SplashActivity;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_EMAIL;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
@@ -26,6 +26,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
     private TextView tvIntegrate;
     private Button btnSignOut;
     private TextView tvAddAnotherId;
+    private TextView tvResign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +39,17 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
         tvIntegrate = findViewById(R.id.tv_integrate_signout);
         btnSignOut = findViewById(R.id.btn_signout_signout);
         tvAddAnotherId = findViewById(R.id.tv_add_anotherid_signout);
+        tvResign = findViewById(R.id.tv_resign_signout);
 
         /* Set On Click Listener */
         ivClose.setOnClickListener(this);
         tvIntegrate.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         tvAddAnotherId.setOnClickListener(this);
+        tvResign.setOnClickListener(this);
 
         /* Set View */
-        tvUserId.setText(sSharedPreferences.getString(USER_ID, null));
+        tvUserId.setText(sSharedPreferences.getString(USER_EMAIL, null));
     }
 
     @Override
@@ -81,6 +84,44 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
             case R.id.tv_add_anotherid_signout:
                 showToast(getString(R.string.nofunction));
                 break;
+            case R.id.tv_resign_signout:
+                // 회원탈퇴
+                new AlertDialog.Builder(this).setMessage("정말로 회원탈퇴하시겠습니까?\n탈퇴시 되돌릴 수 없습니다.")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
+                                sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
+                                tryResign();
+                                dialog.dismiss();
+                            }
+                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
         }
+    }
+
+    private void tryResign() {
+        showProgressDialog();
+        final SignOutService signOutService = new SignOutService(this);
+        //signOutService.tryResign();
+    }
+
+
+    @Override
+    public void validateSuccess(String message) {
+        hideProgressDialog();
+        showToast("회원탈퇴에 성공하였습니다.");
+        startNextActivity(SplashActivity.class);
+        finish();
+    }
+
+    @Override
+    public void validateFailure(String message) {
+        hideProgressDialog();
+        showToast((message == null) ? getString(R.string.network_error) : message);
     }
 }

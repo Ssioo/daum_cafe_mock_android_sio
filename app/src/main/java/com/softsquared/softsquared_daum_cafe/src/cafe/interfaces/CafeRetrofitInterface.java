@@ -13,6 +13,6 @@ import retrofit2.http.Query;
 
 public interface CafeRetrofitInterface {
 
-    @GET("anicafe/board")
-    Call<CafeResponse> getArticles();
+    @GET("/{cafename}/board")
+    Call<CafeResponse> getArticles(@Path("cafename") String cafeName);
 }

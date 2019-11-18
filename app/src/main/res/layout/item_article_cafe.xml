@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="84dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp"
     android:foreground="?attr/selectableItemBackground"
@@ -12,77 +12,94 @@
 
     <ImageView
         android:id="@+id/iv_img_article_cafe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/iv_thumbnail_cafe_square"
         android:visibility="gone"
         tools:visibility="visible"
+        android:scaleType="centerInside"
+        android:padding="0.5dp"
+        android:background="@drawable/background_sqaure_border_light"
         android:adjustViewBounds="true"
-        android:layout_marginEnd="8dp"
         android:layout_marginVertical="6dp" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_article_title_articlelist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:text="article title"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/tv_article_title_articlelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_article_author_articlelist"
+        app:layout_constraintEnd_toStartOf="@+id/tv_article_countcomment_articlelist"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/iv_img_article_cafe"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="article title" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+    <TextView
+        android:id="@+id/tv_article_author_articlelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_article_title_articlelist"
+        app:layout_constraintTop_toBottomOf="@+id/tv_article_title_articlelist"
+        app:layout_constraintBottom_toTopOf="@+id/tv_article_board_articlelist"
+        tools:text="Author"
+        android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/tv_article_author_articlelist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Author"
-                android:textSize="13sp"/>
+    <TextView
+        android:id="@+id/tv_article_date_articlelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_article_author_articlelist"
+        app:layout_constraintTop_toTopOf="@+id/tv_article_author_articlelist"
+        android:layout_marginStart="8dp"
+        tools:text="yyyy.MM.dd"
+        android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/tv_article_date_articlelist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/tv_article_author_articlelist"
-                android:layout_marginStart="8dp"
-                tools:text="yyyy.MM.dd"
-                android:textSize="13sp"/>
+    <TextView
+        android:id="@+id/tv_article_countview_articlelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_article_date_articlelist"
+        app:layout_constraintTop_toTopOf="@+id/tv_article_author_articlelist"
+        android:layout_marginStart="8dp"
+        tools:text="조회 n"
+        android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/tv_article_countview_articlelist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/tv_article_date_articlelist"
-                android:layout_marginStart="8dp"
-                tools:text="조회 n"
-                android:textSize="13sp"/>
-        </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_article_board_articlelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_article_countcomment_articlelist"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_article_title_articlelist"
+        app:layout_constraintTop_toBottomOf="@+id/tv_article_author_articlelist"
+        tools:text="article board" />
 
-        <TextView
-            android:id="@+id/tv_article_board_articlelist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:text="article board"
-            android:textSize="13sp"/>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/tv_article_countcomment_background_articlelist"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/background_round_grey_padding" />
 
     <TextView
         android:id="@+id/tv_article_countcomment_articlelist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/background_round_grey_padding"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="1"
         android:textColor="@android:color/black"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

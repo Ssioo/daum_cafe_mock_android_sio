@@ -19,7 +19,7 @@ public class CafeService {
 
     public void getArticles(String cafeName) {
         final CafeRetrofitInterface cafeRetrofitInterface = getRetrofit().create(CafeRetrofitInterface.class);
-        cafeRetrofitInterface.getArticles().enqueue(new Callback<CafeResponse>() {
+        cafeRetrofitInterface.getArticles(cafeName).enqueue(new Callback<CafeResponse>() {
             @Override
             public void onResponse(Call<CafeResponse> call, Response<CafeResponse> response) {
                 final CafeResponse cafeResponse = response.body();

@@ -50,7 +50,12 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
             holder.tvCreateDate.setText(article.getCreatedAt());
             holder.tvAuthor.setText(article.getUserId());
             if (article.getImgUri() != null && !article.getImgUri().equals("")) {
-                Glide.with(mContext).load(imageStorageRef.child(article.getImgUri())).into(holder.ivImg);
+                Glide.with(mContext)
+                        .load(imageStorageRef.child(article.getImgUri()))
+                        .placeholder(R.drawable.iv_thumbnail_cafe_square)
+                        .error(R.drawable.iv_thumbnail_cafe_square)
+                        .centerCrop()
+                        .into(holder.ivImg);
                 holder.ivImg.setVisibility(View.VISIBLE);
             } else {
                 holder.ivImg.setVisibility(View.GONE);

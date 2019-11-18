@@ -39,7 +39,7 @@ import com.softsquared.softsquared_daum_cafe.src.chat.ChatActivity;
 
 import java.util.ArrayList;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_EMAIL;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
@@ -168,7 +168,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
         /* Init View */
         if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
-            tvUserNameDrawer.setText(sSharedPreferences.getString(USER_ID, ""));
+            tvUserNameDrawer.setText(sSharedPreferences.getString(USER_EMAIL, ""));
         else
             tvUserNameDrawer.setText("로그인해주세요.");
 
@@ -219,6 +219,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     @Override
     public void validateSuccess(ArrayList<CafeResponse.Result> results) {
+        hideProgressDialog();
         articleList.clear();
         articleList.add(results);
         articleList.add(results);
@@ -226,10 +227,12 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     }
     @Override
     public void validateFailure(String message) {
-
+        hideProgressDialog();
+        showToast((message == null) ? getString(R.string.network_error) : message);
     }
 
-    private void getArticles(String cafeName) {
+    public void getArticles(String cafeName) {
+        showProgressDialog();
         final CafeService cafeService = new CafeService(this);
         cafeService.getArticles(cafeName);
     }
@@ -361,8 +364,11 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     @Override
     public void onRefresh() {
+        // Board List Refresh.
+        // Not Article Refresh.
         Log.i("REFRESH TEST", "ok from refresh");
-        getArticles("anicafe"); // -> Article Fragment에서 처리
+        //getArticles("anicafe");
+        //vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList));
         srlBoardListDrawer.setRefreshing(false);
     }
 

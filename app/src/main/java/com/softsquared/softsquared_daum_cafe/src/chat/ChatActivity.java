@@ -25,8 +25,6 @@ import com.softsquared.softsquared_daum_cafe.src.chat.models.ChatRequest;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 

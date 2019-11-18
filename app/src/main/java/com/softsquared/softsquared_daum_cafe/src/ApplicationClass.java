@@ -59,7 +59,7 @@ public class ApplicationClass extends Application {
 
     // User Login 값
     public static String USER_LOGINNED = "is-user-login";
-    public static String USER_ID = "user-id";
+    public static String USER_EMAIL = "user-id";
     public static String USER_NAME = "user-name";
     //public static String userProfileImg;
 

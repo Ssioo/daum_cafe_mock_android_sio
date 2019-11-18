@@ -32,14 +32,9 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
     private ArrayList<PopularResponse.Result> articlesPopular;
     private PopularArticleListAdapter palAdapter;
     private int viewType;
-    private Context mContext;
 
     public PopularArticleListFragment(ArrayList<PopularResponse.Result> articlesPopular, int viewType) {
         this.articlesPopular = articlesPopular;
-        this.viewType = viewType;
-    }
-
-    public void setViewType(int viewType) {
         this.viewType = viewType;
     }
 
@@ -53,12 +48,6 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
         return new PopularArticleListFragment(articlesPopular, viewType);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,12 +58,11 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
         rvPopular = view.findViewById(R.id.rv_popular);
 
         /* RecyclerView */
-        // dummy
         palAdapter = new PopularArticleListAdapter(articlesPopular, getActivity(), viewType);
         rvPopular.setAdapter(palAdapter);
-        if (viewType == 0) {
+        if (viewType == PopularArticleListAdapter.VIEWTYPE_IMAGE) {
             rvPopular.addItemDecoration(new RecyclerViewDecoration(30, 30));
-        } else if (viewType == 1) {
+        } else if (viewType == PopularArticleListAdapter.VIEWTYPE_NOIMAGE) {
             rvPopular.addItemDecoration(new RecyclerViewDecoration(1, 30));
         }
 
@@ -87,8 +75,9 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
 
     @Override
     public void onRefresh() {
-        // 새로고침 여기서 구현. -> PopularFragmentView에 callback 추가?
-        ((PopularFragment) getParentFragment()).getArticles();
+        PopularFragment parent = (PopularFragment) getParentFragment();
+        if (parent != null)
+            parent.getArticles();
         srlPopular.setRefreshing(false);
     }
 }

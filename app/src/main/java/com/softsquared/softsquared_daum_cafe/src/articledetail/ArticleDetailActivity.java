@@ -29,7 +29,7 @@ import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecorat
 
 import java.util.ArrayList;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_EMAIL;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
@@ -127,7 +127,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
         /* Set View */
         if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
-            tvUserName.setText(sSharedPreferences.getString(USER_ID, ""));
+            tvUserName.setText(sSharedPreferences.getString(USER_EMAIL, ""));
         else
             tvUserName.setText("로그인 해주세요.");
     }

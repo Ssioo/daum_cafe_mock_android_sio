@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.interfaces.ArticlesBoardFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.adapter.ArticleOnListListAdapter;
@@ -66,7 +67,11 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
 
     @Override
     public void onRefresh() {
-        articleOnListListAdapter.notifyDataSetChanged();
+        // Article List Refresh.
+        CafeActivity parent = (CafeActivity) getActivity();
+        if (parent != null) {
+            parent.getArticles("anicafe");
+        }
         srlArticlesCafe.setRefreshing(false);
     }
 }

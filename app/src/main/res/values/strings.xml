@@ -38,6 +38,7 @@
     <string name="integrate_desc_signout">Daum 아이디를 카카오계정으로 통합하세요!</string>
     <string name="integrate_signout">통합하기</string>
     <string name="signout_signout">로그아웃</string>
+    <string name="resign_signout">회원탈퇴</string>
     <string name="company_name_signout">ⓒ Kakao Corp.</string>
     <string name="contact_signout">고객센터</string>
 

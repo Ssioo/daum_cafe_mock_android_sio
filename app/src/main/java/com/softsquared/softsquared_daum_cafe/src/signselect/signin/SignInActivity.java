@@ -14,7 +14,7 @@ import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signin.interfaces.SignInActivityView;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_ID;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_EMAIL;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.X_ACCESS_TOKEN;
@@ -80,7 +80,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         showToast("로그인에 성공하였습니다.");
         sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
         sSharedPreferences.edit().putString(USER_NAME, name).apply();
-        sSharedPreferences.edit().putString(USER_ID, id).apply();
+        sSharedPreferences.edit().putString(USER_EMAIL, id).apply();
         sSharedPreferences.edit().putString(X_ACCESS_TOKEN, token).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
@@ -92,7 +92,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         showToast("로그인에 성공하였습니다.");
         sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
         sSharedPreferences.edit().putString(USER_NAME, name).apply();
-        sSharedPreferences.edit().putString(USER_ID, name).apply();
+        sSharedPreferences.edit().putString(USER_EMAIL, name).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }
