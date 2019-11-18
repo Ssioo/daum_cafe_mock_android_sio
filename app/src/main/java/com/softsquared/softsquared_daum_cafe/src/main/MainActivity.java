@@ -33,6 +33,8 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     private boolean FIRST_LOADING = true;
     private int actionBarHeight = 0;
 
+    private int prev_nav = R.id.nav_home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,9 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        if (prev_nav == menuItem.getItemId())
+            return false;
+        prev_nav = menuItem.getItemId();
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, HomeFragment.newInstance(), "HOME").commit();
@@ -124,5 +129,10 @@ public class MainActivity extends BaseActivity implements MainActivityView {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+
     }
 }

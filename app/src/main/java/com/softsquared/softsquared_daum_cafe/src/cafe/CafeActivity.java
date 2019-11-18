@@ -277,7 +277,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 break;
             case R.id.tv_chat_cafe_drawer:
                 // Chat Activity로 이동
-                startNextActivity(ChatActivity.class);
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
+                    startNextActivity(ChatActivity.class);
+                else
+                    mLoginAlert.show();
                 break;
             case R.id.tv_search_cafe_drawer:
                 showToast(getString(R.string.nofunction));

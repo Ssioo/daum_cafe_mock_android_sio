@@ -44,11 +44,20 @@
         android:layout_marginTop="60dp"
         android:hint="@string/type_email_signup"
         android:textSize="14sp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/background_edittext_blue"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="8dp"
         android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/tv_email_err_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_email_desc_signup"
+        android:textSize="12sp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="16dp" />
 
     <EditText
         android:id="@+id/et_pw_signup"
@@ -57,11 +66,45 @@
         android:ems="10"
         android:hint="@string/type_pw_signup"
         android:textSize="14sp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="8dp"
         android:background="@drawable/background_edittext_blue"
         android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_pw_err_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_pw_desc_signup"
+        android:textSize="12sp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <EditText
+        android:id="@+id/et_pwcheck_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/type_pwcheck_signup"
+        android:textSize="14sp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="8dp"
+        android:background="@drawable/background_edittext_blue"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_pwcheck_err_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_pwcheck_desc_no_signup"
+        android:textSize="12sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_marginHorizontal="16dp" />
 
     <EditText
         android:id="@+id/et_name_signup"
@@ -70,11 +113,20 @@
         android:ems="10"
         android:hint="@string/type_name_signup"
         android:textSize="14sp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="8dp"
         android:background="@drawable/background_edittext_blue"
         android:inputType="text" />
+
+    <TextView
+        android:id="@+id/tv_name_err_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_name_desc_signup"
+        android:textSize="12sp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="16dp" />
 
     <Button
         android:id="@+id/btn_signup_signup"

@@ -101,6 +101,7 @@
                 android:textSize="12sp"
                 android:id="@+id/tv_integrate_signout"
                 android:textColor="@android:color/black"
+                android:foreground="?attr/selectableItemBackground"
                 android:background="@drawable/background_yellow"
                 android:layout_marginStart="6dp"/>
         </LinearLayout>

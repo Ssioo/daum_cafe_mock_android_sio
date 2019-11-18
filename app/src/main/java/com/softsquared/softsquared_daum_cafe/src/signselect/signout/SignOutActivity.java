@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signout;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutActivityView;
 import com.softsquared.softsquared_daum_cafe.src.splash.SplashActivity;
 
@@ -115,7 +117,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
     public void validateSuccess(String message) {
         hideProgressDialog();
         showToast("회원탈퇴에 성공하였습니다.");
-        startNextActivity(SplashActivity.class);
+        startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }
 

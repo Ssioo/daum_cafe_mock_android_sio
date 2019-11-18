@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
@@ -55,7 +58,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_signin_signin:
-                trySignIn();
+                trySignIn(etEmail.getText().toString(), etPw.getText().toString());
                 break;
             case R.id.iv_close_signin:
                 finish();
@@ -67,11 +70,21 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         }
     }
 
-    private void trySignIn() {
-        showProgressDialog();
+    private void trySignIn(String email, String password) {
+        if (email.equals("") || password.equals("")) {
+            new AlertDialog.Builder(this).setMessage("입력한 형식이 올바르지 않습니다.\n다시 입력해주세요.")
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).create().show();
+            return;
+        }
 
+        showProgressDialog();
         final SignInService signInService = new SignInService(this);
-        signInService.getSignIn(etEmail.getText().toString(), etPw.getText().toString());
+        signInService.getSignIn(email, password);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class SignUpService {
             public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
                 SignUpResponse signUpResponse = response.body();
                 if (signUpResponse == null || !signUpResponse.getIsSuccess()) {
-                    mSignUpActivityView.validateFailure(null);
+                    mSignUpActivityView.validateFailure((signUpResponse == null) ? null : signUpResponse.getMessage());
                     return;
                 }
 

@@ -30,7 +30,13 @@
     <string name="signup_signup">회원가입</string>
     <string name="type_email_signup">이메일 입력</string>
     <string name="type_pw_signup">비밀번호 입력</string>
-    <string name="type_name_signup">이름 입력</string>
+    <string name="type_pwcheck_signup">비밀번호 확인</string>
+    <string name="type_name_signup">닉네임 입력</string>
+    <string name="type_email_desc_signup">이메일 형식을 지켜주십시요. ex) abcd@daum.net</string>
+    <string name="type_pw_desc_signup">비밀번호는 6~20자 이내로 작성해주세요.</string>
+    <string name="type_pwcheck_desc_no_signup">비밀번호가 일치하지 않습니다.</string>
+    <string name="type_pwcheck_desc_ok_signup">비밀번호가 일치합니다.</string>
+    <string name="type_name_desc_signup">닉네임은 20자 이내로 작성해주세요.</string>
 
     <!-- SignOut Activity -->
     <string name="current_userid_signout">현재 로그인 중인 아이디</string>
