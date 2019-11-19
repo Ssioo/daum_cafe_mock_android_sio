@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="채팅방"
+            android:text="@string/title_chat"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -47,20 +47,25 @@
         android:singleLine="false"
         android:textColor="@android:color/black"
         android:textSize="14sp"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="4dp"
         app:layout_constraintEnd_toStartOf="@+id/tv_submit_chat"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="전송"
+        android:text="@string/send_chat"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:background="@drawable/background_round_border_square_grey"
         android:foreground="?attr/selectableItemBackground"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintTop_toTopOf="@+id/et_input_chat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

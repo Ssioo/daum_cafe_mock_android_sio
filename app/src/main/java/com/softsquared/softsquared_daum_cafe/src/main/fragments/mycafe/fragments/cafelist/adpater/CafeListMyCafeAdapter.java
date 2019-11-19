@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist;
+package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.adpater;
 
 import android.content.Context;
 import android.content.Intent;

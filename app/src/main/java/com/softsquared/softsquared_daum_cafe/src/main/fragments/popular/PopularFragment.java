@@ -29,7 +29,6 @@ import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.adapter.PopularArticlesPager;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.adapter.PopularArticleListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.interfaces.PopularFragmentView;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.text.SimpleDateFormat;
@@ -165,11 +164,13 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         llSelectNowPopular.setOnClickListener(this);
 
         /* Set View init */
-        tvToolbarTitleExpanded.setText(todayHour + "시, 인기글");
-        tvToolbarTitleCollapsed.setText(todayHour + "시, 인기글");
+        String todaydesc = todayHour + getString(R.string.main_popular_now);
+        tvToolbarTitleExpanded.setText(todaydesc);
+        tvToolbarTitleCollapsed.setText(todaydesc);
         tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_now_subtitle));
         tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
-        tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
+        String todaydescDrawer = getString(R.string.drawer_popular_now_description1) + todayHour + getString(R.string.drawer_popular_now_description2);
+        tvCurrentHourDescDrawer.setText(todaydescDrawer);
         setPopularBackground(todayHour);
 
         /* get Articles From Server */
@@ -296,10 +297,12 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         switch (position % 3) {
             /* Set View */
             case 0:
-                tvToolbarTitleExpanded.setText(todayHour + "시, 인기글");
-                tvToolbarTitleCollapsed.setText(todayHour + "시, 인기글");
+                String todaydesc = todayHour + getString(R.string.main_popular_now);
+                tvToolbarTitleExpanded.setText(todaydesc);
+                tvToolbarTitleCollapsed.setText(todaydesc);
                 tvCurrentHourDrawer.setText(sdfCurrentHour.format(today.getTime()));
-                tvCurrentHourDescDrawer.setText("지금, " + todayHour + "시의 인기글입니다.");
+                String todaydescDrawer = getString(R.string.drawer_popular_now_description1) + todayHour + getString(R.string.drawer_popular_now_description2);
+                tvCurrentHourDescDrawer.setText(todaydescDrawer);
                 tvToolbarSubTitleExpanded.setText(getString(R.string.drawer_popular_now_subtitle));
                 tvToolbarSubTitleExpanded.setLetterSpacing(0.8f);
                 // ImageView FadeIn FadeOut

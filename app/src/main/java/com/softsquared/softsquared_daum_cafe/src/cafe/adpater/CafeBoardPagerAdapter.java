@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.ArticlesBoardFragment;
-import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 
 import java.util.ArrayList;

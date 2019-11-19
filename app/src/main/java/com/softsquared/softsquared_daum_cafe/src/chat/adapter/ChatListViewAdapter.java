@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.chat.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,12 @@ public class ChatListViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ChatRequest chatRequest = chatRequests.get(position);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일 HH:mm", Locale.getDefault());
+        SimpleDateFormat simpleDateFormat;
+        Log.i("LOCALE", String.valueOf(Locale.getDefault()));
+        if (Locale.getDefault().equals(Locale.KOREAN) || Locale.getDefault().equals(Locale.KOREA))
+            simpleDateFormat = new SimpleDateFormat("MMM d일 HH:mm", Locale.KOREA);
+        else
+            simpleDateFormat = new SimpleDateFormat("d MMM HH:mm", Locale.ENGLISH);
         if (holder instanceof MyChatViewHolder) {
             ((MyChatViewHolder) holder).tvCreatedAt.setText(simpleDateFormat.format(new Date(chatRequest.getTime())));
             ((MyChatViewHolder) holder).tvContents.setText(chatRequest.getContent());

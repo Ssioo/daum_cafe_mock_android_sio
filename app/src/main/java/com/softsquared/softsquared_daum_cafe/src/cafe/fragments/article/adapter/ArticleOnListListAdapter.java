@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 
 import java.util.ArrayList;

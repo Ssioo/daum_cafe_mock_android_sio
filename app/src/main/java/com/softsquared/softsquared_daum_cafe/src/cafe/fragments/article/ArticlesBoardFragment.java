@@ -15,9 +15,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.interfaces.ArticlesBoardFragmentView;
-import com.softsquared.softsquared_daum_cafe.src.cafe.models.ArticleOnList;
 import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.adapter.ArticleOnListListAdapter;
+import com.softsquared.softsquared_daum_cafe.src.cafe.fragments.article.interfaces.ArticlesBoardFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 

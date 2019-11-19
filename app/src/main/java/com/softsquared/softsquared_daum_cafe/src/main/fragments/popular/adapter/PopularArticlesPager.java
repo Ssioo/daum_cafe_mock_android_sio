@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.PopularArticleListFragment;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.search.fragments.search_history;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

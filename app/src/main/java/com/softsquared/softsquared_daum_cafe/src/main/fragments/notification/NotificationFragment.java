@@ -63,9 +63,9 @@ public class NotificationFragment extends BaseFragment implements NotificationFr
 
         /* TabLayout Add on Tab Selected Listener */
         tlNotification.addOnTabSelectedListener(this);
-        tlNotification.getTabAt(0).setCustomView(createTabView(inflater, "0", "카페활동알림"));
-        tlNotification.getTabAt(1).setCustomView(createTabView(inflater, "0", "새글알림"));
-        tlNotification.getTabAt(2).setCustomView(createTabView(inflater, "0", "쪽지"));
+        tlNotification.getTabAt(0).setCustomView(createTabView(inflater, "0", getString(R.string.cafeact_notification_mycafe)));
+        tlNotification.getTabAt(1).setCustomView(createTabView(inflater, "0", getString(R.string.newarticle_notification_mycafe)));
+        tlNotification.getTabAt(2).setCustomView(createTabView(inflater, "0", getString(R.string.postmail_notification_mycafe)));
 
         return view;
     }

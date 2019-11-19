@@ -65,8 +65,8 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                 break;
             case R.id.btn_signout_signout:
                 // 로그아웃
-                new AlertDialog.Builder(this).setMessage("로그아웃하시겠습니까?")
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setMessage(getString(R.string.alert_logout))
+                        .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
@@ -75,7 +75,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                                 startNextActivity(SplashActivity.class);
                                 finish();
                             }
-                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(getString(R.string.alert_negative), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -88,8 +88,8 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                 break;
             case R.id.tv_resign_signout:
                 // 회원탈퇴
-                new AlertDialog.Builder(this).setMessage("정말로 회원탈퇴하시겠습니까?\n탈퇴시 되돌릴 수 없습니다.")
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setMessage(getString(R.string.alert_resign))
+                        .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
@@ -97,7 +97,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                                 tryResign();
                                 dialog.dismiss();
                             }
-                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(getString(R.string.alert_negative), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -116,7 +116,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
     @Override
     public void validateSuccess(String message) {
         hideProgressDialog();
-        showToast("회원탈퇴에 성공하였습니다.");
+        showToast(getString(R.string.success_resign));
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }

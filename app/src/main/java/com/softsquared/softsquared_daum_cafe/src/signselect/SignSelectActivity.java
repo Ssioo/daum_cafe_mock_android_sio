@@ -1,6 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;

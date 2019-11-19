@@ -2,16 +2,9 @@ package com.softsquared.softsquared_daum_cafe.src;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.kakao.auth.ApprovalType;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.IApplicationConfig;
@@ -19,8 +12,6 @@ import com.kakao.auth.ISessionConfig;
 import com.kakao.auth.KakaoAdapter;
 import com.kakao.auth.KakaoSDK;
 import com.softsquared.softsquared_daum_cafe.config.XAccessTokenInterceptor;
-import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
-import com.softsquared.softsquared_daum_cafe.src.splash.models.UserInfoResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -48,6 +39,8 @@ public class ApplicationClass extends Application {
     public static String BASE_URL = "http://ec2-13-209-57-34.ap-northeast-2.compute.amazonaws.com:3000/";
     // 실서버 주소
 //    public static String BASE_URL = "https://template.softsquared.com/";
+    // Firebase Storage 주소
+    public static String BASE_URL_FIREBASE_STORAGE = "gs://softsquared-784c1.appspot.com";
 
     public static SharedPreferences sSharedPreferences = null;
 
@@ -62,6 +55,9 @@ public class ApplicationClass extends Application {
     public static String USER_EMAIL = "user-id";
     public static String USER_NAME = "user-name";
     //public static String userProfileImg;
+
+    // Language 값
+    public static String LANGUAGE = "language";
 
     //날짜 형식
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);

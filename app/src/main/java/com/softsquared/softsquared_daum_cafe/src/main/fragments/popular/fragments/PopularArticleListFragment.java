@@ -1,6 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,10 +15,8 @@ import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.PopularFragment;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.PopularService;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.adapter.PopularArticleListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.fragments.interfaces.PopularArticleListFragmentView;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.util.ArrayList;

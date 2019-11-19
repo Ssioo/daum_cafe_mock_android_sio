@@ -26,7 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
-import java.util.ArrayList;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.BASE_URL_FIREBASE_STORAGE;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
@@ -106,14 +106,14 @@ public class BaseActivity extends AppCompatActivity {
 
         // Login Alert
         /* AlertDialog Init */
-        mLoginAlert = new AlertDialog.Builder(this).setMessage("로그인 후 이용할 수 있습니다.\n로그인 하시겠습니까?")
-                .setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+        mLoginAlert = new AlertDialog.Builder(this).setMessage(getString(R.string.alert_login))
+                .setPositiveButton(getString(R.string.alert_positive_login), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startNextActivity(SignSelectActivity.class);
                         dialog.dismiss();
                     }
-                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getString(R.string.alert_negative), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -121,7 +121,7 @@ public class BaseActivity extends AppCompatActivity {
                 }).setCancelable(true).create();
 
         // FirebaseStorage 인스턴스
-        firebaseStorage = FirebaseStorage.getInstance("gs://softsquared-784c1.appspot.com");
+        firebaseStorage = FirebaseStorage.getInstance(BASE_URL_FIREBASE_STORAGE);
         imageStorageRef = firebaseStorage.getReference().child("images"); // images 폴더 참조.
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {

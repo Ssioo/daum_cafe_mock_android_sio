@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.setting;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
@@ -82,7 +84,7 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
 
         /* Setting View Init*/
         if (!sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
-            tvUserNameSetting.setText("로그인 하세요");
+            tvUserNameSetting.setText(getString(R.string.signin_setting));
         } else {
             tvUserNameSetting.setText(sSharedPreferences.getString(USER_NAME, ""));
         }
@@ -118,7 +120,7 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
                     startNextActivity(SignOutActivity.class);
                 break;
             case R.id.item_version_setting:
-                showToast("최신 버전입니다.");
+                showToast(getString(R.string.toast_update_info));
                 break;
             case R.id.item_noti_set_setting:
                 break;
@@ -139,6 +141,14 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
             case R.id.item_theme_setting:
                 break;
             case R.id.item_language_setting:
+                CharSequence[] lists = {getString(R.string.language_default_setting), "대한민국", "English"};
+                new AlertDialog.Builder(getActivity()).setTitle(getString(R.string.language_select_setting))
+                        .setSingleChoiceItems(lists, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
                 break;
             case R.id.item_lock_setting:
                 break;

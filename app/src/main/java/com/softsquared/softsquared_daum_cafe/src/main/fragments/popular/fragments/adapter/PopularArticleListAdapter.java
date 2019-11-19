@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.Article;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.popular.models.PopularResponse;
 
 import java.util.ArrayList;

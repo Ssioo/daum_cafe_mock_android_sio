@@ -2,8 +2,8 @@ package com.softsquared.softsquared_daum_cafe.src.splash;
 
 import android.util.Log;
 
-import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashActivityView;
+import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.splash.models.AutoSignInResponse;
 import com.softsquared.softsquared_daum_cafe.src.splash.models.UserInfoResponse;
 

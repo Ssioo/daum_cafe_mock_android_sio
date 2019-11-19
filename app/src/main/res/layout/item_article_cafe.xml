@@ -61,11 +61,24 @@
         tools:text="yyyy.MM.dd"
         android:textSize="13sp"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_new"
+        android:id="@+id/iv_new_article_cafe"
+        android:layout_marginStart="4dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/tv_article_date_articlelist"
+        app:layout_constraintTop_toTopOf="@+id/tv_article_author_articlelist"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_article_author_articlelist"
+        android:adjustViewBounds="true" />
+
     <TextView
         android:id="@+id/tv_article_countview_articlelist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_article_date_articlelist"
+        app:layout_constraintStart_toEndOf="@+id/iv_new_article_cafe"
         app:layout_constraintTop_toTopOf="@+id/tv_article_author_articlelist"
         android:layout_marginStart="8dp"
         tools:text="조회 n"

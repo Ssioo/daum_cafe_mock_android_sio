@@ -35,7 +35,6 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteService;
 import com.softsquared.softsquared_daum_cafe.src.chat.ChatActivity;
 import com.softsquared.softsquared_daum_cafe.src.search.SearchActivity;
 

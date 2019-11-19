@@ -6,7 +6,6 @@ import com.softsquared.softsquared_daum_cafe.src.signselect.signin.models.SignIn
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface SignInRetrofitInterface {
 

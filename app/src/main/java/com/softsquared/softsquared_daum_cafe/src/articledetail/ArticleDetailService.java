@@ -1,7 +1,5 @@
 package com.softsquared.softsquared_daum_cafe.src.articledetail;
 
-import android.util.Log;
-
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailRetrofitService;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.ArticleDetailResponse;

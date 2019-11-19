@@ -72,8 +72,8 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
 
     private void trySignIn(String email, String password) {
         if (email.equals("") || password.equals("")) {
-            new AlertDialog.Builder(this).setMessage("입력한 형식이 올바르지 않습니다.\n다시 입력해주세요.")
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(this).setMessage(getString(R.string.wrong_type_signin))
+                    .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
@@ -90,7 +90,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     @Override
     public void validateSuccessWithNewToken(String token, String id, String name) {
         hideProgressDialog();
-        showToast("로그인에 성공하였습니다.");
+        showToast(getString(R.string.success_signin));
         sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
         sSharedPreferences.edit().putString(USER_NAME, name).apply();
         sSharedPreferences.edit().putString(USER_EMAIL, id).apply();
@@ -102,7 +102,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     @Override
     public void validateSuccessWithoutNewToken(String name) {
         hideProgressDialog();
-        showToast("로그인에 성공하였습니다.");
+        showToast(getString(R.string.success_signin));
         sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
         sSharedPreferences.edit().putString(USER_NAME, name).apply();
         sSharedPreferences.edit().putString(USER_EMAIL, name).apply();

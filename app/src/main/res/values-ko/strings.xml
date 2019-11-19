@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- common -->
     <string name="app_name">다다음카페</string>
@@ -5,17 +6,8 @@
     <string name="uploading">업로드중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="nofunction">미구현기능입니다.</string>
-    <string name="separator" translatable="false">&#160;&#160;|&#160;&#160;</string>
-    <string name="kakao_app_key" translatable="false">66ac8e8aa72f51d657e9feb64e61cb0f</string>
-    <string name="alert_logout">로그아웃하시겠습니까?</string>
-    <string name="alert_login">로그인 후 이용할 수 있습니다.\n로그인 하시겠습니까?</string>
-    <string name="alert_positive">확인</string>
-    <string name="alert_positive_login">로그인</string>
-    <string name="alert_negative">취소</string>
 
     <!-- Splash Activity -->
-    <string name="title_splash" translatable="false">cafe</string>
-    <string name="desc_splash">모든 이야기의 시작\n다다음카페</string>
 
     <!-- SignSelect -->
     <string name="signup_signselect"><u>회원가입</u></string>
@@ -30,8 +22,6 @@
     <string name="autologin_signin">로그인 상태 유지</string>
     <string name="find_email">이메일 찾기</string>
     <string name="find_pw">비밀번호 찾기</string>
-    <string name="wrong_type_signin">입력한 형식이 올바르지 않습니다. 다시 입력해주세요.</string>
-    <string name="success_signin">로그인에 성공하였습니다.</string>
 
     <!-- SignUp Activity -->
     <string name="signup_signup">회원가입</string>
@@ -52,23 +42,14 @@
     <string name="integrate_signout">통합하기</string>
     <string name="signout_signout">로그아웃</string>
     <string name="resign_signout">회원탈퇴</string>
-    <string name="company_name_signout" translatable="false">ⓒ Kakao Corp.</string>
     <string name="contact_signout">고객센터</string>
-    <string name="alert_resign">정말로 회원탈퇴하시겠습니까?\n탈퇴시 되돌릴 수 없습니다.</string>
-    <string name="success_resign">회원탈퇴에 성공하였습니다.</string>
 
     <!-- Popular Fragment -->
     <string name="drawer_popular_now">실시간 인기글</string>
-    <string name="main_popular_now">시, 인기글</string>
     <string name="drawer_popular_week">주간 인기글</string>
     <string name="drawer_popular_month">월간 인기글</string>
     <string name="drawer_popular_week_description">지난 4주동안의 인기글입니다.</string>
     <string name="drawer_popular_month_description">지난 6개월 동안의 인기글입니다.</string>
-    <string name="drawer_popular_now_subtitle" translatable="false">TODAY</string>
-    <string name="drawer_popular_week_subtitle" translatable="false">WEEKLY</string>
-    <string name="drawer_popular_month_subtitle" translatable="false">MONTHLY</string>
-    <string name="drawer_popular_now_description1">지금, </string>
-    <string name="drawer_popular_now_description2">시의 인기글입니다.</string>
 
     <!-- MyCafe Cafe Fragment -->
     <string name="favorite_cafe_mycafe">즐겨찾는 카페</string>
@@ -85,15 +66,11 @@
 
     <!-- MyCafe Notification Fragment -->
     <string name="mynoti_notification_mycafe">내 소식</string>
-    <string name="cafeact_notification_mycafe">카페활동알림</string>
-    <string name="newarticle_notification_mycafe">새글알림</string>
-    <string name="postmail_notification_mycafe">쪽지알림</string>
 
     <!-- MyCafe Bookmark Fragment -->
     <string name="archive_bookmark_mycafe">보관함</string>
 
     <!-- Home Fragment -->
-    <string name="cafe_home" translatable="false">cafe</string>
 
     <!-- Setting Fragment -->
     <string name="setting_setting">설정</string>
@@ -120,24 +97,16 @@
     <string name="cache_setting">저장 데이터 관리</string>
     <string name="lab_setting">실험실</string>
     <string name="service_info_setting">서비스 정보</string>
-    <string name="toast_update_info">"최신 버전입니다."</string>
-    <string name="language_default_setting">시스템 기본</string>
-    <string name="language_select_setting">언어 선택</string>
-    <string name="signin_setting">로그인 하세요.</string>
 
     <!-- AddCafe Activity -->
     <string name="cafe_name_addcafe">카페 이름</string>
     <string name="addcafe_addcafe">카페 만들기</string>
     <string name="constraint1_addcafe">한글, 영문, 숫자, 기호만 입력해 주세요.</string>
     <string name="constraint2_addcafe">대소문자를 구분, (-), (.)을 사용해주세요.</string>
-    <string name="cafe_name_count_addcafe" translatable="false">0/60</string>
-    <string name="cafe_url_count_addcafe" translatable="false">0/20</string>
     <string name="cafe_url_addcafe">카페 주소</string>
     <string name="agreement_addcafe">개인정보보호 의무 동의</string>
     <string name="agreement_check_addcafe">카페지기의 개인정보보호 의무를 확인해주시기 바랍니다.</string>
     <string name="submit_addcafe">카페 만들기</string>
-    <string name="success_addcafe">카페 생성에 성공하였습니다.</string>
-    <string name="failure_addcafe">카페 생성에 실패하였습니다.\n잠시 후 다시 시도해주세요.</string>
 
     <!-- ArticleDetail Activity -->
     <string name="all_article_articledetail">전체글</string>
@@ -158,7 +127,6 @@
     <!-- Cafe Activity -->
     <string name="all_article_cafe">전체글</string>
     <string name="popular_article_cafe">인기글</string>
-    <string name="searching_cafe" translatable="false">@string/searching_articledetail</string>
     <string name="write_article_cafe">글쓰기</string>
     <string name="refresh_cafe">새로고침</string>
     <string name="home_cafe">홈</string>
@@ -184,10 +152,28 @@
     <string name="select_board_write">게시판 선택</string>
     <string name="title_hint_write">제목</string>
     <string name="contents_hint_write">내용</string>
-
-    <!-- Chat Activity -->
+    <string name="drawer_popular_now_description1">"지금, "</string>
+    <string name="drawer_popular_now_description2">시의 인기글입니다.</string>
+    <string name="main_popular_now">시, 인기글</string>
     <string name="send_chat">전송</string>
     <string name="title_chat">채팅방</string>
-
-
+    <string name="desc_splash">모든 이야기의 시작\n다다음카페</string>
+    <string name="success_addcafe">카페 생성에 성공하였습니다.</string>
+    <string name="failure_addcafe">카페 생성에 실패하였습니다.\n잠시 후 다시 시도해주세요.</string>
+    <string name="newarticle_notification_mycafe">새글알림</string>
+    <string name="postmail_notification_mycafe">쪽지알림</string>
+    <string name="cafeact_notification_mycafe">카페활동알림</string>
+    <string name="alert_login">로그인 후 이용할 수 있습니다.\n로그인 하시겠습니까?</string>
+    <string name="alert_logout">로그아웃하시겠습니까</string>
+    <string name="alert_negative">취소</string>
+    <string name="alert_positive">확인</string>
+    <string name="alert_positive_login">로그인</string>
+    <string name="alert_resign">정말로 회원탈퇴하시겠습니까?\n탈퇴시 되돌릴 수 없습니다.</string>
+    <string name="success_resign">회원탈퇴에 성공하였습니다</string>
+    <string name="success_signin">로그인에 성공하였습니다.</string>
+    <string name="wrong_type_signin">입력한 형식이 올바르지 않습니다.\n다시 입력해주세요.</string>
+    <string name="toast_update_info">최신 버전입니다.</string>
+    <string name="language_default_setting">시스템 기본</string>
+    <string name="signin_setting">로그인 하세요.</string>
+    <string name="language_select_setting">언어 선택</string>
 </resources>

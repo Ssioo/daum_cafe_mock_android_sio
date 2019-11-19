@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
-import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
 import java.io.IOException;

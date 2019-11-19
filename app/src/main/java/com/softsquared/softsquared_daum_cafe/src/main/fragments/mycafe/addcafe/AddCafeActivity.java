@@ -61,7 +61,7 @@ public class AddCafeActivity extends BaseActivity implements AddCafeActivityView
                 if (s.length() > 20) {
                     return;
                 }
-                tvCafeNameCount.setText(s.length() + "/20");
+                tvCafeNameCount.setText(s.length() + "/60");
             }
 
             @Override
@@ -114,12 +114,12 @@ public class AddCafeActivity extends BaseActivity implements AddCafeActivityView
 
     @Override
     public void validateSuccess(String text) {
-        showToast("카페 생성에 성공하였습니다.");
+        showToast(getString(R.string.success_addcafe));
         finish();
     }
 
     @Override
     public void validateFailure(String message) {
-        showToast("카페 생성에 실패하였습니다.\n잠시후 다시 시도해주세요.");
+        showToast((message == null) ? getString(R.string.network_error) : getString(R.string.failure_addcafe));
     }
 }
