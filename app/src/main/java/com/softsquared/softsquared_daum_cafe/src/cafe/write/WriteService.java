@@ -41,19 +41,18 @@ public class WriteService {
             public void onResponse(Call<WriteResponse> call, Response<WriteResponse> response) {
                 final WriteResponse writeResponse = response.body();
                 if (writeResponse == null || !writeResponse.getIsSuccess()) {
-                    Log.i("WriteAfterFirebase", "글 업로드 실패");
-                    mWriteActivityView.validateFailure(null);
+                    mWriteActivityView.validateUploadFailure((writeResponse == null) ? null : writeResponse.getCode() + ": " + writeResponse.getMessage());
                     return;
                 }
 
                 Log.i("WriteAfterFirebase", "글 업로드 성공");
-                mWriteActivityView.validateSuccess(writeResponse.getMessage());
+                mWriteActivityView.validateUploadSuccess(writeResponse.getMessage());
             }
 
             @Override
             public void onFailure(Call<WriteResponse> call, Throwable t) {
                 Log.i("WriteAfterFirebase", "글 업로드 실패");
-                mWriteActivityView.validateFailure(null);
+                mWriteActivityView.validateUploadFailure(null);
                 t.printStackTrace();
             }
         });
@@ -70,14 +69,14 @@ public class WriteService {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.i("FirebaseStorage", "이미지 업로드 실패");
-                mWriteActivityView.validateImageFailure(null);
+                mWriteActivityView.validateUploadImageFailure(null);
                 e.printStackTrace();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.i("FirebaseStorage", "이미지 업로드 완료");
-                mWriteActivityView.validateImageSuccess(date.getTime() + ".jpg");
+                mWriteActivityView.validateUploadImageSuccess(date.getTime() + ".jpg");
             }
         });
     }

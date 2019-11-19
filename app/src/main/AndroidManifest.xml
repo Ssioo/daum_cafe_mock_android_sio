@@ -18,8 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.chat.ChatActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".src.chat.ChatActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.signselect.signout.SignOutActivity" />
         <activity android:name=".src.articledetail.ArticleDetailActivity" />
         <activity
@@ -30,7 +31,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.cafe.mypage.MyPageActivity" />
         <activity android:name=".src.cafe.mysetting.MySettingActivity" />
-        <activity android:name=".src.search.SearchActivity" />
+        <activity android:name=".src.search.SearchActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".src.signselect.signin.SignInActivity" />
         <activity android:name=".src.signselect.signup.SignUpActivity" />
         <activity android:name=".src.signselect.SignSelectActivity" />

@@ -35,7 +35,9 @@ import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteService;
 import com.softsquared.softsquared_daum_cafe.src.chat.ChatActivity;
+import com.softsquared.softsquared_daum_cafe.src.search.SearchActivity;
 
 import java.util.ArrayList;
 
@@ -247,11 +249,14 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 showToast(getString(R.string.nofunction));
                 break;
             case R.id.tv_search_cafe:
-                showToast(getString(R.string.nofunction));
+                // Search Activity로 이동
+                Intent intent = new Intent(CafeActivity.this, SearchActivity.class);
+                intent.putExtra("MODE_ADVERTISE", false);
+                startActivity(intent);
                 break;
             case R.id.tv_write_cafe:
                 // Write Activity로 이동
-                startNextActivity(WriteActivity.class);
+                startNextActivityForResultWithData(WriteActivity.class, REQUEST_TO_WRITE, "activityMode", "CREATE");
                 break;
             case R.id.tv_refresh_cafe:
                 showToast(getString(R.string.nofunction));

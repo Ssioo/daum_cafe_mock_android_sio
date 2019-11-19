@@ -26,6 +26,8 @@ import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
+import java.util.ArrayList;
+
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
@@ -49,9 +51,15 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startNextActivityForResult(Class<?> activity, int resuestCode) {
+    public void startNextActivityForResult(Class<?> activity, int requestCode) {
         Intent intent = new Intent(this, activity);
-        startActivityForResult(intent, resuestCode);
+        startActivityForResult(intent, requestCode);
+    }
+
+    public void startNextActivityForResultWithData(Class<?> activity, int requestCode, String tag, String data) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtra(tag, data);
+        startActivityForResult(intent, requestCode);
     }
 
     public void startNextActivity(Class<?> activity, final int flag) {

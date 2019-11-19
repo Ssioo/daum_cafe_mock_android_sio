@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
 import java.io.IOException;
@@ -30,6 +31,12 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private static final int REQUEST_FROM_ALBUM = 1;
     private static final int MAXIMUM_IMG_WIDTH = 1080;
     private static final int MAXIMUM_IMG_HEIGHT = 2280;
+
+    private static final int MODE_CREATE = 10;
+    private static final int MODE_EDIT = 11;
+
+
+    private int activityMode = 0;
 
     private Toolbar tbWrite;
     private Button btnSubmit;
@@ -53,6 +60,20 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+
+        /* get Intent */
+        Intent intent = getIntent();
+        String modeStr = intent.getStringExtra("activityMode");
+        if (modeStr != null && modeStr.equals("CREATE"))
+            activityMode = MODE_CREATE;
+        else if (modeStr != null && modeStr.equals("EDIT"))
+            activityMode = MODE_EDIT;
+
+        if (activityMode == MODE_EDIT) {
+            /* Load Articles From Server */
+            /* EDIT : ArticleDetail -> this */
+        }
+
 
         /* FindViewById */
         tbWrite = findViewById(R.id.toolbar_write);
@@ -213,16 +234,19 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     }
 
     @Override
-    public void validateSuccess(String message) {
+    public void validateUploadSuccess(String message) {
         hideProgressDialog();
-        showToast("글 작성에 성공하였습니다.");
+        if (activityMode == MODE_CREATE)
+            showToast("글 작성에 성공하였습니다.");
+        else if (activityMode == MODE_EDIT)
+            showToast("글 수정에 성공하였습니다.");
         setResult(RESULT_OK);
         finish();
     }
 
     @Override
-    public void validateFailure(String message) {
-        showToast("글 작성에 실패하였습니다.");
+    public void validateUploadFailure(String message) {
+        showToast((message == null) ? getString(R.string.network_error) : message);
     }
 
     private void postImageToFirebaseAndpostArticle(String title, String contents, String categoryType, String cafeName) {
@@ -235,13 +259,23 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     }
 
     @Override
-    public void validateImageSuccess(String url) {
+    public void validateUploadImageSuccess(String url) {
         postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
     }
 
     @Override
-    public void validateImageFailure(String message) {
+    public void validateUploadImageFailure(String message) {
         hideProgressDialog();
         showToast("이미지 업로드에 실패하였습니다.");
+    }
+
+    @Override
+    public void validateDownloadSuccess(String message) {
+
+    }
+
+    @Override
+    public void validateDownloadFailure(String message) {
+
     }
 }
