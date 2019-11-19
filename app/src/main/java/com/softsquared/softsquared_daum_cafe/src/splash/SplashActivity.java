@@ -3,13 +3,20 @@ package com.softsquared.softsquared_daum_cafe.src.splash;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashActivityView;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.FCM_TOKEN;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.FCM_TOKEN_POSTED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_EMAIL;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
@@ -23,7 +30,13 @@ public class SplashActivity extends BaseActivity implements SplashActivityView {
         setContentView(R.layout.activity_splash);
 
         final SplashService mSplashService = new SplashService(this);
-        mSplashService.getAutoLogin();
+        if (sSharedPreferences.getBoolean(FCM_TOKEN_POSTED, false)) {
+            // mSplashService.getFCMToken();
+        } else {
+            mSplashService.getAutoLogin();
+        }
+
+
     }
 
 
@@ -45,5 +58,30 @@ public class SplashActivity extends BaseActivity implements SplashActivityView {
         startNextActivity(MainActivity.class);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();
+    }
+
+    @Override
+    public void validateFCMTokenGetSuccess(String token) {
+        sSharedPreferences.edit().putString(FCM_TOKEN, token).apply();
+        final SplashService splashService = new SplashService(this);
+        splashService.postFCMToken(token);
+    }
+
+    @Override
+    public void validateFCMTokenGetFailure(String message) {
+        showToast((message == null) ? "FCM TOKEN 등록 실패" : "실패");
+    }
+
+    @Override
+    public void validateFCMTokenPostSuccess(String message) {
+        sSharedPreferences.edit().putBoolean(FCM_TOKEN_POSTED, true).apply();
+        final SplashService splashService = new SplashService(this);
+        splashService.getAutoLogin();
+    }
+
+    @Override
+    public void validateFCMTokenPostFailure(String message) {
+        final SplashService splashService = new SplashService(this);
+        splashService.getAutoLogin();
     }
 }

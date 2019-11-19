@@ -1,7 +1,9 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.setting;
 
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ import com.softsquared.softsquared_daum_cafe.src.main.fragments.setting.interfac
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.SignOutActivity;
 
+import java.util.Locale;
+
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.LANGUAGE;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_LOGINNED;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.USER_NAME;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
@@ -146,7 +151,31 @@ public class SettingFragment extends BaseFragment implements SettingFragmentView
                         .setSingleChoiceItems(lists, 0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Locale locale = null;
+                                switch (which) {
+                                    case 0:
+                                        locale = new Locale(sSharedPreferences.getString(LANGUAGE, null));
+                                        break;
+                                    case 1:
+                                        locale = Locale.KOREA;
+                                        break;
+                                    case 2:
+                                        locale = Locale.ENGLISH;
+                                        break;
+                                }
+                                Configuration config = getActivity().getResources().getConfiguration();
+                                config.locale = locale;
+                                getActivity().getBaseContext().getResources().updateConfiguration(config,
+                                        getActivity().getBaseContext().getResources().getDisplayMetrics());
                                 dialog.dismiss();
+                                new AlertDialog.Builder(getActivity())
+                                        .setMessage("변경 사항은 앱을 다시 시작한 후에 적용됩니다.")
+                                        .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).create().show();
                             }
                         }).create().show();
                 break;

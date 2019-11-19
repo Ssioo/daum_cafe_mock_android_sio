@@ -44,15 +44,15 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mycafe_cafe, container, false);
 
-        /* Get Cafe Lists From Server */
-        //getCafeList();
-
         /* findViewByID */
         rvMyCafeList = view.findViewById(R.id.rv_list_favorite_mycafe_cafe);
         rvAllCafeList = view.findViewById(R.id.rv_list_mycafes_mycafe_cafe);
         srlMyCafeCafe = view.findViewById(R.id.srl_mycafe_cafe);
         tvCountAllCafe = view.findViewById(R.id.tv_count_allcafes_cafe_mycafe);
         tvCountMyCafe = view.findViewById(R.id.tv_count_mycafes_cafe_mycafe);
+
+        /* Get Cafe Lists From Server */
+        getCafeList();
 
         /* SwipeRefreshLayout */
         srlMyCafeCafe.setOnRefreshListener(this);
@@ -64,20 +64,12 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
         // Dummy Data
         ArrayList<CafeListItem> dummy = new ArrayList<>();
         dummy.add(new CafeListItem("", "소프트스퀘어드", "2019.11.02", true));
-        dummy.add(new CafeListItem("", "소프트스퀘어드2", "2019.11.03", true));
         CafeListMyCafeAdapter clmAdapter = new CafeListMyCafeAdapter(dummy, getActivity());
         rvMyCafeList.setAdapter(clmAdapter);
 
         // Dummy Data
         ArrayList<CafeListItem> dummy2 = new ArrayList<>();
-        dummy2.add(new CafeListItem("", "소프트스퀘어드3", "2019.11.04", false));
-        dummy2.add(new CafeListItem("", "소프트스퀘어드4", "2019.11.05", false));
-        dummy2.add(new CafeListItem("", "소프트스퀘어드5", "2019.11.01", false));
         rvAllCafeList.setAdapter(new CafeListMyCafeAdapter(dummy2, getActivity()));
-
-        /* Set Text */
-        tvCountMyCafe.setText(String.valueOf(dummy.size()));
-        tvCountAllCafe.setText(String.valueOf(dummy2.size()));
 
         return view;
     }
@@ -89,23 +81,23 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
         // result를 순회하면서 favorited 여부를 판단해서 각기 다른 arraylist에 저장
         // 이후 즐겨찾기 시 notify item change로 뷰를 구성하고 서버에 정보 post.
 
-        // Dummy Data
-        ArrayList<CafeListItem> dummy = new ArrayList<>();
-        dummy.add(new CafeListItem("", "소프트스퀘어드", "2019.11.02", true));
-        dummy.add(new CafeListItem("", "소프트스퀘어드2", "2019.11.03", true));
-        CafeListMyCafeAdapter clmAdapter = new CafeListMyCafeAdapter(dummy, getActivity());
+        cafeLists = results;
+        ArrayList<CafeListItem> favoritedCafeList = new ArrayList<>();
+
+        for (CafeListResponse.Result cafe : cafeLists) {
+            favoritedCafeList.add(new CafeListItem("", cafe.getCafeName(), "2019.11.02", true));
+        }
+
+        CafeListMyCafeAdapter clmAdapter = new CafeListMyCafeAdapter(favoritedCafeList, getActivity());
         rvMyCafeList.setAdapter(clmAdapter);
 
         // Dummy Data
-        ArrayList<CafeListItem> dummy2 = new ArrayList<>();
-        dummy2.add(new CafeListItem("", "소프트스퀘어드3", "2019.11.04", false));
-        dummy2.add(new CafeListItem("", "소프트스퀘어드4", "2019.11.05", false));
-        dummy2.add(new CafeListItem("", "소프트스퀘어드5", "2019.11.01", false));
-        rvAllCafeList.setAdapter(new CafeListMyCafeAdapter(dummy2, getActivity()));
+        ArrayList<CafeListItem> allCafeList = new ArrayList<>();
+        rvAllCafeList.setAdapter(new CafeListMyCafeAdapter(allCafeList, getActivity()));
 
         /* Set Text */
-        tvCountMyCafe.setText(String.valueOf(dummy.size()));
-        tvCountAllCafe.setText(String.valueOf(dummy2.size()));
+        tvCountMyCafe.setText(String.valueOf(favoritedCafeList.size()));
+        tvCountAllCafe.setText(String.valueOf(allCafeList.size()));
     }
 
     @Override

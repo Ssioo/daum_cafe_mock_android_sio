@@ -9,24 +9,20 @@ public class CafeResponse extends DefaultResponse {
     @SerializedName("result")
     ArrayList<Result> results;
 
-    public class Result {
-        @SerializedName("title")
-        String title;
-        @SerializedName("contents")
-        String contents;
-        @SerializedName("id")
-        String userId;
-        @SerializedName("img")
-        String imgUri;
-        @SerializedName("createdAt")
-        String createdAt;
+    public static class Result {
+        @SerializedName("idboard") int boardId;
+        @SerializedName("title") String title;
+        @SerializedName("categotyType") String categoryType;
+        @SerializedName("cafeName") String cafeName;
+        @SerializedName("createAt") String createdAtTimeZone;
+        @SerializedName("id") String userId;
+        @SerializedName("img") String imgUri;
+        @SerializedName("COUNT(b.views)") int viewCount;
+        @SerializedName("commentCount") int commentCount;
+        @SerializedName("createdAt") String createdAt;
 
         public String getTitle() {
             return title;
-        }
-
-        public String getContents() {
-            return contents;
         }
 
         public String getUserId() {
@@ -39,6 +35,30 @@ public class CafeResponse extends DefaultResponse {
 
         public String getCreatedAt() {
             return createdAt;
+        }
+
+        public int getBoardId() {
+            return boardId;
+        }
+
+        public String getCategoryType() {
+            return categoryType;
+        }
+
+        public String getCafeName() {
+            return cafeName;
+        }
+
+        public String getCreatedAtTimeZone() {
+            return createdAtTimeZone;
+        }
+
+        public int getViewCount() {
+            return viewCount;
+        }
+
+        public int getCommentCount() {
+            return commentCount;
         }
     }
 

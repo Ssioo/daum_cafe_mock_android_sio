@@ -72,7 +72,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                                 sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
                                 sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
                                 dialog.dismiss();
-                                startNextActivity(SplashActivity.class);
+                                startNextActivity(MainActivity.class);
                                 finish();
                             }
                         }).setNegativeButton(getString(R.string.alert_negative), new DialogInterface.OnClickListener() {
@@ -92,8 +92,6 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
                         .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
-                                sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
                                 tryResign();
                                 dialog.dismiss();
                             }
@@ -109,7 +107,7 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
     private void tryResign() {
         showProgressDialog();
         final SignOutService signOutService = new SignOutService(this);
-        //signOutService.tryResign();
+        signOutService.tryResign();
     }
 
 
@@ -117,6 +115,8 @@ public class SignOutActivity extends BaseActivity implements SignOutActivityView
     public void validateSuccess(String message) {
         hideProgressDialog();
         showToast(getString(R.string.success_resign));
+        sSharedPreferences.edit().remove(X_ACCESS_TOKEN).apply();
+        sSharedPreferences.edit().putBoolean(USER_LOGINNED, false).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }

@@ -33,8 +33,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private static final int MODE_CREATE = 10;
     private static final int MODE_EDIT = 11;
 
-
-    private int activityMode = 0;
+    private int activityMode;
 
     private Toolbar tbWrite;
     private Button btnSubmit;
@@ -199,7 +198,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                 new AlertDialog.Builder(this)
                         .setTitle("사진")
                         .setMessage("삭제하시겠습니까?")
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.alert_positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 IMAGE_ATTACHED = false;
@@ -207,7 +206,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                                 dialog.dismiss();
                             }
                         })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.alert_negative), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -221,6 +220,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                 // Server Connecting...
                 if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
                     postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
+                    //postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
                 break;
         }
     }
@@ -259,6 +259,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     @Override
     public void validateUploadImageSuccess(String url) {
         postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
+        //postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", cafeName, url);
     }
 
     @Override

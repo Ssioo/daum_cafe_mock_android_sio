@@ -9,5 +9,5 @@ import retrofit2.http.DELETE;
 
 public interface SignOutRetrofitInterface {
     @DELETE("user/resign")
-    Call<SignOutResponse> resignUser(@Body SignOutRequest signOutRequest);
+    Call<SignOutResponse> resignUser();
 }

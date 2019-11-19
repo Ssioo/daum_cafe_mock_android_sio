@@ -36,7 +36,6 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
     @Override
     public ArticleViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.item_article_cafe, parent, false);
-
         ArticleViewHoler vh = new ArticleViewHoler(view);
         return vh;
     }
@@ -45,9 +44,9 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
     public void onBindViewHolder(@NonNull ArticleViewHoler holder, int position) {
         CafeResponse.Result article = articlesOnList.get(position);
         if (article != null) {
-            holder.tvTitle.setText(article.getTitle());
-            holder.tvCreateDate.setText(article.getCreatedAt());
-            holder.tvAuthor.setText(article.getUserId());
+            holder.tvTitle.setText(article.getTitle()); // 글 제목
+            holder.tvCreateDate.setText(article.getCreatedAt()); // 글 생성일
+            holder.tvAuthor.setText(article.getUserId()); // 글 작성자
             if (article.getImgUri() != null && !article.getImgUri().equals("")) {
                 Glide.with(mContext)
                         .load(imageStorageRef.child(article.getImgUri()))
@@ -58,14 +57,21 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
                 holder.ivImg.setVisibility(View.VISIBLE);
             } else {
                 holder.ivImg.setVisibility(View.GONE);
-            }
-            //holder.tvViewCount.setText("조회 " + article.getViewCount());
-            /*if (article.getCommentCount() == 0) {
+            } // 글 이미지
+            holder.tvViewCount.setText("조회 " + article.getViewCount()); // 글 조회수
+            /*if (article.getViewCount() == 0) {
                 holder.tvCommentCount.setVisibility(View.INVISIBLE);
             } else {
-                holder.tvCommentCount.setText(String.valueOf(article.getCommentCount()));
-            }*/
-            //holder.tvBoard.setText(article.getBoard());
+                holder.tvCommentCount.setText(String.valueOf(article.getViewCount()));
+            }*/ // 글 댓글수
+            holder.tvBoard.setText(article.getCategoryType()); // 글 게시판(카테고리)
+
+            int timeDesc = article.getCreatedAt().lastIndexOf('시');
+            if (timeDesc != -1) {
+                holder.ivNew.setVisibility(View.VISIBLE);
+            } else {
+                holder.ivNew.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -83,6 +89,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
         private TextView tvCommentCount;
         private TextView tvBoard;
         private ImageView ivImg;
+        private ImageView ivNew;
 
         public ArticleViewHoler(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +102,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
             tvCommentCount = itemView.findViewById(R.id.tv_article_countcomment_articlelist);
             tvBoard = itemView.findViewById(R.id.tv_article_board_articlelist);
             ivImg = itemView.findViewById(R.id.iv_img_article_cafe);
+            ivNew = itemView.findViewById(R.id.iv_new_article_cafe);
 
             /* Set On Click Listener */
             itemView.setOnClickListener(this);

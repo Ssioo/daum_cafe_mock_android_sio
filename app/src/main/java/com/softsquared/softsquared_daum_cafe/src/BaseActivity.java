@@ -21,12 +21,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.signselect.SignSelectActivity;
 
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.BASE_URL_FIREBASE_STORAGE;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.FCM_TOKEN;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
@@ -38,7 +41,7 @@ public class BaseActivity extends AppCompatActivity {
     public static StorageReference imageStorageRef;
     public static FirebaseDatabase firebaseDatabase;
     public static DatabaseReference chatDatabase;
-    public static String fcmToken;
+
 
     public static int dpUnit;
 
@@ -123,19 +126,25 @@ public class BaseActivity extends AppCompatActivity {
         // FirebaseStorage 인스턴스
         firebaseStorage = FirebaseStorage.getInstance(BASE_URL_FIREBASE_STORAGE);
         imageStorageRef = firebaseStorage.getReference().child("images"); // images 폴더 참조.
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
+        // FIrebaseMessaging 인스턴스 얻기
+        if (sSharedPreferences.getString(FCM_TOKEN, null) == null) {
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "getInstanceId failed", task.getException());
+                                return;
+                            }
+                            Log.i(FCM_TOKEN, task.getResult().getToken());
+                            sSharedPreferences.edit().putString(FCM_TOKEN, task.getResult().getToken()).apply();
 
-                        fcmToken = task.getResult().getToken();
-                    }
-                });
+                        }
+                    });
+        }
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+
+        // Firebase RealtimeDatabase 인스턴스
         firebaseDatabase = FirebaseDatabase.getInstance();
         chatDatabase = firebaseDatabase.getReference("chat");
     }

@@ -84,6 +84,7 @@ public class CafeListMyCafeAdapter extends RecyclerView.Adapter<CafeListMyCafeAd
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), CafeActivity.class);
+            intent.putExtra("cafeName", cafeListItems.get(getAdapterPosition()).getCafeTitle());
             (v.getContext()).startActivity(intent);
         }
     }

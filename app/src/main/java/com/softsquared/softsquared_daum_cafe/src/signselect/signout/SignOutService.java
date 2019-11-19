@@ -1,5 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.signselect.signout;
 
+import android.util.Log;
+
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutActivityView;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.interfaces.SignOutRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.signselect.signout.models.SignOutRequest;
@@ -20,12 +22,14 @@ public class SignOutService {
 
     public void tryResign() {
         final SignOutRetrofitInterface signOutRetrofitInterface = getRetrofit().create(SignOutRetrofitInterface.class);
-        signOutRetrofitInterface.resignUser(new SignOutRequest()).enqueue(new Callback<SignOutResponse>() {
+        signOutRetrofitInterface.resignUser().enqueue(new Callback<SignOutResponse>() {
             @Override
             public void onResponse(Call<SignOutResponse> call, Response<SignOutResponse> response) {
                 SignOutResponse signOutResponse = response.body();
-                if (signOutResponse == null) {
-                    mSignOutActivityView.validateFailure(null);
+                Log.i("SIGNOUT", "SUCCESS");
+                if (signOutResponse == null || !signOutResponse.getIsSuccess()) {
+                    Log.i("SIGNOUT", "FAILURE");
+                    mSignOutActivityView.validateFailure((signOutResponse == null) ? null : signOutResponse.getMessage());
                     return;
                 }
                 mSignOutActivityView.validateSuccess(null);

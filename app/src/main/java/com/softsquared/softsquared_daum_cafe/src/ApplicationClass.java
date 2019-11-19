@@ -56,6 +56,10 @@ public class ApplicationClass extends Application {
     public static String USER_NAME = "user-name";
     //public static String userProfileImg;
 
+    // FCM TOKEN 값
+    public static String FCM_TOKEN = "FCM-TOKEN";
+    public static String FCM_TOKEN_POSTED = "FCM-TOKEN-POSTED";
+
     // Language 값
     public static String LANGUAGE = "language";
 
@@ -134,6 +138,9 @@ public class ApplicationClass extends Application {
         instance = this;
         if (sSharedPreferences == null) {
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        }
+        if (sSharedPreferences.getString(LANGUAGE, null) == null) {
+            sSharedPreferences.edit().putString(LANGUAGE, getResources().getConfiguration().locale.toLanguageTag()).apply();
         }
         KakaoSDK.init(new KakaoSDKAdapter());
     }

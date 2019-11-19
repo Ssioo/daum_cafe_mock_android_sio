@@ -88,14 +88,20 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     ArrayList<ArrayList<CafeResponse.Result>> articleList = new ArrayList<>();
 
+    private String cafeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe);
 
+        /* Get Intent */
+        Intent intent = getIntent();
+        cafeName = intent.getStringExtra("cafeName");
+
         /* Get Articles From Server */
         getArticles("anicafe");
+        //getArticles(cafeName);
 
         /* findViewByID */
         dlCafe = findViewById(R.id.dl_cafe);
@@ -213,8 +219,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
             return;
         }
         if (requestCode == REQUEST_TO_WRITE) {
-            Log.i("REFRESH TEST", "ok from write");
             getArticles("anicafe");
+            //getArticles(cafeName);
         }
     }
 
@@ -373,9 +379,6 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     public void onRefresh() {
         // Board List Refresh.
         // Not Article Refresh.
-        Log.i("REFRESH TEST", "ok from refresh");
-        //getArticles("anicafe");
-        //vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList));
         srlBoardListDrawer.setRefreshing(false);
     }
 
