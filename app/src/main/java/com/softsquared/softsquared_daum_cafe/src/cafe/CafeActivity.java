@@ -30,8 +30,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.adpater.CafeBoardPagerAdapter;
+import com.softsquared.softsquared_daum_cafe.src.cafe.adpater.CafeCategoryListAdapter;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.Category;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CategoryResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
@@ -100,8 +103,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         cafeName = intent.getStringExtra("cafeName");
 
         /* Get Articles From Server */
-        getArticles("anicafe");
-        //getArticles(cafeName);
+        getArticles(cafeName);
+        getCategories();
 
         /* findViewByID */
         dlCafe = findViewById(R.id.dl_cafe);
@@ -178,6 +181,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
             tvUserNameDrawer.setText(sSharedPreferences.getString(USER_EMAIL, ""));
         else
             tvUserNameDrawer.setText("로그인해주세요.");
+        tvCafeTitle.setText(cafeName);
 
     }
 
@@ -189,7 +193,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         llToolbarContainer.setLayoutParams(llParams);
         // Title
         TextView tvTitle = new TextView(context);
-        tvTitle.setText(tvCafeTitle.getText().toString());
+        tvTitle.setText(cafeName);
         tvTitle.setTextColor(Color.WHITE);
         tvTitle.setTextSize(17);
         tvTitle.setGravity(Gravity.CENTER);
@@ -219,8 +223,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
             return;
         }
         if (requestCode == REQUEST_TO_WRITE) {
-            getArticles("anicafe");
-            //getArticles(cafeName);
+            getArticles(cafeName);
         }
     }
 
@@ -232,6 +235,19 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         articleList.add(results);
         vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList));
     }
+
+    @Override
+    public void validateCategorySuccess(ArrayList<CategoryResponse.Result> results) {
+        // Category 구성
+        hideProgressDialog();
+        ArrayList<Category> categories = new ArrayList<>();
+        for (CategoryResponse.Result result : results) {
+            categories.add(new Category(result.getCategoryName(), "", true));
+        }
+        rvBoardList2.setAdapter(new CafeCategoryListAdapter(categories, this));
+        rvBoardList3.setAdapter(new CafeCategoryListAdapter(categories, this));
+    }
+
     @Override
     public void validateFailure(String message) {
         hideProgressDialog();
@@ -242,6 +258,12 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         showProgressDialog();
         final CafeService cafeService = new CafeService(this);
         cafeService.getArticles(cafeName);
+    }
+
+    public void getCategories() {
+        showProgressDialog();
+        final CafeService cafeService = new CafeService(this);
+        cafeService.getCategories();
     }
 
     @Override
@@ -261,7 +283,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 break;
             case R.id.tv_write_cafe:
                 // Write Activity로 이동
-                startNextActivityForResultWithData(WriteActivity.class, REQUEST_TO_WRITE, "activityMode", "CREATE");
+                Intent intent1 = new Intent(CafeActivity.this, WriteActivity.class);
+                intent1.putExtra("activityMode", "CREATE");
+                intent1.putExtra("cafeName", cafeName);
+                startActivityForResult(intent1, REQUEST_TO_WRITE);
                 break;
             case R.id.tv_refresh_cafe:
                 showToast(getString(R.string.nofunction));
@@ -377,8 +402,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     @Override
     public void onRefresh() {
-        // Board List Refresh.
-        // Not Article Refresh.
+        // Category List Refresh.
+        getCategories();
         srlBoardListDrawer.setRefreshing(false);
     }
 

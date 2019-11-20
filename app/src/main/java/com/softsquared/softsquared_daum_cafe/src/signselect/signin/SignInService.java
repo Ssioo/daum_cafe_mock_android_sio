@@ -9,7 +9,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.FCM_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.getRetrofit;
+import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class SignInService {
     private final SignInActivityView signInActivityView;
@@ -20,7 +22,7 @@ public class SignInService {
 
     void getSignIn(String email, String password) {
         final SignInRetrofitInterface mainRetrofitInterface = getRetrofit().create(SignInRetrofitInterface.class);
-        mainRetrofitInterface.getSignIn(new SignInRequest(email, password)).enqueue(new Callback<SignInResponse>() {
+        mainRetrofitInterface.getSignIn(new SignInRequest(email, password, sSharedPreferences.getString(FCM_TOKEN, null))).enqueue(new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 final SignInResponse signInResponse = response.body();
@@ -40,7 +42,7 @@ public class SignInService {
                     signInActivityView.validateSuccessWithNewToken(signInResponse.getToken(), signInResponse.getUserInfo().getUserId(), signInResponse.getUserInfo().getName());
                 }
                 if (signInResponse.getName() != null) {
-                    signInActivityView.validateSuccessWithoutNewToken(signInResponse.getName());
+                    signInActivityView.validateSuccessWithoutNewToken(signInResponse.getName(), signInResponse.getId());
                 }
             }
 
@@ -51,7 +53,4 @@ public class SignInService {
         });
     }
 
-    void getUserInfo() {
-
-    }
 }

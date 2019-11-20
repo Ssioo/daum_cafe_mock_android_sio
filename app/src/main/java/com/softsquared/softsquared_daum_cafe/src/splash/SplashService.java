@@ -2,26 +2,16 @@ package com.softsquared.softsquared_daum_cafe.src.splash;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashActivityView;
 import com.softsquared.softsquared_daum_cafe.src.splash.interfaces.SplashRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.splash.models.AutoSignInResponse;
-import com.softsquared.softsquared_daum_cafe.src.splash.models.FCMTokenRequest;
-import com.softsquared.softsquared_daum_cafe.src.splash.models.FCMTokenResponse;
 import com.softsquared.softsquared_daum_cafe.src.splash.models.UserInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.FCM_TOKEN;
 import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.getRetrofit;
-import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sSharedPreferences;
 
 public class SplashService {
 
@@ -73,42 +63,6 @@ public class SplashService {
                 Log.i("AutoLogin", "processing...Failed");
                 t.printStackTrace();
                 mSplashActivityView.validateFailure(null);
-            }
-        });
-    }
-
-    void getFCMToken() {
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            mSplashActivityView.validateFCMTokenGetFailure(null);
-                            return;
-                        }
-                        mSplashActivityView.validateFCMTokenGetSuccess(task.getResult().getToken());
-                    }
-                });
-    }
-
-    void postFCMToken(String token) {
-        final SplashRetrofitInterface splashRetrofitInterface = getRetrofit().create(SplashRetrofitInterface.class);
-        splashRetrofitInterface.postToken(new FCMTokenRequest(token)).enqueue(new Callback<FCMTokenResponse>() {
-            @Override
-            public void onResponse(Call<FCMTokenResponse> call, Response<FCMTokenResponse> response) {
-                final FCMTokenResponse tokenResponse = response.body();
-                if (tokenResponse == null || !tokenResponse.getIsSuccess()) {
-                    mSplashActivityView.validateFCMTokenPostFailure((tokenResponse == null) ? null : tokenResponse.getMessage());
-                    return;
-                }
-
-                mSplashActivityView.validateFCMTokenPostSuccess(null);
-            }
-
-            @Override
-            public void onFailure(Call<FCMTokenResponse> call, Throwable t) {
-                t.printStackTrace();
-                mSplashActivityView.validateFCMTokenPostFailure(null);
             }
         });
     }

@@ -7,10 +7,12 @@ public class SignInRequest {
     private String id;
     @SerializedName("password")
     private String password;
+    @SerializedName("device") private String deviceId;
 
-    public SignInRequest(String id, String password) {
+    public SignInRequest(String id, String password, String deviceId) {
         this.id = id;
         this.password = password;
+        this.deviceId = deviceId;
     }
 
     public String getId() {
@@ -19,5 +21,9 @@ public class SignInRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
     }
 }

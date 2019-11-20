@@ -10,19 +10,22 @@ public class ArticleDetailResponse extends DefaultResponse {
     @SerializedName("result")
     private ArrayList<Result> results;
 
-    public class Result {
+    public static class Result {
         @SerializedName("title") private String title;
-        @SerializedName("contents") private String cotents;
+        @SerializedName("contents") private String contents;
         @SerializedName("userId") private String userId;
         @SerializedName("img") private String imgUri;
         @SerializedName("createdAt") private String createdAt;
+        @SerializedName("views") private int viewCount;
+        @SerializedName("content") private String commentContents;
+        @SerializedName("createAt") private String commentCreatedAt;
 
         public String getTitle() {
             return title;
         }
 
-        public String getCotents() {
-            return cotents;
+        public String getContents() {
+            return contents;
         }
 
         public String getUserId() {
@@ -35,6 +38,18 @@ public class ArticleDetailResponse extends DefaultResponse {
 
         public String getCreatedAt() {
             return createdAt;
+        }
+
+        public int getViewCount() {
+            return viewCount;
+        }
+
+        public String getCommentCreatedAt() {
+            return commentCreatedAt;
+        }
+
+        public String getCommentContents() {
+            return commentContents;
         }
     }
 

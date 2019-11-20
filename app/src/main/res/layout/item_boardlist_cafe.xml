@@ -9,14 +9,14 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/iv_type_boardlist"
+        android:id="@+id/iv_type_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_list_board"
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_title_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -26,7 +26,7 @@
         android:layout_gravity="center"/>
 
     <ImageView
-        android:id="@+id/iv_star_boardlist"
+        android:id="@+id/iv_star_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_star_full"

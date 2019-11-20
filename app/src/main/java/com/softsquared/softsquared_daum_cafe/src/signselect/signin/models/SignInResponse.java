@@ -7,7 +7,8 @@ public class SignInResponse extends DefaultResponse {
     @SerializedName("jwt")
     private String token;
 
-    @SerializedName("name") String name; // token으로 로그인 시 resonse.
+    @SerializedName("name") String name; // token으로 로그인 시 response.
+    @SerializedName("id") String id; // token으로 로그인 시 response
 
     @SerializedName("userInfo")
     private UserInfo userInfo;
@@ -25,6 +26,10 @@ public class SignInResponse extends DefaultResponse {
 
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public static class UserInfo {

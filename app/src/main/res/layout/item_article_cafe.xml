@@ -97,7 +97,7 @@
         tools:text="article board" />
 
     <ImageView
-        android:id="@+id/tv_article_countcomment_background_articlelist"
+        android:id="@+id/iv_article_countcomment_background_articlelist"
         android:layout_width="42dp"
         android:layout_height="42dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -3,6 +3,7 @@ package com.softsquared.softsquared_daum_cafe.src.cafe;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeActivityView;
 import com.softsquared.softsquared_daum_cafe.src.cafe.interfaces.CafeRetrofitInterface;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CategoryResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,27 @@ public class CafeService {
 
             @Override
             public void onFailure(Call<CafeResponse> call, Throwable t) {
+                t.printStackTrace();
+                mCafeActivityView.validateFailure(null);
+            }
+        });
+    }
+
+    public void getCategories() {
+        final CafeRetrofitInterface cafeRetrofitInterface = getRetrofit().create(CafeRetrofitInterface.class);
+        cafeRetrofitInterface.getCategories().enqueue(new Callback<CategoryResponse>() {
+            @Override
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                final CategoryResponse categoryResponse = response.body();
+                if (categoryResponse == null || !categoryResponse.getIsSuccess()) {
+                    mCafeActivityView.validateFailure(categoryResponse == null ? null : categoryResponse.getMessage());
+                    return;
+                }
+                mCafeActivityView.validateCategorySuccess(categoryResponse.getResults());
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 t.printStackTrace();
                 mCafeActivityView.validateFailure(null);
             }

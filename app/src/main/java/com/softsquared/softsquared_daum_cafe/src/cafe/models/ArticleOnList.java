@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.models;
 
 public class ArticleOnList {
+    private int boardId;
     private String title;
     private String author;
     private String createDate;
@@ -11,13 +12,18 @@ public class ArticleOnList {
     public ArticleOnList() {
     }
 
-    public ArticleOnList(String title, String author, String createDate, int viewCount, int commentCount, String board) {
+    public ArticleOnList(int boardId, String title, String author, String createDate, int viewCount, int commentCount, String board) {
+        this.boardId = boardId;
         this.title = title;
         this.author = author;
         this.createDate = createDate;
         this.viewCount = viewCount;
         this.commentCount = commentCount;
         this.board = board;
+    }
+
+    public int getBoardId() {
+        return boardId;
     }
 
     public String getTitle() {

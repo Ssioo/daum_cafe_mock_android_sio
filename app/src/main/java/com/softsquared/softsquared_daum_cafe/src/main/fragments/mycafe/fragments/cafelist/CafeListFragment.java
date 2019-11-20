@@ -1,5 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.MyCafeFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.adpater.CafeListMyCafeAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.interfaces.CafeListFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.model.CafeListItem;
@@ -75,6 +78,17 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == MyCafeFragment.REQUEST_TO_ADDCAFE) {
+            getCafeList();
+        }
+    }
+
+    @Override
     public void validateSuccess(ArrayList<CafeListResponse.Result> results) {
         hideProgressDialog();
 
@@ -100,6 +114,8 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
         tvCountAllCafe.setText(String.valueOf(allCafeList.size()));
     }
 
+
+
     @Override
     public void validateFailure(String message) {
         hideProgressDialog();
@@ -114,7 +130,7 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
 
     @Override
     public void onRefresh() {
-        //getCafeList();
+        getCafeList();
         srlMyCafeCafe.setRefreshing(false);
     }
 }

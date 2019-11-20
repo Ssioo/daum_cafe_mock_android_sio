@@ -1,11 +1,11 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.models;
 
-public class Board {
+public class Category {
     String title;
     String category;
     boolean userStarred;
 
-    public Board(String title, String category, boolean userStarred) {
+    public Category(String title, String category, boolean userStarred) {
         this.title = title;
         this.category = category;
         this.userStarred = userStarred;

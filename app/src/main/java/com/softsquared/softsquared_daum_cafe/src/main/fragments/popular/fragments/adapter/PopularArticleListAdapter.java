@@ -168,6 +168,11 @@ public class PopularArticleListAdapter extends RecyclerView.Adapter<RecyclerView
         public void onClick(View v) {
             if (v == itemView) {
                 Intent intent = new Intent(v.getContext(), ArticleDetailActivity.class);
+                intent.putExtra("boardId", articles.get(getAdapterPosition()).getBoardId());
+
+                intent.putExtra("viewCount", 0);
+                intent.putExtra("commentCount", 0);
+                intent.putExtra("articleCreatedAt", 0);
                 v.getContext().startActivity(intent);
             }
         }

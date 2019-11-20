@@ -57,7 +57,7 @@ public class PopularArticleListFragment extends BaseFragment implements PopularA
         /* RecyclerView */
         palAdapter = new PopularArticleListAdapter(articlesPopular, getActivity(), viewType);
         rvPopular.setAdapter(palAdapter);
-        if (viewType == PopularArticleListAdapter.VIEWTYPE_IMAGE) {
+        if (viewType == PopularArticleListAdapter.VIEWTYPE_IMAGE || viewType == PopularArticleListAdapter.VIEWTYPE_DEFAULT) {
             rvPopular.addItemDecoration(new RecyclerViewDecoration(30, 30));
         } else if (viewType == PopularArticleListAdapter.VIEWTYPE_NOIMAGE) {
             rvPopular.addItemDecoration(new RecyclerViewDecoration(1, 30));

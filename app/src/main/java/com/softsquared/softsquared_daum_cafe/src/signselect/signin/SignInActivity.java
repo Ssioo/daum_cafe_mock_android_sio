@@ -100,12 +100,12 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     }
 
     @Override
-    public void validateSuccessWithoutNewToken(String name) {
+    public void validateSuccessWithoutNewToken(String name, String id) {
         hideProgressDialog();
         showToast(getString(R.string.success_signin));
         sSharedPreferences.edit().putBoolean(USER_LOGINNED, true).apply();
         sSharedPreferences.edit().putString(USER_NAME, name).apply();
-        sSharedPreferences.edit().putString(USER_EMAIL, name).apply();
+        sSharedPreferences.edit().putString(USER_EMAIL, id).apply();
         startNextActivity(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
     }

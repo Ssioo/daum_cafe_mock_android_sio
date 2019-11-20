@@ -59,15 +59,18 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
                 holder.ivImg.setVisibility(View.GONE);
             } // 글 이미지
             holder.tvViewCount.setText("조회 " + article.getViewCount()); // 글 조회수
-            /*if (article.getViewCount() == 0) {
+            if (article.getCommentCount() == 0) {
                 holder.tvCommentCount.setVisibility(View.INVISIBLE);
+                holder.ivCommentCountBackground.setVisibility(View.INVISIBLE);
             } else {
-                holder.tvCommentCount.setText(String.valueOf(article.getViewCount()));
-            }*/ // 글 댓글수
+                holder.tvCommentCount.setText(String.valueOf(article.getCommentCount()));
+                holder.ivCommentCountBackground.setVisibility(View.VISIBLE);
+            } // 글 댓글수
             holder.tvBoard.setText(article.getCategoryType()); // 글 게시판(카테고리)
 
             int timeDesc = article.getCreatedAt().lastIndexOf('시');
-            if (timeDesc != -1) {
+            int timeDesc2 = article.getCreatedAt().lastIndexOf('분');
+            if (timeDesc != -1 || timeDesc2 != -1) {
                 holder.ivNew.setVisibility(View.VISIBLE);
             } else {
                 holder.ivNew.setVisibility(View.GONE);
@@ -87,6 +90,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
         private TextView tvAuthor;
         private TextView tvViewCount;
         private TextView tvCommentCount;
+        private ImageView ivCommentCountBackground;
         private TextView tvBoard;
         private ImageView ivImg;
         private ImageView ivNew;
@@ -100,6 +104,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
             tvAuthor = itemView.findViewById(R.id.tv_article_author_articlelist);
             tvViewCount = itemView.findViewById(R.id.tv_article_countview_articlelist);
             tvCommentCount = itemView.findViewById(R.id.tv_article_countcomment_articlelist);
+            ivCommentCountBackground = itemView.findViewById(R.id.iv_article_countcomment_background_articlelist);
             tvBoard = itemView.findViewById(R.id.tv_article_board_articlelist);
             ivImg = itemView.findViewById(R.id.iv_img_article_cafe);
             ivNew = itemView.findViewById(R.id.iv_new_article_cafe);
@@ -112,6 +117,10 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
         public void onClick(View v) {
             if (v == itemView) {
                 Intent intent = new Intent(mContext, ArticleDetailActivity.class);
+                intent.putExtra("boardId", articlesOnList.get(getAdapterPosition()).getBoardId());
+                intent.putExtra("viewCount", articlesOnList.get(getAdapterPosition()).getViewCount());
+                intent.putExtra("commentCount", articlesOnList.get(getAdapterPosition()).getCommentCount());
+                intent.putExtra("articleCreatedAt", articlesOnList.get(getAdapterPosition()).getCreatedAt());
                 mContext.startActivity(intent);
             }
         }

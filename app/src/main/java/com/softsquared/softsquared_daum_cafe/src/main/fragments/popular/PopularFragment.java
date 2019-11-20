@@ -126,25 +126,28 @@ public class PopularFragment extends BaseFragment implements PopularFragmentView
         /* DrawerLayout Slide Listener */
         dlPopular.addDrawerListener(this);
 
-        // articles data
+        // articles Dummy Default data
         ArrayList<PopularResponse.Result> dummy1 = new ArrayList<>();
-        dummy1.add(new PopularResponse.Result("", "", ""));
-        dummy1.add(new PopularResponse.Result("", "", ""));
-        dummy1.add(new PopularResponse.Result("", "", ""));
-        dummy1.add(new PopularResponse.Result("", "", ""));
-        dummy1.add(new PopularResponse.Result("", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy1.add(new PopularResponse.Result(0, "", "", "", ""));
         ArrayList<PopularResponse.Result> dummy2 = new ArrayList<>();
-        dummy2.add(new PopularResponse.Result("", "", ""));
-        dummy2.add(new PopularResponse.Result("", "", ""));
-        dummy2.add(new PopularResponse.Result("", "", ""));
-        dummy2.add(new PopularResponse.Result("", "", ""));
-        dummy2.add(new PopularResponse.Result("", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy2.add(new PopularResponse.Result(0, "", "", "", ""));
         ArrayList<PopularResponse.Result> dummy3 = new ArrayList<>();
-        dummy3.add(new PopularResponse.Result("", "", ""));
-        dummy3.add(new PopularResponse.Result("", "", ""));
-        dummy3.add(new PopularResponse.Result("", "", ""));
-        dummy3.add(new PopularResponse.Result("", "", ""));
-        dummy3.add(new PopularResponse.Result("", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
+        dummy3.add(new PopularResponse.Result(0, "", "", "", ""));
         articles.add(dummy1);
         articles.add(dummy2);
         articles.add(dummy3);

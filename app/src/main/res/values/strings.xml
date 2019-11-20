@@ -80,7 +80,7 @@
     <string name="friend_mycafe">친구</string>
     <string name="bookmark_mycafe">북마크</string>
 
-    <!-- MyCafe Board Fragment -->
+    <!-- MyCafe Category Fragment -->
     <string name="favorite_board_mycafe">즐겨찾는 게시판</string>
 
     <!-- MyCafe Notification Fragment -->

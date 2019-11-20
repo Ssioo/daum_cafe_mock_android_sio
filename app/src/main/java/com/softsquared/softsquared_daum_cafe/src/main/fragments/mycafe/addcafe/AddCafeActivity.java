@@ -115,6 +115,7 @@ public class AddCafeActivity extends BaseActivity implements AddCafeActivityView
     @Override
     public void validateSuccess(String text) {
         showToast(getString(R.string.success_addcafe));
+        setResult(RESULT_OK);
         finish();
     }
 

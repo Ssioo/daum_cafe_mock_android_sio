@@ -6,7 +6,7 @@ public interface SignInActivityView extends View.OnClickListener{
 
     void validateSuccessWithNewToken(String token, String id, String name);
 
-    void validateSuccessWithoutNewToken(String name);
+    void validateSuccessWithoutNewToken(String name, String id);
 
     void validateFailure(String message);
 }

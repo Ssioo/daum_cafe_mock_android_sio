@@ -53,6 +53,8 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
 
     private boolean IMAGE_ATTACHED = false;
 
+    private String mCafeName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         /* get Intent */
         Intent intent = getIntent();
         String modeStr = intent.getStringExtra("activityMode");
+        mCafeName = intent.getStringExtra("cafeName");
         if (modeStr != null && modeStr.equals("CREATE"))
             activityMode = MODE_CREATE;
         else if (modeStr != null && modeStr.equals("EDIT"))
@@ -219,8 +222,8 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
             case R.id.btn_submit_write:
                 // Server Connecting...
                 if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
-                    postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
-                    //postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe");
+                    postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName);
+                    //postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName);
                 break;
         }
     }
@@ -258,8 +261,8 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
 
     @Override
     public void validateUploadImageSuccess(String url) {
-        postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
-        //postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", cafeName, url);
+        //postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
+        postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName, url);
     }
 
     @Override

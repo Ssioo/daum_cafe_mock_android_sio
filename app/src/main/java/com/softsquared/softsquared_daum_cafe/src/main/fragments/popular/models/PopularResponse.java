@@ -11,8 +11,10 @@ public class PopularResponse extends DefaultResponse {
     private ArrayList<Result> results;
 
     public static class Result {
+        @SerializedName("idboard") private int boardId;
         @SerializedName("title") private String title;
         @SerializedName("contents") private String contents;
+        @SerializedName("img") private String img;
         @SerializedName("id") private String userId;
 
         public String getTitle() {
@@ -27,9 +29,19 @@ public class PopularResponse extends DefaultResponse {
             return userId;
         }
 
-        public Result(String title, String contents, String userId) {
+        public int getBoardId() {
+            return boardId;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public Result(int boardId, String title, String contents, String img, String userId) {
+            this.boardId = boardId;
             this.title = title;
             this.contents = contents;
+            this.img = img;
             this.userId = userId;
         }
     }

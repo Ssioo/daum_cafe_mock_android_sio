@@ -1,5 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,14 +17,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.kakao.auth.authorization.AuthorizationResult;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.addcafe.AddCafeActivity;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.addcafe.AddCafeService;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.CafeListFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.search.SearchActivity;
 
 public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
+
+    public static final int REQUEST_TO_ADDCAFE = 10;
 
     private TabLayout tlMyCafe;
     private ViewPager vpMyCafe;
@@ -68,7 +75,6 @@ public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
         /* TabLayout Add on Tab Selected Listener */
         tlMyCafe.addOnTabSelectedListener(this);
 
-
         return view;
     }
 
@@ -103,10 +109,24 @@ public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_TO_ADDCAFE) {
+            // MycafeFragment -> AddCafe 액티비티 시작 -> result값 CafeListFragment에서 읽기.
+            //((CafeListFragment) mcpAdapter.getItem(0)).getCafeList(); // ?
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startNextActivity(AddCafeActivity.class);
+                Intent intent = new Intent(getActivity(), AddCafeActivity.class);
+                startActivityForResult(intent, REQUEST_TO_ADDCAFE);
+
                 break;
             case R.id.tb_search_mycafe:
                 startNextActivity(SearchActivity.class);
