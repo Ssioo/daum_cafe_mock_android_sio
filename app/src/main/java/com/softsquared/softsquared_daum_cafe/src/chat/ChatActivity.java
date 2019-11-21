@@ -63,6 +63,14 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 Log.i(TAG, bottom + ", " + oldBottom);
+                if (bottom < oldBottom) {
+                    rvChat.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            rvChat.smoothScrollToPosition(chatListViewAdapter.getItemCount() - 1);
+                        }
+                    }, 100);
+                }
             }
         });
 
