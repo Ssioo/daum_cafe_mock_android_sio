@@ -3,6 +3,7 @@ package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,12 +18,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.kakao.auth.authorization.AuthorizationResult;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.MainActivity;
+import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.adapter.MyCafePagerAdapter;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.addcafe.AddCafeActivity;
-import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.addcafe.AddCafeService;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragments.cafelist.CafeListFragment;
 import com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.interfaces.MyCafeFragmentView;
 import com.softsquared.softsquared_daum_cafe.src.search.SearchActivity;
@@ -57,8 +57,10 @@ public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
         vpMyCafe = view.findViewById(R.id.vp_mycafe);
         tbMyCafe = view.findViewById(R.id.toolbar_mycafe);
 
+        /* ViewPager */
         mcpAdapter = new MyCafePagerAdapter(getChildFragmentManager(), 4);
         vpMyCafe.setAdapter(mcpAdapter);
+        vpMyCafe.setOffscreenPageLimit(3);
 
         /* Toolbar */
         setHasOptionsMenu(true);
@@ -115,8 +117,7 @@ public class MyCafeFragment extends BaseFragment implements MyCafeFragmentView {
             return;
         }
         if (requestCode == REQUEST_TO_ADDCAFE) {
-            // MycafeFragment -> AddCafe 액티비티 시작 -> result값 CafeListFragment에서 읽기.
-            //((CafeListFragment) mcpAdapter.getItem(0)).getCafeList(); // ?
+            getChildFragmentManager().getFragments().get(0).onActivityResult(requestCode, resultCode, data);
         }
     }
 

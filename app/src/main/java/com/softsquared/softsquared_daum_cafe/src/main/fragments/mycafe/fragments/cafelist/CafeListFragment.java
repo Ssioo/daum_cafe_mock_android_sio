@@ -3,6 +3,7 @@ package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.fragment
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,6 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
 
         // Dummy Data
         ArrayList<CafeListItem> dummy = new ArrayList<>();
-        dummy.add(new CafeListItem("", "소프트스퀘어드", "2019.11.02", true));
         CafeListMyCafeAdapter clmAdapter = new CafeListMyCafeAdapter(dummy, getActivity());
         rvMyCafeList.setAdapter(clmAdapter);
 
@@ -79,6 +79,7 @@ public class CafeListFragment extends BaseFragment implements CafeListFragmentVi
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.i("CafeListFragment",  "Intent received");
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
             return;

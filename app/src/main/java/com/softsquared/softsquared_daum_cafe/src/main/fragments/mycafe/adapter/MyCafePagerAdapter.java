@@ -1,4 +1,4 @@
-package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe;
+package com.softsquared.softsquared_daum_cafe.src.main.fragments.mycafe.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
