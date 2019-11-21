@@ -22,7 +22,8 @@
             android:name=".src.chat.ChatActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".src.signselect.signout.SignOutActivity" />
-        <activity android:name=".src.articledetail.ArticleDetailActivity" />
+        <activity android:name=".src.articledetail.ArticleDetailActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".src.cafe.write.WriteActivity"
             android:windowSoftInputMode="adjustResize" />

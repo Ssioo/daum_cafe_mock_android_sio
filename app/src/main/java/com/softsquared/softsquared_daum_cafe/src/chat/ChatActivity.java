@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.chat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -58,6 +59,12 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
         /* RecyclerView */
         final ChatListViewAdapter chatListViewAdapter = new ChatListViewAdapter(new ArrayList<ChatRequest>(), this);
         rvChat.setAdapter(chatListViewAdapter);
+        rvChat.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                Log.i(TAG, bottom + ", " + oldBottom);
+            }
+        });
 
         /* Firebase Database Reference */
         fdrChat = chatDatabase.child("anicafe");

@@ -3,6 +3,8 @@ package com.softsquared.softsquared_daum_cafe.src.articledetail;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailRetrofitService;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.ArticleDetailResponse;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.models.CommentRequest;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.models.CommentResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +34,28 @@ public class ArticleDetailService {
 
             @Override
             public void onFailure(Call<ArticleDetailResponse> call, Throwable t) {
+                t.printStackTrace();
+                mArticleDetailActivityView.validateFailure(null);
+            }
+        });
+    }
+
+    public void postComment(int boardId, String comment) {
+        final ArticleDetailRetrofitService articleDetailRetrofitService = getRetrofit().create(ArticleDetailRetrofitService.class);
+        articleDetailRetrofitService.postComment(boardId, new CommentRequest(comment)).enqueue(new Callback<CommentResponse>() {
+            @Override
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                final CommentResponse commentResponse = response.body();
+                if (commentResponse == null || !commentResponse.getIsSuccess()) {
+                    mArticleDetailActivityView.validateFailure((commentResponse == null) ? null : commentResponse.getMessage());
+                    return;
+                }
+
+                mArticleDetailActivityView.validateWriteCommentSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
                 t.printStackTrace();
                 mArticleDetailActivityView.validateFailure(null);
             }

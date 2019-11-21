@@ -2,12 +2,13 @@ package com.softsquared.softsquared_daum_cafe.src.articledetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -51,6 +54,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private TextView tvArticleCommentCount;
     private ImageView ivImgArticle;
     private RecyclerView rvComments;
+    private TextView tvInputComment;
     private DrawerLayout dlArticleDetail;
     private ImageView ivCloseDrawer;
     private TextView tvHome;
@@ -67,10 +71,18 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private TextView tvUserName;
     private AppCompatImageButton ibtnSetting;
     private ImageView ivCommentCountBackground;
+    private ConstraintLayout clInputCommentContainer;
+    private LinearLayout llBottomNavContainer;
+    private TextView tvInputCommentHeader;
+    private LinearLayout llWriteComment;
+    private TextView tvSubmitComment;
+    private EditText etComment;
+    private NestedScrollView nsvArticleDetail;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
     private boolean DRAWER_ITEM3_OPENED = true;
+    private boolean INPUT_COMMENT_OPENED = false;
 
     private int mBoardId;
     private int mArticleViewCount;
@@ -118,6 +130,14 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvArticleViewCount = findViewById(R.id.tv_viewcount_article_detail);
         tvArticleCommentCount = findViewById(R.id.tv_comment_count_article_detail);
         ivCommentCountBackground = findViewById(R.id.iv_comment_count_background_articledetail);
+        clInputCommentContainer = findViewById(R.id.cl_input_comment_container_articledetail);
+        llBottomNavContainer = findViewById(R.id.ll_bottom_nav_container_articledetail);
+        tvInputCommentHeader = findViewById(R.id.tv_header_input_comment_container);
+        tvInputComment = findViewById(R.id.tv_write_comment_articledetail);
+        llWriteComment = findViewById(R.id.ll_write_comment_articledetail);
+        tvSubmitComment = findViewById(R.id.tv_submit_comment_articledetail);
+        etComment = findViewById(R.id.et_input_comment_articledetail);
+        nsvArticleDetail = findViewById(R.id.nsv_articledetail);
 
         /* Get Contents From Server */
         getContents(mBoardId);
@@ -128,6 +148,10 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_chevron_left_black);
+
+
+        /* Scroll View Add on Layout Change Listener */
+        nsvArticleDetail.addOnLayoutChangeListener(this);
 
         /* RefreshLayout */
         srlActicleDetail.setOnRefreshListener(this);
@@ -147,6 +171,31 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         ivCloseItem1.setOnClickListener(this);
         ivCloseItem2.setOnClickListener(this);
         ivCloseItem3.setOnClickListener(this);
+        tvInputComment.setOnClickListener(this);
+        llWriteComment.setOnClickListener(this);
+        tvSubmitComment.setOnClickListener(this);
+
+        /* Edit Text Change Watcher */
+        etComment.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().length() == 0) {
+                    tvSubmitComment.setEnabled(false);
+                } else {
+                    tvSubmitComment.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         /* Set View */
         if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
@@ -156,6 +205,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvArticleCommentCount.setText(String.valueOf(mCommentCount)); // 댓글수는 intent에서.
         tvArticleViewCount.setText(String.valueOf(mArticleViewCount)); // 조회수는 intent에서.
         tvArticleCategoty.setText(mCategoryType); // 카테고리 이름은 intent에서.
+        clInputCommentContainer.setVisibility(View.GONE);
+        tvInputCommentHeader.setVisibility(View.GONE);
     }
 
     @Override
@@ -185,6 +236,18 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         getContents(mBoardId);
         srlActicleDetail.setRefreshing(false);
         srlBoardArticleDetail.setRefreshing(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (INPUT_COMMENT_OPENED) {
+            llBottomNavContainer.setVisibility(View.VISIBLE);
+            clInputCommentContainer.setVisibility(View.GONE);
+            tvInputCommentHeader.setVisibility(View.GONE);
+            INPUT_COMMENT_OPENED = false;
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
@@ -246,6 +309,17 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 return;
             case R.id.iv_close_articledetail_drawer:
                 break;
+            case R.id.ll_write_comment_articledetail:
+            case R.id.tv_write_comment_articledetail:
+                if (!INPUT_COMMENT_OPENED) {
+                    INPUT_COMMENT_OPENED = true;
+                    llBottomNavContainer.setVisibility(View.INVISIBLE);
+                    clInputCommentContainer.setVisibility(View.VISIBLE);
+                    tvInputCommentHeader.setVisibility(View.VISIBLE);
+                }
+                return;
+            case R.id.tv_submit_comment_articledetail:
+                postComment(mBoardId, etComment.getText().toString());
         }
         dlArticleDetail.closeDrawers();
     }
@@ -254,6 +328,13 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         showProgressDialog();
         final ArticleDetailService articleDetailService = new ArticleDetailService(this);
         articleDetailService.getArticleDetail(boardId);
+    }
+
+    private void postComment(int boardId, String comment) {
+        showProgressDialog();
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.postComment(boardId, comment);
+        etComment.setText("");
     }
 
     @Override
@@ -292,5 +373,22 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     public void validateFailure(String message) {
         hideProgressDialog();
         showToast("내용을 불러오는데 실패하였습니다.");
+    }
+
+    @Override
+    public void validateWriteCommentSuccess(String message) {
+        hideProgressDialog();
+        getContents(mBoardId);
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        switch (v.getId()) {
+            case R.id.nsv_articledetail:
+                if (bottom < oldBottom) {
+                    nsvArticleDetail.fullScroll(View.FOCUS_DOWN);
+                }
+                break;
+        }
     }
 }
