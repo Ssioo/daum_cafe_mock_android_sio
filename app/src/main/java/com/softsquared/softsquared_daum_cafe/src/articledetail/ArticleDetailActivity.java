@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +40,9 @@ import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sShared
 public class ArticleDetailActivity extends BaseActivity implements ArticleDetailActivityView {
 
     private SwipeRefreshLayout srlActicleDetail;
+    private SwipeRefreshLayout srlBoardArticleDetail;
     private Toolbar tbArticleDetail;
+    private TextView tvArticleCategoty;
     private TextView tvArticleTitle;
     private TextView tvArticleAuthor;
     private TextView tvArticleContents;
@@ -63,6 +66,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private LinearLayout llProfileDrawer;
     private TextView tvUserName;
     private AppCompatImageButton ibtnSetting;
+    private ImageView ivCommentCountBackground;
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -70,8 +74,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     private int mBoardId;
     private int mArticleViewCount;
-    private int mArticleCreatedAt;
     private int mCommentCount;
+    private String mCategoryType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +84,17 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
         /* Get Intent */
         Intent intent = getIntent();
-        mBoardId = intent.getIntExtra("boardId", 2);
-        mArticleCreatedAt = intent.getIntExtra("articleCreatedAt", 0);
+        mBoardId = intent.getIntExtra("boardId", 0);
         mArticleViewCount = intent.getIntExtra("viewCount", 0);
         mCommentCount = intent.getIntExtra("commentCount", 0);
+        mCategoryType = intent.getStringExtra("categoryType");
 
         /* findViewByID */
         srlActicleDetail = findViewById(R.id.srl_articledetail);
+        srlBoardArticleDetail = findViewById(R.id.srl_drawer_articledetail_drawer);
         tbArticleDetail = findViewById(R.id.toolbar_articledetail);
         dlArticleDetail = findViewById(R.id.dl_articledetail);
+        tvArticleCategoty = findViewById(R.id.tv_board_title_article_detail);
         ivImgArticle = findViewById(R.id.iv_img_article_detail);
         ivCloseDrawer = findViewById(R.id.iv_close_articledetail_drawer);
         ibtnSetting = findViewById(R.id.ibtn_setting_articledetail_drawer);
@@ -111,10 +117,10 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvArticleCreatedAt = findViewById(R.id.tv_article_createtime_articledetail);
         tvArticleViewCount = findViewById(R.id.tv_viewcount_article_detail);
         tvArticleCommentCount = findViewById(R.id.tv_comment_count_article_detail);
+        ivCommentCountBackground = findViewById(R.id.iv_comment_count_background_articledetail);
 
         /* Get Contents From Server */
         getContents(mBoardId);
-        Log.i("mBoardID", String.valueOf(mBoardId));
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -125,14 +131,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
         /* RefreshLayout */
         srlActicleDetail.setOnRefreshListener(this);
+        srlBoardArticleDetail.setOnRefreshListener(this);
 
         /* RecyclerView */
-        // comment dummy
-        ArrayList<Comment> dummy = new ArrayList<>();
-        dummy.add(new Comment("Test", "Description1", "Sio", "2019.11.14", ""));
-        dummy.add(new Comment("Test", "Description2", "Boyumi", "2019.11.14", ""));
-        dummy.add(new Comment("Test", "Description3", "Sio", "2019.11.14", ""));
-        rvComments.setAdapter(new CommentListAdapter(dummy, this));
         rvComments.addItemDecoration(new RecyclerViewDecoration(1, 0));
 
         /* Set On Click Listener */
@@ -152,7 +153,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
             tvUserName.setText(sSharedPreferences.getString(USER_EMAIL, ""));
         else
             tvUserName.setText("로그인 해주세요.");
-        //tvArticleCommentCount.setText(mCommentCount);
+        tvArticleCommentCount.setText(String.valueOf(mCommentCount)); // 댓글수는 intent에서.
+        tvArticleViewCount.setText(String.valueOf(mArticleViewCount)); // 조회수는 intent에서.
+        tvArticleCategoty.setText(mCategoryType); // 카테고리 이름은 intent에서.
     }
 
     @Override
@@ -181,6 +184,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     public void onRefresh() {
         getContents(mBoardId);
         srlActicleDetail.setRefreshing(false);
+        srlBoardArticleDetail.setRefreshing(false);
     }
 
     @Override
@@ -247,35 +251,46 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     }
 
     private void getContents(int boardId) {
+        showProgressDialog();
         final ArticleDetailService articleDetailService = new ArticleDetailService(this);
         articleDetailService.getArticleDetail(boardId);
     }
 
     @Override
     public void validateSuccess(ArrayList<ArticleDetailResponse.Result> results) {
+        hideProgressDialog();
         /* Set View */
         tvArticleAuthor.setText(results.get(0).getUserId()); // 글 작성자
         tvArticleTitle.setText(results.get(0).getTitle()); // 글 제목
         tvArticleContents.setText(results.get(0).getContents()); // 글 내용
         tvArticleCreatedAt.setText(results.get(0).getCreatedAt()); // 글 생성일
-        //tvArticleViewCount.setText(results.get(0).getViewCount()); // 글 조회수
 
-
-        if (results.get(0).getImgUri() != null || !results.get(0).getImgUri().equals("")) {
+        String imgUri = results.get(0).getImgUri();
+        if (imgUri != null && !imgUri.equals("")) {
             ivImgArticle.setVisibility(View.VISIBLE);
-            Glide.with(this).load(imageStorageRef.child(results.get(0).getImgUri())).centerCrop().placeholder(R.drawable.iv_thumbnail_cafe_square).into(ivImgArticle);
+            Glide.with(this)
+                    .load(imageStorageRef.child(results.get(0).getImgUri()))
+                    .centerCrop()
+                    .placeholder(R.drawable.iv_thumbnail_cafe_square)
+                    .into(ivImgArticle);
         } else {
             ivImgArticle.setVisibility(View.GONE);
         }
 
         // Comment
-        for (ArticleDetailResponse.Result result : results) {
-            // comment adpater 호출.
+        if (results.get(0).getCommentContents() != null && !results.get(0).getCommentContents().equals("")) {
+            ArrayList<Comment> comments = new ArrayList<>();
+            for (ArticleDetailResponse.Result result : results) {
+                // comment adpater 호출.
+                comments.add(new Comment(result.getCommentContents(), result.getCommentUser(), result.getCommentCreatedAt(), ""));
+            }
+            rvComments.setAdapter(new CommentListAdapter(comments, this));
         }
     }
 
     @Override
     public void validateFailure(String message) {
+        hideProgressDialog();
         showToast("내용을 불러오는데 실패하였습니다.");
     }
 }

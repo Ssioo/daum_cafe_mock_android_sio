@@ -10,16 +10,16 @@ public class CafeResponse extends DefaultResponse {
     ArrayList<Result> results;
 
     public static class Result {
-        @SerializedName("idboard") int boardId;
-        @SerializedName("title") String title;
-        @SerializedName("categotyType") String categoryType;
-        @SerializedName("cafeName") String cafeName;
-        @SerializedName("createAt") String createdAtTimeZone;
-        @SerializedName("id") String userId;
-        @SerializedName("img") String imgUri;
-        @SerializedName("COUNT(b.views)") int viewCount;
-        @SerializedName("commentCount") int commentCount;
-        @SerializedName("createdAt") String createdAt;
+        @SerializedName("idboard") int boardId = 0;
+        @SerializedName("title") String title = "";
+        @SerializedName("categorytype") String categoryType = "";
+        @SerializedName("cafeName") String cafeName = "";
+        @SerializedName("createAt") String createdAtTimeZone = "";
+        @SerializedName("id") String userId = "";
+        @SerializedName("img") String imgUri = null;
+        @SerializedName("COUNT(b.views)") int viewCount = 0;
+        @SerializedName("commentCount") int commentCount = 0;
+        @SerializedName("createdAt") String createdAt = "";
 
         public String getTitle() {
             return title;

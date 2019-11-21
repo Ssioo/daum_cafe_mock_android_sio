@@ -120,7 +120,8 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
                 intent.putExtra("boardId", articlesOnList.get(getAdapterPosition()).getBoardId());
                 intent.putExtra("viewCount", articlesOnList.get(getAdapterPosition()).getViewCount());
                 intent.putExtra("commentCount", articlesOnList.get(getAdapterPosition()).getCommentCount());
-                intent.putExtra("articleCreatedAt", articlesOnList.get(getAdapterPosition()).getCreatedAt());
+                intent.putExtra("categoryType", articlesOnList.get(getAdapterPosition()).getCategoryType());
+
                 mContext.startActivity(intent);
             }
         }

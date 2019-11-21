@@ -17,6 +17,7 @@ public class ArticleDetailResponse extends DefaultResponse {
         @SerializedName("img") private String imgUri;
         @SerializedName("createdAt") private String createdAt;
         @SerializedName("views") private int viewCount;
+        @SerializedName("commentUser") private String commentUser;
         @SerializedName("content") private String commentContents;
         @SerializedName("createAt") private String commentCreatedAt;
 
@@ -50,6 +51,10 @@ public class ArticleDetailResponse extends DefaultResponse {
 
         public String getCommentContents() {
             return commentContents;
+        }
+
+        public String getCommentUser() {
+            return commentUser;
         }
     }
 

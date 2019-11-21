@@ -1,22 +1,16 @@
 package com.softsquared.softsquared_daum_cafe.src.articledetail.models;
 
 public class Comment {
-    private String title;
     private String contents;
     private String userId;
     private String createAt;
     private String imgUri;
 
-    public Comment(String title, String contents, String userId, String createAt, String imgUri) {
-        this.title = title;
+    public Comment(String contents, String userId, String createAt, String imgUri) {
         this.contents = contents;
         this.userId = userId;
         this.createAt = createAt;
         this.imgUri = imgUri;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getContents() {
