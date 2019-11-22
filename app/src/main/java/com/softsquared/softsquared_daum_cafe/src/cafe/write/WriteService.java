@@ -76,4 +76,20 @@ public class WriteService {
             }
         });
     }
+
+    public void patchArticle(int boardId, String title, String contents, String imgUri) {
+        final WriteRetrofitInterface writeRetrofitInterface = getRetrofit().create(WriteRetrofitInterface.class);
+        writeRetrofitInterface.patchArticle(boardId, new WriteRequest(title, contents, "", "", imgUri)).enqueue(new Callback<WriteResponse>() {
+            @Override
+            public void onResponse(Call<WriteResponse> call, Response<WriteResponse> response) {
+                mWriteActivityView.validateUploadSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Call<WriteResponse> call, Throwable t) {
+                t.printStackTrace();
+                mWriteActivityView.validateUploadFailure(null);
+            }
+        });
+    }
 }

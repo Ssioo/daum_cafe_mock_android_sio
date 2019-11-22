@@ -50,6 +50,7 @@ import static com.softsquared.softsquared_daum_cafe.src.ApplicationClass.sShared
 public class CafeActivity extends BaseActivity implements CafeActivityView {
 
     public static final int REQUEST_TO_WRITE = 1000;
+    public static final int REQUEST_TO_ARTICLEDETAIL = 1000;
 
     private DrawerLayout dlCafe;
     private AppBarLayout ablCafe;
@@ -224,6 +225,9 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
             return;
         }
         if (requestCode == REQUEST_TO_WRITE) {
+            getArticles(cafeName);
+        }
+        if (requestCode == REQUEST_TO_ARTICLEDETAIL) {
             getArticles(cafeName);
         }
     }

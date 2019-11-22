@@ -26,6 +26,7 @@ import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.Category;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
+import com.softsquared.softsquared_daum_cafe.src.common.util.GlideApp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,8 +61,12 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private Spinner spWrite;
 
     private boolean IMAGE_ATTACHED = false;
+    private boolean IMAGE_MODIFIED = false;
 
+    private int mBoardId = 0;
     private String mCafeName;
+    private String mTitle;
+    private String mContents;
     private ArrayList<String> mCategories = new ArrayList<>();
     private ArrayAdapter<String> spAdapter;
 
@@ -81,11 +86,6 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
             activityMode = MODE_CREATE;
         else if (modeStr != null && modeStr.equals("EDIT"))
             activityMode = MODE_EDIT;
-
-        if (activityMode == MODE_EDIT) {
-            /* Load Articles From Server */
-            /* EDIT : ArticleDetail -> this */
-        }
 
 
         /* FindViewById */
@@ -128,6 +128,28 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         ivImg.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+
+        /* Init View */
+        if (activityMode == MODE_EDIT) {
+            /* Load Articles From Server */
+            /* EDIT : ArticleDetail -> this */
+            etTitle.setText(intent.getStringExtra("title")); // title
+            etContents.setText(intent.getStringExtra("contents")); // contents
+            String categoryReceived = intent.getStringExtra("categoryType"); // categoryType
+            for (int i = 0; i< mCategories.size(); i++) {
+                if (categoryReceived.equals(mCategories.get(i))) {
+                    spWrite.setSelection(i);
+                }
+            }
+            mBoardId = intent.getIntExtra("boardId", 0); // boardId
+            if (intent.getStringExtra("imgUri") != null && !intent.getStringExtra("imgUri").equals("")) {
+                GlideApp.with(this)
+                        .load(imageStorageRef.child(intent.getStringExtra("imgUri")))
+                        .placeholder(R.drawable.iv_thumbnail_cafe_square)
+                        .into(ivImg); // img
+                ivImg.setVisibility(View.VISIBLE);
+            }
+        }
 
     }
 
@@ -175,6 +197,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                     bmIvImg = BitmapFactory.decodeStream(in, null, options);
                     in.close();
                     IMAGE_ATTACHED = true;
+                    IMAGE_MODIFIED = true;
                     ivImg.setImageBitmap(bmIvImg);
                     ivImg.setVisibility(View.VISIBLE);
                 } catch (IOException e) {
@@ -246,8 +269,17 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                     showToast("제목과 내용은 빈 칸일 수 없습니다.");
                     return;
                 }
-                // Server Connecting...
-                postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), spWrite.getSelectedItem().toString(), mCafeName);
+
+                // Server Connecting...if mode_create
+                if (activityMode == MODE_CREATE)
+                    postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), spWrite.getSelectedItem().toString(), mCafeName);
+                // Server Connecting...if mode_edit
+                else if (activityMode == MODE_EDIT) {
+                    if (etTitle.getText().toString().equals(mTitle) && etContents.getText().toString().equals(mContents) && !IMAGE_MODIFIED) {
+                        return;
+                    }
+                    postImageToFirebaseAndPatchArticle(mBoardId, etTitle.getText().toString(), etContents.getText().toString());
+                }
                 break;
         }
     }
@@ -256,6 +288,11 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private void postArticle(String title, String contents, String categoryType, String cafeName, String imgUri) {
         final WriteService writeService = new WriteService(this);
         writeService.postArticle(title, contents, categoryType, cafeName, imgUri);
+    }
+
+    private void patchArticle(int boarId, String title, String contetns, String imgUri) {
+        final WriteService writeService = new WriteService(this);
+        writeService.patchArticle(boarId, title, contetns, imgUri);
     }
 
     @Override
@@ -283,10 +320,22 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
             writeService.postArticle(title, contents, categoryType, cafeName, "");
     }
 
+    private void postImageToFirebaseAndPatchArticle(int boardId, String title, String contents) {
+        showUploadProgressDialog();
+        final WriteService writeService = new WriteService(this);
+        if (IMAGE_ATTACHED)
+            writeService.postImgToFirebase(bmIvImg);
+        else
+            writeService.patchArticle(boardId, title, contents, "");
+
+    }
+
     @Override
     public void validateUploadImageSuccess(String url) {
-        //postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", "anicafe", url);
-        postArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName, url);
+        if (activityMode == MODE_CREATE)
+            postArticle(etTitle.getText().toString(), etContents.getText().toString(), spWrite.getSelectedItem().toString(), mCafeName, url);
+        else if (activityMode == MODE_EDIT)
+            patchArticle(mBoardId, etTitle.getText().toString(), etContents.getText().toString(), url);
     }
 
     @Override

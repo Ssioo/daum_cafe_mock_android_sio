@@ -132,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="3"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:id="@+id/rv_boardlist1_articledetail"
                     tools:listitem="@layout/item_boardlist_cafe"/>
 
@@ -166,6 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="2"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:id="@+id/rv_boardlist2_articledetail"
                     tools:listitem="@layout/item_boardlist_cafe"/>
 
@@ -201,6 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="10"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_boardlist_cafe" />
 
             </LinearLayout>

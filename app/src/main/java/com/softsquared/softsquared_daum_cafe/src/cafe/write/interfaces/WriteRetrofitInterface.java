@@ -15,8 +15,5 @@ public interface WriteRetrofitInterface {
     Call<WriteResponse> postArticle(@Body WriteRequest writeRequest);
 
     @PATCH("board/{boardid}/modifyPost")
-    Call<WriteResponse> patchArticle(@Path ("boardid") String boardId, @Body WriteRequest writeRequest);
-
-    @DELETE("board/{boardid}")
-    Call<WriteResponse> deleteArticle(@Path("boardid") String boardid);
+    Call<WriteResponse> patchArticle(@Path ("boardid") int boardId, @Body WriteRequest writeRequest);
 }

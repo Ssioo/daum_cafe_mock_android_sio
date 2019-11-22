@@ -27,11 +27,16 @@ import com.bumptech.glide.Glide;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.adapter.CommentListAdapter;
+import com.softsquared.softsquared_daum_cafe.src.articledetail.fragments.WriteMoreBottomSheetDialogFragment;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.interfaces.ArticleDetailActivityView;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.ArticleDetailResponse;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.models.Comment;
+import com.softsquared.softsquared_daum_cafe.src.cafe.adpater.CafeCategoryListAdapter;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.Category;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.CategoryResponse;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mypage.MyPageActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.mysetting.MySettingActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.write.WriteActivity;
 import com.softsquared.softsquared_daum_cafe.src.common.util.RecyclerViewDecoration;
 
 import java.util.ArrayList;
@@ -78,6 +83,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private TextView tvSubmitComment;
     private EditText etComment;
     private NestedScrollView nsvArticleDetail;
+    private ImageView ivMoreBottomNav;
+
 
     private boolean DRAWER_ITEM1_OPENED = true;
     private boolean DRAWER_ITEM2_OPENED = true;
@@ -88,6 +95,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private int mArticleViewCount;
     private int mCommentCount;
     private String mCategoryType;
+    private String mImgUri;
+    private ArrayList<String> mCategories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,9 +147,11 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvSubmitComment = findViewById(R.id.tv_submit_comment_articledetail);
         etComment = findViewById(R.id.et_input_comment_articledetail);
         nsvArticleDetail = findViewById(R.id.nsv_articledetail);
+        ivMoreBottomNav = findViewById(R.id.iv_more_article_detail);
 
         /* Get Contents From Server */
         getContents(mBoardId);
+        getCategories();
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -174,6 +185,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvInputComment.setOnClickListener(this);
         llWriteComment.setOnClickListener(this);
         tvSubmitComment.setOnClickListener(this);
+        ivMoreBottomNav.setOnClickListener(this);
+
 
         /* Edit Text Change Watcher */
         etComment.addTextChangedListener(new TextWatcher() {
@@ -198,15 +211,21 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         });
 
         /* Set View */
-        if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
+        if (sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
             tvUserName.setText(sSharedPreferences.getString(USER_EMAIL, ""));
-        else
+
+        }
+        else {
+
             tvUserName.setText("로그인 해주세요.");
+        }
         tvArticleCommentCount.setText(String.valueOf(mCommentCount)); // 댓글수는 intent에서.
         tvArticleViewCount.setText(String.valueOf(mArticleViewCount)); // 조회수는 intent에서.
         tvArticleCategoty.setText(mCategoryType); // 카테고리 이름은 intent에서.
         clInputCommentContainer.setVisibility(View.GONE);
         tvInputCommentHeader.setVisibility(View.GONE);
+
+
     }
 
     @Override
@@ -320,8 +339,39 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 return;
             case R.id.tv_submit_comment_articledetail:
                 postComment(mBoardId, etComment.getText().toString());
+                break;
+            case R.id.iv_more_article_detail:
+                // bottomsheerdialogfragment
+                WriteMoreBottomSheetDialogFragment writeMoreBottomSheetDialogFragment = WriteMoreBottomSheetDialogFragment.newInstance(tvArticleAuthor.getText().toString(), this);
+                writeMoreBottomSheetDialogFragment.show(getSupportFragmentManager(), "bottom_sheet");
+                break;
+            case R.id.ll_bottom_sheet_first_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.ll_bottom_sheet_second_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.ll_bottom_sheet_third_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.ll_bottom_sheet_forth_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.ll_bottom_sheet_fifth_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+            case R.id.ll_bottom_sheet_sixth_articledetail:
+                showToast(getString(R.string.nofunction));
+                break;
+
         }
         dlArticleDetail.closeDrawers();
+    }
+
+    private void getCategories() {
+        showProgressDialog();
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.getCategories();
     }
 
     private void getContents(int boardId) {
@@ -346,13 +396,14 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvArticleContents.setText(results.get(0).getContents()); // 글 내용
         tvArticleCreatedAt.setText(results.get(0).getCreatedAt()); // 글 생성일
 
-        String imgUri = results.get(0).getImgUri();
-        if (imgUri != null && !imgUri.equals("")) {
+        mImgUri = results.get(0).getImgUri();
+        if (mImgUri != null && !mImgUri.equals("")) {
             ivImgArticle.setVisibility(View.VISIBLE);
             Glide.with(this)
-                    .load(imageStorageRef.child(results.get(0).getImgUri()))
+                    .load(imageStorageRef.child(mImgUri))
                     .centerCrop()
                     .placeholder(R.drawable.iv_thumbnail_cafe_square)
+                    .error(R.drawable.iv_thumbnail_cafe_square)
                     .into(ivImgArticle);
         } else {
             ivImgArticle.setVisibility(View.GONE);
@@ -379,6 +430,46 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     public void validateWriteCommentSuccess(String message) {
         hideProgressDialog();
         getContents(mBoardId);
+    }
+
+    @Override
+    public void validateGetCategoriesSuccess(ArrayList<CategoryResponse.Result> results) {
+        hideProgressDialog();
+        mCategories.clear();
+        ArrayList<Category> categoryArrayList = new ArrayList<>();
+        for (CategoryResponse.Result result : results) {
+            mCategories.add(result.getCategoryName());
+            categoryArrayList.add(new Category(result.getCategoryName(), "", true));
+        }
+        rvBoardList2.setAdapter(new CafeCategoryListAdapter(categoryArrayList, this));
+        rvBoardList3.setAdapter(new CafeCategoryListAdapter(categoryArrayList, this));
+    }
+
+    @Override
+    public void validateDeleteSuccess(String message) {
+        hideProgressDialog();
+        showToast("삭제에 성공하였습니다.");
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    public void startActivityFromDialogFragment() {
+        Intent intent = new Intent(this, WriteActivity.class);
+        intent.putExtra("activityMode", "EDIT");
+        intent.putExtra("title", tvArticleTitle.getText().toString());
+        intent.putExtra("contents", tvArticleContents.getText().toString());
+        intent.putExtra("imgUri", mImgUri);
+        intent.putExtra("categoryType", mCategoryType);
+        intent.putExtra("categories", mCategories);
+        intent.putExtra("boardId", mBoardId);
+        startActivity(intent);
+    }
+
+    @Override
+    public void startDeleteProcessFromFragment() {
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        // delete
     }
 
     @Override
