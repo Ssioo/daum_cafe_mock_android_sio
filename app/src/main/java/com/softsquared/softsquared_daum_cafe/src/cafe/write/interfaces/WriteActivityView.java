@@ -1,8 +1,9 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces;
 
 import android.view.View;
+import android.widget.AdapterView;
 
-public interface WriteActivityView extends View.OnClickListener{
+public interface WriteActivityView extends View.OnClickListener {
     void validateUploadSuccess(String message);
 
     void validateUploadFailure(String message);

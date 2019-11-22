@@ -89,7 +89,8 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     private boolean DRAWER_ITEM2_OPENED = true;
     private boolean DRAWER_ITEM3_OPENED = true;
 
-    ArrayList<ArrayList<CafeResponse.Result>> articleList = new ArrayList<>();
+    private ArrayList<ArrayList<CafeResponse.Result>> articleList = new ArrayList<>();
+    private ArrayList<Category> categories = new ArrayList<>();
 
     private String cafeName;
 
@@ -237,10 +238,10 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
     }
 
     @Override
-    public void validateCategorySuccess(ArrayList<CategoryResponse.Result> results) {
+    public void validateCategorySuccess(@Nullable ArrayList<CategoryResponse.Result> results) {
         // Category 구성
         hideProgressDialog();
-        ArrayList<Category> categories = new ArrayList<>();
+        categories.clear();
         for (CategoryResponse.Result result : results) {
             categories.add(new Category(result.getCategoryName(), "", true));
         }
@@ -286,6 +287,12 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 Intent intent1 = new Intent(CafeActivity.this, WriteActivity.class);
                 intent1.putExtra("activityMode", "CREATE");
                 intent1.putExtra("cafeName", cafeName);
+                ArrayList<String> categoryToSend = new ArrayList<>();
+                for (Category category : categories) {
+                    categoryToSend.add(category.getTitle());
+                }
+                Log.i("categoryTosend", String.valueOf(categoryToSend.size()));
+                intent1.putStringArrayListExtra("categories", categoryToSend);
                 startActivityForResult(intent1, REQUEST_TO_WRITE);
                 break;
             case R.id.tv_refresh_cafe:

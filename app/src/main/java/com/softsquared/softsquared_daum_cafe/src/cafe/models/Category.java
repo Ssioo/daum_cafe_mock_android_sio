@@ -1,5 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.cafe.models;
 
+import java.util.ArrayList;
+
 public class Category {
     String title;
     String category;
@@ -34,5 +36,4 @@ public class Category {
     public void setUserStarred(boolean userStarred) {
         this.userStarred = userStarred;
     }
-
 }

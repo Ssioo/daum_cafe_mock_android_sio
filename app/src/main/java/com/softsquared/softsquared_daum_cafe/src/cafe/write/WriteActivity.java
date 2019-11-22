@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +23,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.BaseActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.models.Category;
 import com.softsquared.softsquared_daum_cafe.src.cafe.write.interfaces.WriteActivityView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class WriteActivity extends BaseActivity implements WriteActivityView {
 
@@ -50,10 +57,13 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
     private Bitmap bmIvImg;
     private EditText etTitle;
     private EditText etContents;
+    private Spinner spWrite;
 
     private boolean IMAGE_ATTACHED = false;
 
     private String mCafeName;
+    private ArrayList<String> mCategories = new ArrayList<>();
+    private ArrayAdapter<String> spAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +74,9 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         Intent intent = getIntent();
         String modeStr = intent.getStringExtra("activityMode");
         mCafeName = intent.getStringExtra("cafeName");
+        mCategories = intent.getStringArrayListExtra("categories");
+        Log.i("mCategories", String.valueOf(mCategories.size()));
+        mCategories.add(0, "게시판 선택");
         if (modeStr != null && modeStr.equals("CREATE"))
             activityMode = MODE_CREATE;
         else if (modeStr != null && modeStr.equals("EDIT"))
@@ -90,6 +103,7 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         btnSubmit = findViewById(R.id.btn_submit_write);
         etTitle = findViewById(R.id.et_title_write);
         etContents = findViewById(R.id.et_contents_write);
+        spWrite = findViewById(R.id.sp_board_title_write);
 
         /* Toolbar */
         setSupportActionBar(tbWrite);
@@ -97,6 +111,10 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_close_black);
+
+        /* Spinner Set */
+        spAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mCategories);
+        spWrite.setAdapter(spAdapter);
 
         /* Set On Click Listener */
         ivCamera.setOnClickListener(this);
@@ -220,10 +238,16 @@ public class WriteActivity extends BaseActivity implements WriteActivityView {
                 showToast(getString(R.string.nofunction));
                 break;
             case R.id.btn_submit_write:
+                if (spWrite.getSelectedItemPosition() == 0) {
+                    showToast("게시판을 선택해주세요.");
+                    return;
+                }
+                if (etTitle.getText().toString().equals("") || etContents.getText().toString().equals("")) {
+                    showToast("제목과 내용은 빈 칸일 수 없습니다.");
+                    return;
+                }
                 // Server Connecting...
-                if (!etTitle.getText().toString().equals("") && !etContents.getText().toString().equals(""))
-                    postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName);
-                    //postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), "ANIBOARD", mCafeName);
+                postImageToFirebaseAndpostArticle(etTitle.getText().toString(), etContents.getText().toString(), spWrite.getSelectedItem().toString(), mCafeName);
                 break;
         }
     }

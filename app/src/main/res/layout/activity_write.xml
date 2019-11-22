@@ -66,18 +66,10 @@
                 android:elevation="1dp"
                 android:paddingVertical="6dp"
                 android:paddingHorizontal="16dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <Spinner
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/select_board_write"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/tv_board_title_write" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_expand_more" />
+                    android:id="@+id/sp_board_title_write" />
             </LinearLayout>
 
             <EditText
