@@ -104,4 +104,46 @@ public class ArticleDetailService {
             }
         });
     }
+
+    public void patchComment(int boardId, int commentId, String contents) {
+        final ArticleDetailRetrofitService articleDetailRetrofitService = getRetrofit().create(ArticleDetailRetrofitService.class);
+        articleDetailRetrofitService.patchComment(boardId, commentId, new CommentRequest(contents)).enqueue(new Callback<CommentResponse>() {
+            @Override
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                final CommentResponse commentResponse = response.body();
+                if (commentResponse == null || !commentResponse.getIsSuccess()) {
+                    mArticleDetailActivityView.validateFailure(null);
+                    return;
+                }
+                mArticleDetailActivityView.validateCommentPatchSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
+                t.printStackTrace();
+                mArticleDetailActivityView.validateFailure(null);
+            }
+        });
+    }
+
+    public void deleteComment(int boardId, int commentId) {
+        final ArticleDetailRetrofitService articleDetailRetrofitService = getRetrofit().create(ArticleDetailRetrofitService.class);
+        articleDetailRetrofitService.deleteComment(boardId, commentId).enqueue(new Callback<CommentResponse>() {
+            @Override
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                final CommentResponse commentResponse = response.body();
+                if (commentResponse == null || !commentResponse.getIsSuccess()) {
+                    mArticleDetailActivityView.validateFailure(null);
+                    return;
+                }
+                mArticleDetailActivityView.validateCommentDeleteSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
+                t.printStackTrace();
+                mArticleDetailActivityView.validateFailure(null);
+            }
+        });
+    }
 }

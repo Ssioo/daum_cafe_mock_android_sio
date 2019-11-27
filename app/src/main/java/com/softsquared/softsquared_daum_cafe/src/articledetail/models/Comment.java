@@ -1,6 +1,7 @@
 package com.softsquared.softsquared_daum_cafe.src.articledetail.models;
 
 public class Comment {
+    private int id;
     private String contents;
     private String userId;
     private String createAt;
@@ -11,6 +12,10 @@ public class Comment {
         this.userId = userId;
         this.createAt = createAt;
         this.imgUri = imgUri;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getContents() {

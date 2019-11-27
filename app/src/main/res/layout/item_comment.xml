@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:elevation="1dp"
     android:paddingHorizontal="16dp"
@@ -10,7 +11,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/iv_profile_img_comment"
         android:src="@drawable/ic_user_default_profile"/>
 
@@ -19,8 +21,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_userid_comment"
         android:textSize="13sp"
-        android:text="UserId"
-        android:layout_toEndOf="@+id/iv_profile_img_comment" />
+        app:layout_constraintStart_toEndOf="@id/iv_profile_img_comment"
+        app:layout_constraintTop_toTopOf="@id/iv_profile_img_comment"
+        android:layout_marginStart="8dp"
+        android:text="UserId" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,32 +32,42 @@
         android:id="@+id/tv_createtime_comment"
         android:textSize="13sp"
         android:text="2019.07.08"
-        android:layout_toEndOf="@+id/iv_profile_img_comment"
-        android:layout_below="@id/tv_userid_comment"/>
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_img_comment"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_img_comment"/>
 
     <ImageView
         android:id="@+id/iv_new_comment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:src="@drawable/ic_new"
-        android:layout_toEndOf="@id/tv_createtime_comment"
-        android:layout_alignTop="@id/tv_createtime_comment"
-        android:layout_alignBottom="@id/tv_createtime_comment"
+        app:layout_constraintStart_toEndOf="@id/tv_createtime_comment"
+        app:layout_constraintTop_toTopOf="@id/tv_createtime_comment"
+        app:layout_constraintBottom_toBottomOf="@id/tv_createtime_comment"
         android:adjustViewBounds="true"
         android:layout_marginStart="4dp"
         android:scaleType="fitStart" />
 
     <TextView
         android:id="@+id/tv_comment_comment"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_createtime_comment"
-        android:layout_alignStart="@id/tv_createtime_comment"
-        android:layout_alignParentEnd="true"
+        app:layout_constraintStart_toStartOf="@id/tv_createtime_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile_img_comment"
         android:layout_marginTop="4dp"
         android:text="Comment Contents"
         android:textColor="@android:color/black"
         android:textSize="15sp" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/iv_more_comment"
+        android:src="@drawable/ic_more_dots_black" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

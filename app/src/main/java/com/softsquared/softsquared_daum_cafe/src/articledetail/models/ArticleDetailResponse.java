@@ -20,6 +20,7 @@ public class ArticleDetailResponse extends DefaultResponse {
         @SerializedName("commentUser") private String commentUser;
         @SerializedName("content") private String commentContents;
         @SerializedName("createAt") private String commentCreatedAt;
+        @SerializedName("commentId") private int commentId;
 
         public String getTitle() {
             return title;
@@ -55,6 +56,10 @@ public class ArticleDetailResponse extends DefaultResponse {
 
         public String getCommentUser() {
             return commentUser;
+        }
+
+        public int getCommentId() {
+            return commentId;
         }
     }
 

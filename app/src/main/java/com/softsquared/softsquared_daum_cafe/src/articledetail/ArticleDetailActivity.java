@@ -330,6 +330,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 break;
             case R.id.ll_write_comment_articledetail:
             case R.id.tv_write_comment_articledetail:
+                // 댓글 작성 창 오픈
                 if (!INPUT_COMMENT_OPENED) {
                     INPUT_COMMENT_OPENED = true;
                     llBottomNavContainer.setVisibility(View.INVISIBLE);
@@ -338,6 +339,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 }
                 return;
             case R.id.tv_submit_comment_articledetail:
+                // 댓글 작성
                 postComment(mBoardId, etComment.getText().toString());
                 break;
             case R.id.iv_more_article_detail:
@@ -416,7 +418,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 // comment adpater 호출.
                 comments.add(new Comment(result.getCommentContents(), result.getCommentUser(), result.getCommentCreatedAt(), ""));
             }
-            rvComments.setAdapter(new CommentListAdapter(comments, this));
+            rvComments.setAdapter(new CommentListAdapter(this, comments, this));
         }
     }
 
@@ -454,6 +456,33 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     }
 
     @Override
+    public void validateCommentPatchSuccess(String message) {
+        hideProgressDialog();
+        showToast("수정에 성공하였습니다.");
+        getContents(mBoardId);
+    }
+
+    @Override
+    public void validateCommentDeleteSuccess(String message) {
+        hideProgressDialog();
+        showToast("삭제에 성공하였습니다.");
+        getContents(mBoardId);
+    }
+
+    @Override
+    public void startCommentDeleteProcessFromFragment(int commentId) {
+        // Edit Comment 창 노출
+        onClick(findViewById(R.id.tv_write_comment_articledetail));
+    }
+
+    @Override
+    public void startCommentPatchProcessFromFragment(int commentId) {
+        // Delete
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.deleteComment(mBoardId, commentId);
+    }
+
+    @Override
     public void startActivityFromDialogFragment() {
         Intent intent = new Intent(this, WriteActivity.class);
         intent.putExtra("activityMode", "EDIT");
@@ -468,8 +497,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     @Override
     public void startDeleteProcessFromFragment() {
+        showProgressDialog();
         final ArticleDetailService articleDetailService = new ArticleDetailService(this);
-        // delete
+        articleDetailService.deleteArticle(mBoardId);
     }
 
     @Override
