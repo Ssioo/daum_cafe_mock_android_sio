@@ -4,6 +4,6 @@ import android.view.View;
 
 public interface CommentListAdapterView {
 
-    void onPatchClick(int cid);
+    void onPatchClick(int cid, String cContents);
     void onDeleteClick(int cid);
 }

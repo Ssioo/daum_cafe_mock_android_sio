@@ -22,10 +22,12 @@ public class CommentBottomSheetDialogFragment extends BottomSheetDialogFragment 
     private LinearLayout llItemThird;
 
     private int mCommentId;
+    private String mContents;
 
-    public CommentBottomSheetDialogFragment(CommentListAdapterView mCommentListAdapterView, int commentId) {
+    public CommentBottomSheetDialogFragment(CommentListAdapterView mCommentListAdapterView, int commentId, String contents) {
         this.mCommentListAdapterView = mCommentListAdapterView;
         mCommentId = commentId;
+        mContents = contents;
     }
 
     @Nullable
@@ -53,7 +55,7 @@ public class CommentBottomSheetDialogFragment extends BottomSheetDialogFragment 
                 break;
             case R.id.ll_bottom_sheet_second_comment:
                 // 댓글 수정
-                mCommentListAdapterView.onPatchClick(mCommentId);
+                mCommentListAdapterView.onPatchClick(mCommentId, mContents);
                 dismiss();
                 break;
             case R.id.ll_bottom_sheet_third_comment:

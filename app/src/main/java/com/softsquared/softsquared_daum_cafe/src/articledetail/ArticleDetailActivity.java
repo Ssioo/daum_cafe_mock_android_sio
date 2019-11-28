@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -90,13 +91,17 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private boolean DRAWER_ITEM2_OPENED = true;
     private boolean DRAWER_ITEM3_OPENED = true;
     private boolean INPUT_COMMENT_OPENED = false;
+    private boolean MODE_COMMENT_EDIT = false;
+
 
     private int mBoardId;
+    private int mCommentId;
     private int mArticleViewCount;
     private int mCommentCount;
     private String mCategoryType;
     private String mImgUri;
     private ArrayList<String> mCategories = new ArrayList<>();
+    private InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +157,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         /* Get Contents From Server */
         getContents(mBoardId);
         getCategories();
+
+        /* Input Manager */
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         /* Toolbar*/
         setSupportActionBar(tbArticleDetail);
@@ -336,11 +344,16 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                     llBottomNavContainer.setVisibility(View.INVISIBLE);
                     clInputCommentContainer.setVisibility(View.VISIBLE);
                     tvInputCommentHeader.setVisibility(View.VISIBLE);
+                    imm.showSoftInput(etComment, 0);
                 }
                 return;
             case R.id.tv_submit_comment_articledetail:
                 // 댓글 작성
-                postComment(mBoardId, etComment.getText().toString());
+                if (MODE_COMMENT_EDIT) {
+                    patchComment(mBoardId, mCommentId, etComment.getText().toString());
+                } else {
+                    postComment(mBoardId, etComment.getText().toString());
+                }
                 break;
             case R.id.iv_more_article_detail:
                 // bottomsheerdialogfragment
@@ -460,6 +473,10 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         hideProgressDialog();
         showToast("수정에 성공하였습니다.");
         getContents(mBoardId);
+        MODE_COMMENT_EDIT = false;
+        etComment.setText("");
+        imm.hideSoftInputFromWindow(etComment.getWindowToken(), 0);
+
     }
 
     @Override
@@ -472,14 +489,24 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     @Override
     public void startCommentDeleteProcessFromFragment(int commentId) {
         // Delete
+        showProgressDialog();
         final ArticleDetailService articleDetailService = new ArticleDetailService(this);
         articleDetailService.deleteComment(mBoardId, commentId);
     }
 
+    public void patchComment(int boardId, int commentId, String contents) {
+        showProgressDialog();
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.patchComment(boardId, commentId, contents);
+    }
+
     @Override
-    public void startCommentPatchProcessFromFragment(int commentId) {
+    public void startCommentPatchProcessFromFragment(int commentId, String commentContents) {
         // Edit Comment 창 노출
+        MODE_COMMENT_EDIT = true;
+        mCommentId = commentId;
         onClick(findViewById(R.id.tv_write_comment_articledetail));
+        etComment.setText(commentContents);
     }
 
     @Override

@@ -15,21 +15,21 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ArticleDetailRetrofitService {
-    @GET("board/{boardid}")
-    Call<ArticleDetailResponse> getArticleDetail(@Path("boardid") int boardid);
+    @GET("board/{boardId}")
+    Call<ArticleDetailResponse> getArticleDetail(@Path("boardId") int boardId);
 
-    @DELETE("board/{boardid}")
-    Call<ArticleDetailResponse> deleteArticle(@Path("boardid") int boardid);
+    @DELETE("board/{boardId}")
+    Call<ArticleDetailResponse> deleteArticle(@Path("boardId") int boardId);
 
     @GET("category")
     Call<CategoryResponse> getCategories();
 
-    @POST("board/{boardid}/comment")
-    Call<CommentResponse> postComment(@Path("boardid") int boardid, @Body CommentRequest commentRequest);
+    @POST("board/{boardId}/comment")
+    Call<CommentResponse> postComment(@Path("boardId") int boardId, @Body CommentRequest commentRequest);
 
     @PATCH("board/{boardId}/modifyComment/{commentId}")
-    Call<CommentResponse> patchComment(@Path("boardid") int boardid, @Path("commentId") int commentId, @Body CommentRequest commentRequest);
+    Call<CommentResponse> patchComment(@Path("boardId") int boardId, @Path("commentId") int commentId, @Body CommentRequest commentRequest);
 
     @DELETE("board/{boardId}/comment/{commentId}")
-    Call<CommentResponse> deleteComment(@Path("boardId") int boardid, @Path("commentId") int commentId);
+    Call<CommentResponse> deleteComment(@Path("boardId") int boardId, @Path("commentId") int commentId);
 }

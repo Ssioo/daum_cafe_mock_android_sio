@@ -26,7 +26,7 @@ public interface ArticleDetailActivityView extends SwipeRefreshLayout.OnRefreshL
 
     void startCommentDeleteProcessFromFragment(int commentId);
 
-    void startCommentPatchProcessFromFragment(int commentId);
+    void startCommentPatchProcessFromFragment(int commentId, String commentContents);
 
     void startActivityFromDialogFragment();
 

@@ -64,7 +64,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                 holder.ivMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mEditCommentBottomSheetDialogFragment = new CommentBottomSheetDialogFragment(mAdapter, comment.getId());
+                        mEditCommentBottomSheetDialogFragment = new CommentBottomSheetDialogFragment(mAdapter, comment.getId(), comment.getContents());
                         mEditCommentBottomSheetDialogFragment.show(((ArticleDetailActivity) mContext).getSupportFragmentManager(), null);
                     }
                 });
@@ -80,8 +80,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     }
 
     @Override
-    public void onPatchClick(int cid) {
-        mArticleDetailActivityView.startCommentPatchProcessFromFragment(cid);
+    public void onPatchClick(int cid, String cContents) {
+        mArticleDetailActivityView.startCommentPatchProcessFromFragment(cid, cContents);
     }
 
     @Override

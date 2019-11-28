@@ -13,7 +13,7 @@ public class ArticleDetailResponse extends DefaultResponse {
     public static class Result {
         @SerializedName("title") private String title;
         @SerializedName("contents") private String contents;
-        @SerializedName("userId") private String userId;
+        @SerializedName("boardUser") private String userId;
         @SerializedName("img") private String imgUri;
         @SerializedName("createdAt") private String createdAt;
         @SerializedName("views") private int viewCount;
