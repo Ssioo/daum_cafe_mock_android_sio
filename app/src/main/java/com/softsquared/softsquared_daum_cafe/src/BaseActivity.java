@@ -107,6 +107,8 @@ public class BaseActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         dpUnit = (int) metrics.density;
 
+        Log.i("FCM TOKEN", sSharedPreferences.getString(FCM_TOKEN, ""));
+
         // Login Alert
         /* AlertDialog Init */
         mLoginAlert = new AlertDialog.Builder(this).setMessage(getString(R.string.alert_login))

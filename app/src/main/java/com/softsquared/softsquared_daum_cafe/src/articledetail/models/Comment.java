@@ -7,7 +7,8 @@ public class Comment {
     private String createAt;
     private String imgUri;
 
-    public Comment(String contents, String userId, String createAt, String imgUri) {
+    public Comment(int id, String contents, String userId, String createAt, String imgUri) {
+        this.id = id;
         this.contents = contents;
         this.userId = userId;
         this.createAt = createAt;

@@ -54,10 +54,12 @@ public class CommentBottomSheetDialogFragment extends BottomSheetDialogFragment 
             case R.id.ll_bottom_sheet_second_comment:
                 // 댓글 수정
                 mCommentListAdapterView.onPatchClick(mCommentId);
+                dismiss();
                 break;
             case R.id.ll_bottom_sheet_third_comment:
                 // 댓글 삭제
                 mCommentListAdapterView.onDeleteClick(mCommentId);
+                dismiss();
                 break;
         }
     }

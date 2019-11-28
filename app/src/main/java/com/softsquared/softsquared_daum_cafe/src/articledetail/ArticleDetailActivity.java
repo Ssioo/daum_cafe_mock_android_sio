@@ -416,7 +416,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
             ArrayList<Comment> comments = new ArrayList<>();
             for (ArticleDetailResponse.Result result : results) {
                 // comment adpater 호출.
-                comments.add(new Comment(result.getCommentContents(), result.getCommentUser(), result.getCommentCreatedAt(), ""));
+                comments.add(new Comment(result.getCommentId(), result.getCommentContents(), result.getCommentUser(), result.getCommentCreatedAt(), ""));
             }
             rvComments.setAdapter(new CommentListAdapter(this, comments, this));
         }
@@ -471,15 +471,15 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     @Override
     public void startCommentDeleteProcessFromFragment(int commentId) {
-        // Edit Comment 창 노출
-        onClick(findViewById(R.id.tv_write_comment_articledetail));
+        // Delete
+        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
+        articleDetailService.deleteComment(mBoardId, commentId);
     }
 
     @Override
     public void startCommentPatchProcessFromFragment(int commentId) {
-        // Delete
-        final ArticleDetailService articleDetailService = new ArticleDetailService(this);
-        articleDetailService.deleteComment(mBoardId, commentId);
+        // Edit Comment 창 노출
+        onClick(findViewById(R.id.tv_write_comment_articledetail));
     }
 
     @Override

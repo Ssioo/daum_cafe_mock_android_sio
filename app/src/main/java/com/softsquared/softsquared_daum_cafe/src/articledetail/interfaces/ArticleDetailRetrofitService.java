@@ -27,9 +27,9 @@ public interface ArticleDetailRetrofitService {
     @POST("board/{boardid}/comment")
     Call<CommentResponse> postComment(@Path("boardid") int boardid, @Body CommentRequest commentRequest);
 
-    @PATCH("board/{boardId}/modifyComment/(commentId)")
+    @PATCH("board/{boardId}/modifyComment/{commentId}")
     Call<CommentResponse> patchComment(@Path("boardid") int boardid, @Path("commentId") int commentId, @Body CommentRequest commentRequest);
 
-    @DELETE("board/{boardId}/comment/(commentId)")
-    Call<CommentResponse> deleteComment(@Path("boardid") int boardid, @Path("commentId") int commentId);
+    @DELETE("board/{boardId}/comment/{commentId}")
+    Call<CommentResponse> deleteComment(@Path("boardId") int boardid, @Path("commentId") int commentId);
 }
