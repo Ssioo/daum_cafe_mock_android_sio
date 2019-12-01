@@ -14,18 +14,20 @@ public class CafeBoardPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mPageCount;
     private ArrayList<ArrayList<CafeResponse.Result>> mArticleListList;
+    private String mCafeName;
 
-    public CafeBoardPagerAdapter(@NonNull FragmentManager fm, int pagecount, ArrayList<ArrayList<CafeResponse.Result>> articleListList) {
+    public CafeBoardPagerAdapter(@NonNull FragmentManager fm, int pagecount, ArrayList<ArrayList<CafeResponse.Result>> articleListList, String cafeName) {
         super(fm);
         this.mPageCount = pagecount;
         this.mArticleListList = articleListList;
+        mCafeName = cafeName;
     }
 
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return ArticlesBoardFragment.newInstance(mArticleListList.get(position));
+        return ArticlesBoardFragment.newInstance(mArticleListList.get(position), mCafeName);
     }
 
     @Override

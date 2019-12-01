@@ -238,7 +238,7 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
         articleList.clear();
         articleList.add(results);
         articleList.add(results);
-        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList));
+        vpCafe.setAdapter(new CafeBoardPagerAdapter(getSupportFragmentManager(), 2, articleList, cafeName));
     }
 
     @Override
@@ -323,8 +323,11 @@ public class CafeActivity extends BaseActivity implements CafeActivityView {
                 break;
             case R.id.tv_chat_cafe_drawer:
                 // Chat Activity로 이동
-                if (sSharedPreferences.getBoolean(USER_LOGINNED, false))
-                    startNextActivity(ChatActivity.class);
+                if (sSharedPreferences.getBoolean(USER_LOGINNED, false)) {
+                    Intent intent2 = new Intent(this, ChatActivity.class);
+                    intent2.putExtra("cafeName", cafeName);
+                    startActivity(intent2);
+                }
                 else
                     mLoginAlert.show();
                 break;

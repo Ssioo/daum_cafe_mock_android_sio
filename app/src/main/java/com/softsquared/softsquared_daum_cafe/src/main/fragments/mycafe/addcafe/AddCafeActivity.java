@@ -77,7 +77,7 @@ public class AddCafeActivity extends BaseActivity implements AddCafeActivityView
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvCafeUrlCount.setText(s.length() + "/60");
+                tvCafeUrlCount.setText(s.length() + "/20");
             }
 
             @Override

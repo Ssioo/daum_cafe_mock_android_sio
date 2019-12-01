@@ -1,5 +1,6 @@
 package com.softsquared.softsquared_daum_cafe.src.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,6 +39,8 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
     private TextView tvSubmitChat;
     private Toolbar tbChat;
 
+    private String mCafeName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,10 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
         rvChat = findViewById(R.id.rv_chat_chat);
         tbChat = findViewById(R.id.toolbar_chat);
         tvSubmitChat = findViewById(R.id.tv_submit_chat);
+
+        /* Get Intent */
+        Intent intent = getIntent();
+        mCafeName = intent.getStringExtra("cafeName");
 
         /* Toolbar */
         setSupportActionBar(tbChat);
@@ -67,7 +74,10 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
                     rvChat.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            rvChat.smoothScrollToPosition(chatListViewAdapter.getItemCount() - 1);
+                            int position = chatListViewAdapter.getItemCount() - 1;
+                            if (position < 0)
+                                position = 0;
+                            rvChat.smoothScrollToPosition(position);
                         }
                     }, 100);
                 }
@@ -75,7 +85,7 @@ public class ChatActivity extends BaseActivity implements ChatActivityView {
         });
 
         /* Firebase Database Reference */
-        fdrChat = chatDatabase.child("anicafe");
+        fdrChat = chatDatabase.child(mCafeName);
         fdrChat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

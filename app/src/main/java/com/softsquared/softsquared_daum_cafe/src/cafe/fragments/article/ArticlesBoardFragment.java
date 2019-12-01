@@ -28,15 +28,17 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
     private SwipeRefreshLayout srlArticlesCafe;
 
     private ArticleOnListListAdapter articleOnListListAdapter;
+    private String mCafeName;
 
     private ArrayList<CafeResponse.Result> mArticleOnLists;
 
-    public ArticlesBoardFragment(ArrayList<CafeResponse.Result> results) {
+    public ArticlesBoardFragment(ArrayList<CafeResponse.Result> results, String cafeName) {
         this.mArticleOnLists = results;
+        mCafeName = cafeName;
     }
 
-    public static ArticlesBoardFragment newInstance(ArrayList<CafeResponse.Result> results) {
-        ArticlesBoardFragment fragment = new ArticlesBoardFragment(results);
+    public static ArticlesBoardFragment newInstance(ArrayList<CafeResponse.Result> results, String cafeName) {
+        ArticlesBoardFragment fragment = new ArticlesBoardFragment(results, cafeName);
         return fragment;
     }
 
@@ -69,7 +71,7 @@ public class ArticlesBoardFragment extends BaseFragment implements ArticlesBoard
         // Article List Refresh.
         CafeActivity parent = (CafeActivity) getActivity();
         if (parent != null) {
-            parent.getArticles("anicafe");
+            parent.getArticles(mCafeName);
         }
         srlArticlesCafe.setRefreshing(false);
     }

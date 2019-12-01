@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.softsquared.softsquared_daum_cafe.R;
 import com.softsquared.softsquared_daum_cafe.src.articledetail.ArticleDetailActivity;
+import com.softsquared.softsquared_daum_cafe.src.cafe.CafeActivity;
 import com.softsquared.softsquared_daum_cafe.src.cafe.models.CafeResponse;
 
 import java.util.ArrayList;
@@ -122,7 +123,7 @@ public class ArticleOnListListAdapter extends RecyclerView.Adapter<ArticleOnList
                 intent.putExtra("commentCount", articlesOnList.get(getAdapterPosition()).getCommentCount());
                 intent.putExtra("categoryType", articlesOnList.get(getAdapterPosition()).getCategoryType());
 
-                mContext.startActivity(intent);
+                ((CafeActivity) mContext).startActivityForResult(intent, CafeActivity.REQUEST_TO_ARTICLEDETAIL);
             }
         }
     }
